@@ -1,0 +1,110 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						2
+					],
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10.2"
+					},
+					"projectIndex" : 0,
+					"source" : "."
+				},
+				{
+					"build" : "proto",
+					"jsonFile" : "directory-proto-Debug-23359ce0bf7287cdf681.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10.2"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "proto",
+					"targetIndexes" : 
+					[
+						1
+					]
+				},
+				{
+					"build" : "worker",
+					"jsonFile" : "directory-worker-Debug-1a248198277bde91099e.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10.2"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "worker",
+					"targetIndexes" : 
+					[
+						0,
+						2
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0,
+						1,
+						2
+					],
+					"name" : "monitor_system",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 2,
+					"id" : "kernel_modules::@373699f7b2b39c3345a8",
+					"jsonFile" : "target-kernel_modules-Debug-80cd03f981e6e67eea25.json",
+					"name" : "kernel_modules",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "monitor_proto::@4dcc01eb4302123f3a4a",
+					"jsonFile" : "target-monitor_proto-Debug-387ead0e4239f1c34ddd.json",
+					"name" : "monitor_proto",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "worker::@373699f7b2b39c3345a8",
+					"jsonFile" : "target-worker-Debug-1d3c4b8896a66e546c3a.json",
+					"name" : "worker",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/celeste/codexProject/performance-testing-system/build-clean",
+		"source" : "/home/celeste/codexProject/performance-testing-system"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}

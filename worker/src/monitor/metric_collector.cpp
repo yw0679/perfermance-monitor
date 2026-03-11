@@ -31,12 +31,12 @@ MetricCollector::MetricCollector() {
   // 初始化所有监控器
   monitors_.push_back(std::make_unique<CpuLoadMonitor>());
   monitors_.push_back(std::make_unique<CpuStatMonitor>());
-  monitors_.push_back(std::make_unique<CpuSoftIrqMonitor>());
+  //monitors_.push_back(std::make_unique<CpuSoftIrqMonitor>());
   monitors_.push_back(std::make_unique<MemMonitor>());
 #ifdef ENABLE_EBPF
   monitors_.push_back(std::make_unique<NetEbpfMonitor>());
-#else
-  monitors_.push_back(std::make_unique<NetMonitor>());
+// #else
+//  monitors_.push_back(std::make_unique<NetMonitor>());
 #endif
   monitors_.push_back(std::make_unique<DiskMonitor>());
   monitors_.push_back(std::make_unique<HostInfoMonitor>());

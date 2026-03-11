@@ -14,7 +14,7 @@ if(NOT gRPC_FOUND)
 endif()
 
 # eBPF 支持选项
-option(ENABLE_EBPF "Enable eBPF-based network monitoring" ON)
+option(ENABLE_EBPF "Enable eBPF-based network monitoring" OFF)
 
 # 查找 libbpf
 if(ENABLE_EBPF)
