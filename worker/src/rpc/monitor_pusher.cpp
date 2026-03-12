@@ -5,8 +5,6 @@
 
 #include "rpc/monitor_pusher.h"
 
-#include <iostream>
-#include <chrono>
 
 namespace monitor {
 
@@ -34,8 +32,8 @@ void MonitorPusher::Start() {
   }
   running_ = true;
   thread_ = std::make_unique<std::thread>(&MonitorPusher::PushLoop, this);
-  std::cout << "MonitorPusher started, pushing to " << manager_address_
-            << " every " << interval_seconds_ << " seconds" << std::endl;
+  std::cout << "推送目标地址: " << manager_address_
+            << " 每 " << interval_seconds_ << " s推送一次" << std::endl;
 }
 
 void MonitorPusher::Stop() {
@@ -45,6 +43,7 @@ void MonitorPusher::Stop() {
   }
 }
 
+// 启动PushOnce
 void MonitorPusher::PushLoop() {
   while (running_) {
     if (!PushOnce()) {
@@ -59,22 +58,22 @@ void MonitorPusher::PushLoop() {
   }
 }
 
+// 采集监控数据
 bool MonitorPusher::PushOnce() {
-  // 采集监控数据
   monitor::proto::MonitorInfo info;
   collector_->CollectAll(&info);
 
   // 打印采集到的所有指标
-  std::cout << "\n================== Collected Metrics ==================" << std::endl;
+  std::cout << "\n================== 收集  指标 ==================" << std::endl;
   
   // 主机信息
   if (info.has_host_info()) {
-    std::cout << "[Host] Hostname: " << info.host_info().hostname()
+    std::cout << "监控端主机名: " << info.host_info().hostname()
               << ", IP: " << info.host_info().ip_address() << std::endl;
   }
   
   // CPU 统计信息 - 所有核心
-  std::cout << "\n--- CPU Statistics ---" << std::endl;
+  std::cout << "\n--- CPU 统计数据 ---" << std::endl;
   for (int i = 0; i < info.cpu_stat_size(); ++i) {
     const auto& cpu = info.cpu_stat(i);
     std::cout << "[" << cpu.cpu_name() << "] "
@@ -90,7 +89,7 @@ bool MonitorPusher::PushOnce() {
   
   // CPU 负载
   if (info.has_cpu_load()) {
-    std::cout << "\n--- CPU Load ---" << std::endl;
+    std::cout << "\n--- CPU 负载 ---" << std::endl;
     std::cout << "[Load] 1min: " << info.cpu_load().load_avg_1()
               << ", 5min: " << info.cpu_load().load_avg_3()
               << ", 15min: " << info.cpu_load().load_avg_15() << std::endl;
@@ -186,16 +185,12 @@ bool MonitorPusher::PushOnce() {
   grpc::Status status = stub_->SetMonitorInfo(&context, info, &response);
 
   if (status.ok()) {
-    std::cout << ">>> Pushed monitor data to " << manager_address_ << " successfully <<<" << std::endl;
+    std::cout << ">>>向" << manager_address_ << " 推送成功 <<<" << std::endl;
     return true;
   } else {
-    std::cerr << ">>> Push failed: " << status.error_message() << " <<<" << std::endl;
+    std::cerr << ">>> " << status.error_message() << " <<<" << std::endl;
     return false;
   }
 }
 
 }  // namespace monitor
-/**
- * 文件归类：当前版本使用文件（简化版主线）
- * 说明：当前默认构建、运行或联调流程会直接使用该文件。
- */

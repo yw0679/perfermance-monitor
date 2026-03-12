@@ -11,6 +11,8 @@
 #include <memory>
 #include <string>
 #include <thread>
+#include <iostream>
+#include <chrono>
 
 #include "monitor/metric_collector.h"
 #include "monitor_info.grpc.pb.h"
@@ -46,11 +48,11 @@ class MonitorPusher {
 
  private:
   void PushLoop();
-  bool PushOnce();
+  bool PushOnce();//单次推送
 
   std::string manager_address_;
   int interval_seconds_;
-  std::atomic<bool> running_;
+  std::atomic<bool> running_; //保证原子性的bool
   std::unique_ptr<std::thread> thread_;
   std::unique_ptr<MetricCollector> collector_;
   std::unique_ptr<monitor::proto::GrpcManager::Stub> stub_;

@@ -112,3 +112,21 @@ if(EBPF_FOUND)
 endif()
 # 文件归类：当前版本使用文件（简化版主线）
 # 说明：当前默认构建流程会直接使用该 Worker 构建配置。
+#find_package
+#查找外部依赖
+#option
+#定义构建开关
+#set
+##定义变量
+#add_executable
+#生成可执行程序
+##target_include_directories
+#添加头文件目录
+#target_link_libraries
+#链接依赖库
+#add_custom_command
+#自定义生成步骤
+#add_custom_target
+#定义一个可执行的构建目标
+#add_dependencies
+#声明构建顺序依赖
