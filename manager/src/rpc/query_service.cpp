@@ -1,3 +1,8 @@
+/**
+ * 文件归类：当前版本使用文件（简化版主线）
+ * 说明：当前默认构建、运行或联调流程会直接使用该文件。
+ */
+
 #include "rpc/query_service.h"
 
 #include <iostream>
@@ -470,3 +475,7 @@ void QueryServiceImpl::SetTimestamp(
 }
 
 }  // namespace monitor
+/**
+ * 文件归类：当前版本使用文件（简化版主线）
+ * 说明：当前默认构建、运行或联调流程会直接使用该文件。
+ */

@@ -1,3 +1,8 @@
+/**
+ * 文件归类：eBPF 模块文件（可选能力，默认未启用）
+ * 说明：仅在 ENABLE_EBPF 打开且依赖满足时参与构建或运行。
+ */
+
 #ifndef __VMLINUX_H__
 #define __VMLINUX_H__
 
@@ -150795,3 +150800,7 @@ struct pctldev;
 #endif
 
 #endif /* __VMLINUX_H__ */
+/*
+ * 文件归类：eBPF 模块文件（可选能力，默认未启用）
+ * 说明：这是 eBPF 程序依赖的内核类型头文件，默认主线不使用。
+ */

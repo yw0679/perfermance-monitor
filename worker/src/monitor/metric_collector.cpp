@@ -1,3 +1,8 @@
+/**
+ * 文件归类：当前版本使用文件（简化版主线）
+ * 说明：当前默认构建、运行或联调流程会直接使用该文件。
+ */
+
 #include "monitor/metric_collector.h"
 
 #include <unistd.h>
@@ -5,11 +10,10 @@
 #include <memory>
 
 #include "monitor/cpu_load_monitor.h"
-#include "monitor/cpu_softirq_monitor.h"
 #include "monitor/cpu_stat_monitor.h"
 #include "monitor/disk_monitor.h"
-#include "monitor/mem_monitor.h"
 #include "monitor/host_info_monitor.h"
+#include "monitor/mem_monitor.h"
 
 #ifdef ENABLE_EBPF
 #include "monitor/net_ebpf_monitor.h"
@@ -31,12 +35,11 @@ MetricCollector::MetricCollector() {
   // 初始化所有监控器
   monitors_.push_back(std::make_unique<CpuLoadMonitor>());
   monitors_.push_back(std::make_unique<CpuStatMonitor>());
-  //monitors_.push_back(std::make_unique<CpuSoftIrqMonitor>());
   monitors_.push_back(std::make_unique<MemMonitor>());
 #ifdef ENABLE_EBPF
   monitors_.push_back(std::make_unique<NetEbpfMonitor>());
-// #else
-//  monitors_.push_back(std::make_unique<NetMonitor>());
+#else
+  monitors_.push_back(std::make_unique<NetMonitor>());
 #endif
   monitors_.push_back(std::make_unique<DiskMonitor>());
   monitors_.push_back(std::make_unique<HostInfoMonitor>());
@@ -63,3 +66,7 @@ void MetricCollector::CollectAll(monitor::proto::MonitorInfo* monitor_info) {
 }
 
 }  // namespace monitor
+/**
+ * 文件归类：当前版本使用文件（简化版主线）
+ * 说明：当前默认构建、运行或联调流程会直接使用该文件。
+ */

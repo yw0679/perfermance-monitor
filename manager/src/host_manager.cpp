@@ -1,3 +1,8 @@
+/**
+ * 文件归类：当前版本使用文件（简化版主线）
+ * 说明：当前默认构建、运行或联调流程会直接使用该文件。
+ */
+
 #include "host_manager.h"
 
 #include <ctime>
@@ -156,8 +161,8 @@ void HostManager::OnDataReceived(const monitor::proto::MonitorInfo& info) {
   // 网络速率计算
   double net_in_rate = 0, net_out_rate = 0;
   if (info.net_info_size() > 0) {
-    net_in_rate = info.net_info(0).rcv_rate() / (1024.0 * 1024.0);
-    net_out_rate = info.net_info(0).send_rate() / (1024.0 * 1024.0);
+    net_in_rate = info.net_info(0).rcv_rate();
+    net_out_rate = info.net_info(0).send_rate();
   }
 
   // 当前采样
@@ -221,13 +226,14 @@ void HostManager::OnDataReceived(const monitor::proto::MonitorInfo& info) {
   }
 
   // 写入所有表
-  WriteToMysql(host_name, HostScore{info, score, now}, net_in_rate, net_out_rate,
-               cpu_percent_rate, usr_percent_rate, system_percent_rate,
-               nice_percent_rate, idle_percent_rate, io_wait_percent_rate,
-               irq_percent_rate, soft_irq_percent_rate, 0, 0, 0,
-               load_avg_1_rate, load_avg_3_rate, load_avg_15_rate,
-               mem_used_percent_rate, mem_total_rate, mem_free_rate,
-               mem_avail_rate, net_in_rate_rate, net_out_rate_rate, 0, 0);
+  bool mysql_write_ok = WriteToMysql(
+      host_name, HostScore{info, score, now}, net_in_rate, net_out_rate,
+      cpu_percent_rate, usr_percent_rate, system_percent_rate,
+      nice_percent_rate, idle_percent_rate, io_wait_percent_rate,
+      irq_percent_rate, soft_irq_percent_rate, 0, 0, 0, load_avg_1_rate,
+      load_avg_3_rate, load_avg_15_rate, mem_used_percent_rate, mem_total_rate,
+      mem_free_rate, mem_avail_rate, net_in_rate_rate, net_out_rate_rate, 0,
+      0);
 
   std::cout << "\n================== Received Data ==================" << std::endl;
   std::cout << "Server: " << host_name << ", Score: " << score << std::endl;
@@ -247,18 +253,18 @@ void HostManager::OnDataReceived(const monitor::proto::MonitorInfo& info) {
   // 内存详细信息
   std::cout << "\n--- Memory ---" << std::endl;
   std::cout << "  Used: " << curr.mem_used_percent << "%, "
-            << "Total: " << curr.mem_total << " MB" << std::endl;
-  std::cout << "  Free: " << curr.mem_free << " MB, "
-            << "Avail: " << curr.mem_avail << " MB" << std::endl;
+            << "Total: " << curr.mem_total << " GB" << std::endl;
+  std::cout << "  Free: " << curr.mem_free << " GB, "
+            << "Avail: " << curr.mem_avail << " GB" << std::endl;
   
   // 网络详细信息
   std::cout << "\n--- Network ---" << std::endl;
-  std::cout << "  In: " << net_in_rate * 1024 * 1024 << " B/s, "
-            << "Out: " << net_out_rate * 1024 * 1024 << " B/s" << std::endl;
+  std::cout << "  In: " << net_in_rate << " KB/s, "
+            << "Out: " << net_out_rate << " KB/s" << std::endl;
   for (int i = 0; i < info.net_info_size(); ++i) {
     const auto& net = info.net_info(i);
-    std::cout << "  [" << net.name() << "] Recv: " << net.rcv_rate() << " B/s, "
-              << "Send: " << net.send_rate() << " B/s, "
+    std::cout << "  [" << net.name() << "] Recv: " << net.rcv_rate() << " KB/s, "
+              << "Send: " << net.send_rate() << " KB/s, "
               << "Drops: " << net.drop_in() << "/" << net.drop_out() << std::endl;
   }
   
@@ -277,10 +283,6 @@ void HostManager::OnDataReceived(const monitor::proto::MonitorInfo& info) {
     std::cout << "  No disk data" << std::endl;
   }
   
-  // 软中断信息
-  std::cout << "\n--- SoftIRQ ---" << std::endl;
-  std::cout << "  CPU cores with softirq data: " << info.soft_irq_size() << std::endl;
-  
   // 变化率信息
   std::cout << "\n--- Change Rates ---" << std::endl;
   std::cout << "  CPU: " << cpu_percent_rate * 100 << "%, "
@@ -290,7 +292,8 @@ void HostManager::OnDataReceived(const monitor::proto::MonitorInfo& info) {
             << "NetOut: " << net_out_rate_rate * 100 << "%" << std::endl;
   
   std::cout << "\n--- Database ---" << std::endl;
-  std::cout << "  Data saved to MySQL (monitor_db)" << std::endl;
+  std::cout << "  MySQL write: " << (mysql_write_ok ? "success" : "skipped/failed")
+            << std::endl;
   std::cout << "====================================================\n" << std::endl;
 }
 
@@ -379,7 +382,7 @@ double HostManager::CalcScore(const monitor::proto::MonitorInfo& info) {
   return score < 0 ? 0 : (score > 100 ? 100 : score);
 }
 
-void HostManager::WriteToMysql(
+bool HostManager::WriteToMysql(
     const std::string& host_name, const HostScore& host_score,
     double net_in_rate, double net_out_rate, float cpu_percent_rate,
     float usr_percent_rate, float system_percent_rate, float nice_percent_rate,
@@ -394,13 +397,13 @@ void HostManager::WriteToMysql(
   MYSQL* conn = mysql_init(NULL);
   if (!conn) {
     std::cerr << "mysql_init failed\n";
-    return;
+    return false;
   }
   if (!mysql_real_connect(conn, MYSQL_HOST, MYSQL_USER, MYSQL_PASS, MYSQL_DB, 0,
                           NULL, 0)) {
     std::cerr << "mysql_real_connect failed: " << mysql_error(conn) << "\n";
     mysql_close(conn);
-    return;
+    return false;
   }
 
   // 时间戳
@@ -432,8 +435,8 @@ void HostManager::WriteToMysql(
       mem_used_percent = info.mem_info().used_percent();
     }
     if (info.net_info_size() > 0) {
-      send_rate = info.net_info(0).send_rate() / 1024.0;
-      rcv_rate = info.net_info(0).rcv_rate() / 1024.0;
+      send_rate = info.net_info(0).send_rate();
+      rcv_rate = info.net_info(0).rcv_rate();
     }
     if (info.cpu_stat_size() > 0) {
       const auto& cpu = info.cpu_stat(0);
@@ -698,6 +701,7 @@ void HostManager::WriteToMysql(
   }
 
   mysql_close(conn);
+  return true;
 #else
   (void)host_name; (void)host_score; (void)net_in_rate; (void)net_out_rate;
   (void)cpu_percent_rate; (void)usr_percent_rate; (void)system_percent_rate;
@@ -708,7 +712,12 @@ void HostManager::WriteToMysql(
   (void)mem_used_percent_rate; (void)mem_total_rate; (void)mem_free_rate;
   (void)mem_avail_rate; (void)net_in_rate_rate; (void)net_out_rate_rate;
   (void)net_in_drop_rate_rate; (void)net_out_drop_rate_rate;
+  return false;
 #endif
 }
 
 }  // namespace monitor
+/**
+ * 文件归类：当前版本使用文件（简化版主线）
+ * 说明：当前默认构建、运行或联调流程会直接使用该文件。
+ */

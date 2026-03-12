@@ -1,3 +1,8 @@
+/**
+ * 文件归类：当前版本使用文件（简化版主线）
+ * 说明：当前默认构建、运行或联调流程会直接使用该文件。
+ */
+
 #include <grpc/grpc.h>
 #include <grpcpp/server_builder.h>
 
@@ -43,9 +48,11 @@ int main(int argc, char* argv[]) {
 
   // 创建 QueryManager 并初始化
   monitor::QueryManager query_mgr;
+  bool query_available = false;
 #ifdef ENABLE_MYSQL
   if (query_mgr.Init(kDefaultMysqlHost, kDefaultMysqlUser, kDefaultMysqlPass,
                      kDefaultMysqlDb)) {
+    query_available = true;
     std::cout << "QueryManager initialized successfully" << std::endl;
   } else {
     std::cerr << "Warning: QueryManager initialization failed, "
@@ -65,9 +72,14 @@ int main(int argc, char* argv[]) {
   std::unique_ptr<grpc::Server> server(builder.BuildAndStart());
   std::cout << "Monitor Client listening on " << listen_address << std::endl;
   std::cout << "Waiting for workers to push data..." << std::endl;
-  std::cout << "Query service available for performance data queries" << std::endl;
+  std::cout << "Query service: "
+            << (query_available ? "available" : "disabled") << std::endl;
 
   server->Wait();
 
   return 0;
 }
+/**
+ * 文件归类：当前版本使用文件（简化版主线）
+ * 说明：当前默认构建、运行或联调流程会直接使用该文件。
+ */

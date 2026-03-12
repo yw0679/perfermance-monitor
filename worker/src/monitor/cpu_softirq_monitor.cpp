@@ -1,3 +1,8 @@
+/**
+ * 文件归类：内核模块相关文件（可选能力，当前简化版未使用）
+ * 说明：服务于字符设备/内核模块方案，不属于当前默认主线。
+ */
+
 #include "monitor/cpu_softirq_monitor.h"
 
 #include <fcntl.h>
@@ -134,3 +139,7 @@ void CpuSoftIrqMonitor::UpdateOnce(monitor::proto::MonitorInfo* monitor_info) {
 }
 
 }  // namespace monitor
+/**
+ * 文件归类：内核模块相关文件（可选能力，当前简化版未使用）
+ * 说明：该文件服务于字符设备/内核模块方案，不属于当前默认主线。
+ */

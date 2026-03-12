@@ -1,3 +1,8 @@
+/**
+ * 文件归类：内核模块相关文件（可选能力，当前简化版未使用）
+ * 说明：服务于字符设备/内核模块方案，不属于当前默认主线。
+ */
+
 /*
  * softirq_collector.c - 软中断统计数据采集内核模块
  *
@@ -283,3 +288,7 @@ static void __exit softirq_collector_exit(void)
 
 module_init(softirq_collector_init);
 module_exit(softirq_collector_exit);
+/*
+ * 文件归类：内核模块相关文件（可选能力，当前简化版未使用）
+ * 说明：该文件服务于字符设备/内核模块方案，不属于当前默认主线。
+ */

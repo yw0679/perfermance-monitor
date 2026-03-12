@@ -1,3 +1,6 @@
+# 文件归类：eBPF 模块文件（可选能力，默认未启用）
+# 说明：仅在 ENABLE_EBPF 打开且依赖满足时参与构建或运行。
+
 # eBPF 程序编译 Makefile
 
 CLANG ?= clang
@@ -54,3 +57,5 @@ info:
 	@echo "VMLINUX_H: $(VMLINUX_H)"
 	@echo "BPF_OBJS: $(BPF_OBJS)"
 	@echo "BPF_SKELS: $(BPF_SKELS)"
+# 文件归类：eBPF 模块文件（可选能力，默认未启用）
+# 说明：仅在 ENABLE_EBPF 打开且依赖满足时参与构建或运行。

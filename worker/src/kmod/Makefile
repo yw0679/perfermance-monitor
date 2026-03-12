@@ -1,3 +1,6 @@
+# 文件归类：内核模块相关文件（可选能力，当前简化版未使用）
+# 说明：服务于字符设备/内核模块方案，不属于当前默认主线。
+
 # 内核模块 Makefile
 
 # 模块名称
@@ -54,3 +57,5 @@ log:
 	sudo dmesg | tail -30
 
 .PHONY: all clean install install-softirq install-cpustat uninstall uninstall-softirq uninstall-cpustat info log
+# 文件归类：内核模块相关文件（可选能力，当前简化版未使用）
+# 说明：该 Makefile 用于编译监控内核模块，不属于当前默认主线。

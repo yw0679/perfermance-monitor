@@ -1,3 +1,8 @@
+/**
+ * 文件归类：当前版本使用文件（简化版主线）
+ * 说明：当前默认构建、运行或联调流程会直接使用该文件。
+ */
+
 #pragma once
 
 #include <grpcpp/support/status.h>
@@ -56,3 +61,7 @@ class GrpcServerImpl : public monitor::proto::GrpcManager::Service {
 };
 
 }  // namespace monitor
+/**
+ * 文件归类：当前版本使用文件（简化版主线）
+ * 说明：当前默认构建、运行或联调流程会直接使用该文件。
+ */

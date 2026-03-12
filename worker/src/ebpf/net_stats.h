@@ -1,3 +1,8 @@
+/**
+ * 文件归类：eBPF 模块文件（可选能力，默认未启用）
+ * 说明：仅在 ENABLE_EBPF 打开且依赖满足时参与构建或运行。
+ */
+
 /* SPDX-License-Identifier: GPL-2.0 */
 /*
  * net_stats.h - eBPF 网络统计共享数据结构
@@ -33,3 +38,7 @@ struct net_stats {
 #endif
 
 #endif /* __NET_STATS_H__ */
+/**
+ * 文件归类：eBPF 模块文件（可选能力，默认未启用）
+ * 说明：仅在 ENABLE_EBPF 打开且依赖满足时参与构建或运行。
+ */

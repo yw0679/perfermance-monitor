@@ -1,3 +1,6 @@
+# 文件归类：当前版本使用文件（简化版主线）
+# 说明：当前默认构建、运行或联调流程会直接使用该文件。
+
 # 尝试 CONFIG 模式，如果失败则使用 MODULE 模式
 find_package(protobuf CONFIG QUIET)
 if(NOT protobuf_FOUND)
@@ -63,3 +66,5 @@ endif()
 protobuf_generate(TARGET monitor_proto LANGUAGE cpp)   # 生成 Protobuf 序列化代码
 # 生成 gRPC 服务代码
 protobuf_generate(TARGET monitor_proto LANGUAGE grpc GENERATE_EXTENSIONS .grpc.pb.h .grpc.pb.cc PLUGIN "protoc-gen-grpc=${grpc_cpp_plugin_location}")
+# 文件归类：当前版本使用文件（简化版主线）
+# 说明：当前默认构建流程会直接使用该 Protobuf/gRPC 生成配置。

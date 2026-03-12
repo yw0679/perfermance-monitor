@@ -1,3 +1,8 @@
+/**
+ * 文件归类：当前版本使用文件（简化版主线）
+ * 说明：当前默认构建、运行或联调流程会直接使用该文件。
+ */
+
 #include "rpc/monitor_pusher.h"
 
 #include <iostream>
@@ -96,25 +101,25 @@ bool MonitorPusher::PushOnce() {
     const auto& mem = info.mem_info();
     std::cout << "\n--- Memory Info ---" << std::endl;
     std::cout << "[Memory] Used: " << mem.used_percent() << "%" << std::endl;
-    std::cout << "  Total: " << mem.total() << " MB, "
-              << "Free: " << mem.free() << " MB, "
-              << "Avail: " << mem.avail() << " MB" << std::endl;
-    std::cout << "  Buffers: " << mem.buffers() << " MB, "
-              << "Cached: " << mem.cached() << " MB, "
-              << "SwapCached: " << mem.swap_cached() << " MB" << std::endl;
-    std::cout << "  Active: " << mem.active() << " MB, "
-              << "Inactive: " << mem.inactive() << " MB" << std::endl;
-    std::cout << "  ActiveAnon: " << mem.active_anon() << " MB, "
-              << "InactiveAnon: " << mem.inactive_anon() << " MB" << std::endl;
-    std::cout << "  ActiveFile: " << mem.active_file() << " MB, "
-              << "InactiveFile: " << mem.inactive_file() << " MB" << std::endl;
-    std::cout << "  Dirty: " << mem.dirty() << " MB, "
-              << "Writeback: " << mem.writeback() << " MB" << std::endl;
-    std::cout << "  AnonPages: " << mem.anon_pages() << " MB, "
-              << "Mapped: " << mem.mapped() << " MB" << std::endl;
-    std::cout << "  KReclaimable: " << mem.kreclaimable() << " MB, "
-              << "SReclaimable: " << mem.sreclaimable() << " MB, "
-              << "SUnreclaim: " << mem.sunreclaim() << " MB" << std::endl;
+    std::cout << "  Total: " << mem.total() << " GB, "
+              << "Free: " << mem.free() << " GB, "
+              << "Avail: " << mem.avail() << " GB" << std::endl;
+    std::cout << "  Buffers: " << mem.buffers() << " GB, "
+              << "Cached: " << mem.cached() << " GB, "
+              << "SwapCached: " << mem.swap_cached() << " GB" << std::endl;
+    std::cout << "  Active: " << mem.active() << " GB, "
+              << "Inactive: " << mem.inactive() << " GB" << std::endl;
+    std::cout << "  ActiveAnon: " << mem.active_anon() << " GB, "
+              << "InactiveAnon: " << mem.inactive_anon() << " GB" << std::endl;
+    std::cout << "  ActiveFile: " << mem.active_file() << " GB, "
+              << "InactiveFile: " << mem.inactive_file() << " GB" << std::endl;
+    std::cout << "  Dirty: " << mem.dirty() << " GB, "
+              << "Writeback: " << mem.writeback() << " GB" << std::endl;
+    std::cout << "  AnonPages: " << mem.anon_pages() << " GB, "
+              << "Mapped: " << mem.mapped() << " GB" << std::endl;
+    std::cout << "  KReclaimable: " << mem.kreclaimable() << " GB, "
+              << "SReclaimable: " << mem.sreclaimable() << " GB, "
+              << "SUnreclaim: " << mem.sunreclaim() << " GB" << std::endl;
   }
   
   // 网络信息 - 所有网卡所有字段
@@ -123,9 +128,9 @@ bool MonitorPusher::PushOnce() {
     for (int i = 0; i < info.net_info_size(); ++i) {
       const auto& net = info.net_info(i);
       std::cout << "[" << net.name() << "]" << std::endl;
-      std::cout << "  Recv: " << net.rcv_rate() << " B/s ("
+      std::cout << "  Recv: " << net.rcv_rate() << " KB/s ("
                 << net.rcv_packets_rate() << " pkt/s)" << std::endl;
-      std::cout << "  Send: " << net.send_rate() << " B/s ("
+      std::cout << "  Send: " << net.send_rate() << " KB/s ("
                 << net.send_packets_rate() << " pkt/s)" << std::endl;
       std::cout << "  Errors(in/out): " << net.err_in() << "/" << net.err_out()
                 << ", Drops(in/out): " << net.drop_in() << "/" << net.drop_out() << std::endl;
@@ -190,3 +195,7 @@ bool MonitorPusher::PushOnce() {
 }
 
 }  // namespace monitor
+/**
+ * 文件归类：当前版本使用文件（简化版主线）
+ * 说明：当前默认构建、运行或联调流程会直接使用该文件。
+ */

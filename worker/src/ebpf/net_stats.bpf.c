@@ -1,5 +1,9 @@
 // SPDX-License-Identifier: GPL-2.0
 /*
+ * 文件归类：eBPF 模块文件（可选能力，默认未启用）
+ * 说明：仅在 ENABLE_EBPF 打开且依赖满足时参与构建或运行。
+ */
+/*
  * net_stats.bpf.c - 基于 TC Hook 的 eBPF 网络流量统计程序
  *
  * 功能：

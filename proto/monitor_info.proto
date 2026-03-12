@@ -1,3 +1,6 @@
+// 文件归类：当前版本使用文件（简化版主线）
+// 说明：当前默认构建、运行或联调流程会直接使用该文件。
+
 syntax = "proto3";
 package monitor.proto;
 
@@ -103,3 +106,5 @@ service GrpcManager {
   rpc GetMonitorInfo(google.protobuf.Empty) returns (MonitorInfo) {
   }
 }
+// 文件归类：当前版本使用文件（简化版主线）
+// 说明：当前默认协议生成流程会直接使用该聚合监控消息定义。

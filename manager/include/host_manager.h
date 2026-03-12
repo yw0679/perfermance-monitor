@@ -1,3 +1,8 @@
+/**
+ * 文件归类：当前版本使用文件（简化版主线）
+ * 说明：当前默认构建、运行或联调流程会直接使用该文件。
+ */
+
 #pragma once
 
 #include <atomic>
@@ -41,7 +46,7 @@ class HostManager {
  private:
   void ProcessLoop();
   double CalcScore(const monitor::proto::MonitorInfo& info);
-  void WriteToMysql(const std::string& host_name, const HostScore& host_score,
+  bool WriteToMysql(const std::string& host_name, const HostScore& host_score,
                     double net_in_rate, double net_out_rate,
                     float cpu_percent_rate, float usr_percent_rate,
                     float system_percent_rate, float nice_percent_rate,
@@ -62,3 +67,7 @@ class HostManager {
 };
 
 }  // namespace monitor
+/**
+ * 文件归类：当前版本使用文件（简化版主线）
+ * 说明：当前默认构建、运行或联调流程会直接使用该文件。
+ */

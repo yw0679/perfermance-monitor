@@ -1,12 +1,17 @@
+# 文件归类：当前版本使用文件（简化版主线）
+# 说明：当前默认构建、运行或联调流程会直接使用该文件。
+
 # Worker - 工作者服务器
 # 部署在被监控机器上，采集性能数据并推送给管理者服务器
 
 # 查找 gRPC
 find_package(gRPC CONFIG QUIET)
 if(NOT gRPC_FOUND)
-    find_library(GRPC_LIBRARY grpc)
-    find_library(GRPCPP_LIBRARY grpc++)
-    if(GRPC_LIBRARY AND GRPCPP_LIBRARY)
+    if(NOT TARGET gRPC::grpc++)
+        find_library(GRPC_LIBRARY grpc)
+        find_library(GRPCPP_LIBRARY grpc++)
+    endif()
+    if(NOT TARGET gRPC::grpc++ AND GRPC_LIBRARY AND GRPCPP_LIBRARY)
         add_library(grpc_lib INTERFACE)
         target_link_libraries(grpc_lib INTERFACE ${GRPC_LIBRARY} ${GRPCPP_LIBRARY})
         add_library(gRPC::grpc++ ALIAS grpc_lib)
@@ -57,7 +62,6 @@ set(WORKER_SOURCES
     src/main.cpp
     src/monitor/metric_collector.cpp
     src/monitor/cpu_load_monitor.cpp
-    src/monitor/cpu_softirq_monitor.cpp
     src/monitor/cpu_stat_monitor.cpp
     src/monitor/mem_monitor.cpp
     src/monitor/disk_monitor.cpp
@@ -106,3 +110,5 @@ if(EBPF_FOUND)
         COMMENT "Building eBPF programs"
     )
 endif()
+# 文件归类：当前版本使用文件（简化版主线）
+# 说明：当前默认构建流程会直接使用该 Worker 构建配置。

@@ -1,3 +1,6 @@
+# 文件归类：当前版本使用文件（简化版主线）
+# 说明：当前默认构建、运行或联调流程会直接使用该文件。
+
 cmake_minimum_required(VERSION 3.10.2)
 project(monitor_system LANGUAGES CXX)
 
@@ -16,3 +19,5 @@ add_subdirectory(worker)
 if(BUILD_MANAGER)
     add_subdirectory(manager)
 endif()
+# 文件归类：当前版本使用文件（简化版主线）
+# 说明：当前默认构建流程会直接使用该构建入口。

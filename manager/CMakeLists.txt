@@ -1,12 +1,17 @@
+# 文件归类：当前版本使用文件（简化版主线）
+# 说明：当前默认构建、运行或联调流程会直接使用该文件。
+
 # Manager - 管理者服务器
 # 部署在管理端，接收工作者推送的数据、存储到数据库、提供查询服务
 
 # 查找 gRPC
 find_package(gRPC CONFIG QUIET)
 if(NOT gRPC_FOUND)
-    find_library(GRPC_LIBRARY grpc)
-    find_library(GRPCPP_LIBRARY grpc++)
-    if(GRPC_LIBRARY AND GRPCPP_LIBRARY)
+    if(NOT TARGET gRPC::grpc++)
+        find_library(GRPC_LIBRARY grpc)
+        find_library(GRPCPP_LIBRARY grpc++)
+    endif()
+    if(NOT TARGET gRPC::grpc++ AND GRPC_LIBRARY AND GRPCPP_LIBRARY)
         add_library(grpc_lib INTERFACE)
         target_link_libraries(grpc_lib INTERFACE ${GRPC_LIBRARY} ${GRPCPP_LIBRARY})
         add_library(gRPC::grpc++ ALIAS grpc_lib)
@@ -52,3 +57,5 @@ if(ENABLE_MYSQL)
 endif()
 
 target_link_libraries(manager PUBLIC ${MANAGER_LIBS})
+# 文件归类：当前版本使用文件（简化版主线）
+# 说明：当前默认构建流程会直接使用该 Manager 构建配置。

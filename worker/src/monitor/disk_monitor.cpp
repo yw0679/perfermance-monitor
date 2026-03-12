@@ -1,3 +1,8 @@
+/**
+ * 文件归类：当前版本使用文件（简化版主线）
+ * 说明：当前默认构建、运行或联调流程会直接使用该文件。
+ */
+
 #include "monitor/disk_monitor.h"
 
 #include <ctime>
@@ -27,11 +32,17 @@ void DiskMonitor::UpdateOnce(monitor::proto::MonitorInfo* monitor_info) {
     int major, minor;
     std::string name;
     DiskSample curr{};
-    iss >> major >> minor >> name >> curr.reads >> curr.writes >>
-        curr.sectors_read >> curr.sectors_written >> curr.read_time_ms >>
-        curr.write_time_ms >> curr.io_in_progress >> curr.io_time_ms >>
-        curr.weighted_io_time_ms;
-    if (name.find("loop") == 0 || name.find("ram") == 0)
+    uint64_t reads_merged = 0;
+    uint64_t writes_merged = 0;
+    if (!(iss >> major >> minor >> name >> curr.reads >> reads_merged >>
+          curr.sectors_read >> curr.read_time_ms >> curr.writes >>
+          writes_merged >> curr.sectors_written >> curr.write_time_ms >>
+          curr.io_in_progress >> curr.io_time_ms >>
+          curr.weighted_io_time_ms)) {
+      continue;
+    }
+    if (name.find("loop") == 0 || name.find("ram") == 0 ||
+        name.find("fd") == 0 || name.find("sr") == 0)
       continue;  // 跳过虚拟盘
 
     auto* disk = monitor_info->add_disk_info();
@@ -81,3 +92,7 @@ void DiskMonitor::UpdateOnce(monitor::proto::MonitorInfo* monitor_info) {
 }
 
 }  // namespace monitor
+/**
+ * 文件归类：当前版本使用文件（简化版主线）
+ * 说明：当前默认构建、运行或联调流程会直接使用该文件。
+ */

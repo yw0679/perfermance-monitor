@@ -6,3 +6,5 @@ message CpuLoad {
     float load_avg_3 = 2;
     float load_avg_15 = 3;
   }
+// 文件归类：当前版本使用文件（简化版主线）
+// 说明：当前默认协议生成流程会直接使用该文件。

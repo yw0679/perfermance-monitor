@@ -1,3 +1,8 @@
+/**
+ * 文件归类：内核模块相关文件（可选能力，当前简化版未使用）
+ * 说明：服务于字符设备/内核模块方案，不属于当前默认主线。
+ */
+
 /*
  * test_softirq.c - 测试软中断采集模块
  * 编译: gcc -o test_softirq test_softirq.c
@@ -110,3 +115,7 @@ int main(int argc, char *argv[])
     printf("\nTest completed successfully!\n");
     return 0;
 }
+/*
+ * 文件归类：内核模块相关文件（可选能力，当前简化版未使用）
+ * 说明：这是内核模块链路的测试程序，默认主线不使用。
+ */

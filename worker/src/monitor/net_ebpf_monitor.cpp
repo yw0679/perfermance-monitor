@@ -1,3 +1,8 @@
+/**
+ * 文件归类：eBPF 模块文件（可选能力，默认未启用）
+ * 说明：仅在 ENABLE_EBPF 打开且依赖满足时参与构建或运行。
+ */
+
 #include "monitor/net_ebpf_monitor.h"
 
 #include <bpf/libbpf.h>
@@ -320,3 +325,7 @@ void NetEbpfMonitor::Stop() {
 }
 
 }  // namespace monitor
+/**
+ * 文件归类：eBPF 模块文件（可选能力，默认未启用）
+ * 说明：仅在 ENABLE_EBPF 打开且依赖满足时参与构建或运行。
+ */

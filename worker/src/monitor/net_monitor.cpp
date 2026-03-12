@@ -1,3 +1,8 @@
+/**
+ * 文件归类：当前版本使用文件（简化版主线）
+ * 说明：当前默认构建、运行或联调流程会直接使用该文件。
+ */
+
 #include "monitor/net_monitor.h"
 #include <chrono>
 #include <string>
@@ -9,6 +14,18 @@
 #include "monitor_info.pb.h"
 
 namespace monitor {
+
+namespace {
+
+bool ShouldSkipInterface(const std::string& iface) {
+    return iface == "lo" ||
+           iface.rfind("docker", 0) == 0 ||
+           iface.rfind("veth", 0) == 0 ||
+           iface.rfind("br-", 0) == 0 ||
+           iface.rfind("virbr", 0) == 0;
+}
+
+}  // namespace
 
 struct NetStat {
     std::string name;
@@ -47,8 +64,7 @@ static std::vector<NetStat> get_net_stats_from_proc() {
             iface.pop_back();
         }
         
-        // 跳过 lo 接口
-        if (iface == "lo") continue;
+        if (ShouldSkipInterface(iface)) continue;
         
         stat.name = iface;
         
@@ -107,3 +123,7 @@ void NetMonitor::UpdateOnce(monitor::proto::MonitorInfo* monitor_info) {
 }
 
 }  // namespace monitor
+/**
+ * 文件归类：当前版本使用文件（简化版主线）
+ * 说明：当前默认构建、运行或联调流程会直接使用该文件。
+ */
