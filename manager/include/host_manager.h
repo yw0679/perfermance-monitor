@@ -24,6 +24,11 @@ struct HostScore {
   std::chrono::system_clock::time_point timestamp;
 };
 
+struct ScheduleState {
+  double base_weight = 0;
+  double current_weight = 0;
+};
+
 // 管理多个远程主机的监控数据（推送模式）
 class HostManager {
  public:
@@ -46,6 +51,8 @@ class HostManager {
  private:
   void ProcessLoop();
   double CalcScore(const monitor::proto::MonitorInfo& info);
+  double CalcSchedulingWeight(double score) const;
+  std::string SelectHighestScoreHostLocked() const;
   bool WriteToMysql(const std::string& host_name, const HostScore& host_score,
                     double net_in_rate, double net_out_rate,
                     float cpu_percent_rate, float usr_percent_rate,
@@ -61,6 +68,7 @@ class HostManager {
                     float net_in_drop_rate_rate, float net_out_drop_rate_rate);
 
   std::unordered_map<std::string, HostScore> host_scores_;
+  std::unordered_map<std::string, ScheduleState> schedule_states_;
   std::mutex mtx_;
   std::atomic<bool> running_;
   std::unique_ptr<std::thread> thread_;

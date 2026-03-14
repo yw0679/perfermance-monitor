@@ -8,6 +8,7 @@
 #include <ctime>
 #include <iomanip>
 #include <iostream>
+#include <limits>
 #include <map>
 #include <sstream>
 
@@ -16,6 +17,10 @@
 #endif
 
 namespace monitor {
+
+namespace {
+constexpr double kScheduleWeightSmoothing = 0.3;
+}  // namespace
 
 #ifdef ENABLE_MYSQL
 namespace {
@@ -119,7 +124,9 @@ void HostManager::ProcessLoop() {
       auto age = std::chrono::duration_cast<std::chrono::seconds>(
           now - it->second.timestamp).count();
       if (age > 60) {
-        std::cout << "Removing stale host: " << it->first << std::endl;
+        const std::string host_name = it->first;
+        std::cout << "Removing stale host: " << host_name << std::endl;
+        schedule_states_.erase(host_name);
         it = host_scores_.erase(it);
       } else {
         ++it;
@@ -219,15 +226,29 @@ void HostManager::OnDataReceived(const monitor::proto::MonitorInfo& info) {
   float net_out_rate_rate = rate(curr.net_out_rate, last.net_out_rate);
 
   last_perf_samples[host_name] = curr;
+  HostScore host_score{info, score, now};
 
   {
     std::lock_guard<std::mutex> lock(mtx_);
-    host_scores_[host_name] = HostScore{info, score, now};
+    host_scores_[host_name] = host_score;
+
+    auto& schedule_state = schedule_states_[host_name];
+    const double new_weight = CalcSchedulingWeight(score);
+    if (new_weight <= 0) {
+      schedule_state.base_weight = 0;
+      schedule_state.current_weight = 0;
+    } else if (schedule_state.base_weight <= 0) {
+      schedule_state.base_weight = new_weight;
+    } else {
+      schedule_state.base_weight =
+          schedule_state.base_weight * (1.0 - kScheduleWeightSmoothing) +
+          new_weight * kScheduleWeightSmoothing;
+    }
   }
 
   // 写入所有表
   bool mysql_write_ok = WriteToMysql(
-      host_name, HostScore{info, score, now}, net_in_rate, net_out_rate,
+      host_name, host_score, net_in_rate, net_out_rate,
       cpu_percent_rate, usr_percent_rate, system_percent_rate,
       nice_percent_rate, idle_percent_rate, io_wait_percent_rate,
       irq_percent_rate, soft_irq_percent_rate, 0, 0, 0, load_avg_1_rate,
@@ -304,17 +325,59 @@ std::unordered_map<std::string, HostScore> HostManager::GetAllHostScores() {
 
 std::string HostManager::GetBestHost() {
   std::lock_guard<std::mutex> lock(mtx_);
+  if (host_scores_.empty()) {
+    return "";
+  }
+
+  double total_weight = 0;
+  double best_current_weight = -std::numeric_limits<double>::infinity();
+  std::string best_host;
+
+  // 基于实时评分做平滑加权轮询：分高的节点拿更多请求，但不会持续独占。
+  for (const auto& [host, data] : host_scores_) {
+    auto& state = schedule_states_[host];
+    if (state.base_weight <= 0) {
+      state.base_weight = CalcSchedulingWeight(data.score);
+    }
+
+    if (state.base_weight <= 0) {
+      continue;
+    }
+
+    state.current_weight += state.base_weight;
+    total_weight += state.base_weight;
+
+    if (state.current_weight > best_current_weight) {
+      best_current_weight = state.current_weight;
+      best_host = host;
+    }
+  }
+
+  if (best_host.empty() || total_weight <= 0) {
+    return SelectHighestScoreHostLocked();
+  }
+
+  schedule_states_[best_host].current_weight -= total_weight;
+  return best_host;
+}
+
+double HostManager::CalcSchedulingWeight(double score) const {
+  return score > 0 ? score : 0;
+}
+
+std::string HostManager::SelectHighestScoreHostLocked() const {
   std::string best_host;
   double best_score = -1;
+
   for (const auto& [host, data] : host_scores_) {
     if (data.score > best_score) {
       best_score = data.score;
       best_host = host;
     }
   }
+
   return best_host;
 }
-
 
 double HostManager::CalcScore(const monitor::proto::MonitorInfo& info) {
   // ============================================================
