@@ -1,5 +1,5 @@
--- 文件归类：当前版本使用文件（简化版主线）
--- 说明：当前默认构建、运行或联调流程会直接使用该文件。
+-- 文件归类：1
+-- 说明：初始化 manager 所需的监控数据表结构和索引。
 
 -- Monitor System Database Schema
 -- 用于存储服务器性能监控数据
@@ -212,5 +212,3 @@ CREATE TABLE IF NOT EXISTS server_disk_detail (
     timestamp DATETIME NOT NULL,
     INDEX idx_server_disk_time(server_name, disk_name, timestamp)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
--- 文件归类：当前版本使用文件（简化版主线）
--- 说明：当前默认部署和联调流程会直接使用该数据库初始化脚本。

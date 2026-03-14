@@ -1,15 +1,15 @@
 /**
- * 文件归类：当前版本使用文件（简化版主线）
- * 说明：当前默认构建、运行或联调流程会直接使用该文件。
+ * 文件归类：1
+ * 说明：manager 程序入口，负责启动接收服务、后台处理和查询服务。
  */
 
 #include <grpc/grpc.h>
 #include <grpcpp/server_builder.h>
 
-#include <chrono>
-#include <iostream>
-#include <string>
-#include <thread>
+#include <chrono>//时间
+#include <iostream>//打印日志
+#include <string>//字符串
+#include <thread>//线程
 
 #include "host_manager.h"
 #include "query_manager.h"
@@ -79,7 +79,3 @@ int main(int argc, char* argv[]) {
 
   return 0;
 }
-/**
- * 文件归类：当前版本使用文件（简化版主线）
- * 说明：当前默认构建、运行或联调流程会直接使用该文件。
- */

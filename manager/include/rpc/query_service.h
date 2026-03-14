@@ -1,6 +1,6 @@
 /**
- * 文件归类：当前版本使用文件（简化版主线）
- * 说明：当前默认构建、运行或联调流程会直接使用该文件。
+ * 文件归类：1
+ * 说明：定义查询 gRPC 服务实现类及其对外提供的查询接口。
  */
 
 #pragma once
@@ -88,7 +88,3 @@ class QueryServiceImpl : public monitor::proto::QueryService::Service {
 };
 
 }  // namespace monitor
-/**
- * 文件归类：当前版本使用文件（简化版主线）
- * 说明：当前默认构建、运行或联调流程会直接使用该文件。
- */

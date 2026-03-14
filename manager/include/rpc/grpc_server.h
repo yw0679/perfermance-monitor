@@ -1,6 +1,6 @@
 /**
- * 文件归类：当前版本使用文件（简化版主线）
- * 说明：当前默认构建、运行或联调流程会直接使用该文件。
+ * 文件归类：1
+ * 说明：定义接收 worker 监控数据的 gRPC 服务类和回调接口。
  */
 
 #pragma once
@@ -61,7 +61,3 @@ class GrpcServerImpl : public monitor::proto::GrpcManager::Service {
 };
 
 }  // namespace monitor
-/**
- * 文件归类：当前版本使用文件（简化版主线）
- * 说明：当前默认构建、运行或联调流程会直接使用该文件。
- */

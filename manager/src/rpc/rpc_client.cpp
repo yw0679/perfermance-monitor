@@ -1,6 +1,6 @@
 /**
- * 文件归类：历史/预留文件（当前版本未接入主线）
- * 说明：仓库保留代码，当前默认构建与运行流程不使用该文件。
+ * 文件归类：0
+ * 说明：保留旧版 RPC 客户端实现，当前主线不再使用。
  */
 
 #include "rpc/rpc_client.h"
@@ -41,7 +41,3 @@ bool RpcClient::GetMonitorInfo(monitor::proto::MonitorInfo* monitor_info) {
 }
 
 }  // namespace monitor
-/**
- * 文件归类：历史/预留文件（当前版本未接入主线）
- * 说明：仓库保留代码，当前默认构建与运行流程不使用该文件。
- */

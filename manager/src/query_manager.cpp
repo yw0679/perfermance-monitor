@@ -1,6 +1,6 @@
 /**
- * 文件归类：当前版本使用文件（简化版主线）
- * 说明：当前默认构建、运行或联调流程会直接使用该文件。
+ * 文件归类：1
+ * 说明：实现 MySQL 查询、结果解析和时间转换等数据库访问逻辑。
  */
 
 #include "query_manager.h"
@@ -948,7 +948,3 @@ std::vector<SoftIrqDetailRecord> QueryManager::QuerySoftIrqDetail(
 }
 
 }  // namespace monitor
-/**
- * 文件归类：当前版本使用文件（简化版主线）
- * 说明：当前默认构建、运行或联调流程会直接使用该文件。
- */

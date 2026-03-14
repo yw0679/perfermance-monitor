@@ -1,6 +1,6 @@
 /**
- * 文件归类：当前版本使用文件（简化版主线）
- * 说明：当前默认构建、运行或联调流程会直接使用该文件。
+ * 文件归类：1
+ * 说明：实现查询 gRPC 服务并将请求转发给 QueryManager。
  */
 
 #include "rpc/query_service.h"
@@ -475,7 +475,3 @@ void QueryServiceImpl::SetTimestamp(
 }
 
 }  // namespace monitor
-/**
- * 文件归类：当前版本使用文件（简化版主线）
- * 说明：当前默认构建、运行或联调流程会直接使用该文件。
- */
