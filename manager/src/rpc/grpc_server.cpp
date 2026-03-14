@@ -34,7 +34,7 @@ namespace monitor {
 
   std::cout << "Received monitor data from: " << hostname << std::endl;
 
-  // 调用回调函数
+  // 如果存了回调函数，就调用
   if (callback_) {
     callback_(*request);
   }
