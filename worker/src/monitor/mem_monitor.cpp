@@ -11,9 +11,9 @@ static constexpr float KBToGB = 1000 * 1000;
 
 void MemMonitor::UpdateOnce(monitor::proto::MonitorInfo* monitor_info) {
   ReadFile mem_file("/proc/meminfo");
-  struct MenInfo mem_info;
+  struct MenInfo mem_info{};
   std::vector<std::string> mem_datas;
-  while (mem_file.ReadLine(&mem_datas)) {
+  while (mem_file.ReadLine(&mem_datas)) {//读一行，把这一行按空格拆开放进mem_datas，赋完值后清空vector然后再读下一行循环。
     if (mem_datas[0] == "MemTotal:") {
       mem_info.total = std::stoll(mem_datas[1]);
     } else if (mem_datas[0] == "MemFree:") {

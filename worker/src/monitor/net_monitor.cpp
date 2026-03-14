@@ -43,7 +43,8 @@ struct NetStat {
 static std::vector<NetStat> get_net_stats_from_proc() {
     std::vector<NetStat> stats;
     std::ifstream file("/proc/net/dev");
-    if (!file.is_open()) return stats;
+    if (!file.is_open()) 
+    return stats;
 
     std::string line;
     // 跳过前两行标题
@@ -52,7 +53,7 @@ static std::vector<NetStat> get_net_stats_from_proc() {
 
     while (std::getline(file, line)) {
         std::istringstream iss(line);
-        NetStat stat;
+        NetStat stat{};
         
         // 解析接口名
         std::string iface;
@@ -71,8 +72,8 @@ static std::vector<NetStat> get_net_stats_from_proc() {
         // 解析接收统计: bytes packets errs drop fifo frame compressed multicast
         iss >> stat.rcv_bytes >> stat.rcv_packets >> stat.err_in >> stat.drop_in;
         uint64_t dummy;
-        iss >> dummy >> dummy >> dummy >> dummy;  // fifo frame compressed multicast
-        
+        iss >> dummy >> dummy >> dummy >> dummy;  // 读出中间无用信息，丢弃
+
         // 解析发送统计: bytes packets errs drop fifo colls carrier compressed
         iss >> stat.snd_bytes >> stat.snd_packets >> stat.err_out >> stat.drop_out;
         

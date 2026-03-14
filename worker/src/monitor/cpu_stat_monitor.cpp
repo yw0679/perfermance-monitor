@@ -95,7 +95,7 @@ void CpuStatMonitor::UpdateOnce(monitor::proto::MonitorInfo* monitor_info) {
     auto* cpu_stat_msg = monitor_info->add_cpu_stat();
     cpu_stat_msg->set_cpu_name(current.cpu_name);
 
-    auto cached_it = cpu_stat_map_.find(current.cpu_name);
+    auto cached_it = cpu_stat_map_.find(current.cpu_name);//返回当前cpu_name的迭代器
     if (cached_it != cpu_stat_map_.end()) {
       const CpuStat& previous = cached_it->second;
       ProcCpuStat previous_stat;
@@ -142,6 +142,7 @@ void CpuStatMonitor::UpdateOnce(monitor::proto::MonitorInfo* monitor_info) {
           SafePercent(current.soft_irq, previous.soft_irq, total_delta));
     }
 
+//[]:从cpu_stat_map_表中取出键为current.cpu_name的值，并返回引用，也就是可以直接修改
     CpuStat& cached = cpu_stat_map_[current.cpu_name];
     cached.cpu_name = current.cpu_name;
     cached.user = current.user;

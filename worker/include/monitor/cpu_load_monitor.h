@@ -1,6 +1,6 @@
 /**
  * 文件归类：当前版本使用文件（简化版主线）
- * 说明：当前默认构建、运行或联调流程会直接使用该文件。
+ * 说明：cpu负载监控器。
  */
 
 #pragma once
@@ -19,7 +19,7 @@ class CpuLoadMonitor : public MonitorInter {
 
  private:
   float load_avg_1_;
-  float load_avg_3_;
+  float load_avg_5_;
   float load_avg_15_;
 };
 

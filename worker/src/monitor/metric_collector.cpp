@@ -34,7 +34,7 @@ MetricCollector::MetricCollector() {
 
   // 初始化所有监控器
   monitors_.push_back(std::make_unique<CpuLoadMonitor>());
-  monitors_.push_back(std::make_unique<CpuStatMonitor>());
+  monitors_.push_back(std::unique_ptr<CpuStatMonitor>(new CpuStatMonitor()));
   monitors_.push_back(std::make_unique<MemMonitor>());
 #ifdef ENABLE_EBPF
   monitors_.push_back(std::make_unique<NetEbpfMonitor>());
@@ -66,7 +66,3 @@ void MetricCollector::CollectAll(monitor::proto::MonitorInfo* monitor_info) {
 }
 
 }  // namespace monitor
-/**
- * 文件归类：当前版本使用文件（简化版主线）
- * 说明：当前默认构建、运行或联调流程会直接使用该文件。
- */
