@@ -5,21 +5,21 @@
 
 #pragma once
 
+#include <chrono>
 #include <string>
 #include <unordered_map>
-#include <chrono>
-#include <memory>
+#include <vector>
 
 #include "monitor/monitor_inter.h"
 
-struct bpf_object;
+struct net_stats_bpf;
 
 namespace monitor {
 
 /**
  * 基于 eBPF 的网络流量监控器
  * 
- * 使用 eBPF tracepoint 挂载到内核网络路径，
+ * 使用 eBPF TC Hook 挂载到内核网络路径，
  * 实时统计每个网卡的收发流量。
  */
 class NetEbpfMonitor : public MonitorInter {
@@ -56,11 +56,9 @@ class NetEbpfMonitor : public MonitorInter {
   std::unordered_map<uint32_t, std::string> ifname_cache_;  // ifindex -> name
   std::vector<uint32_t> attached_ifindexes_;  // 已附加 TC hook 的网卡
   
-  struct bpf_object* bpf_obj_ = nullptr;
+  struct net_stats_bpf* skel_ = nullptr;
   int map_fd_ = -1;
   bool loaded_ = false;
-  
-  std::chrono::steady_clock::time_point last_update_;
 };
 
 }  // namespace monitor

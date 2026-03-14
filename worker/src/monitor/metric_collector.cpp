@@ -14,12 +14,7 @@
 #include "monitor/disk_monitor.h"
 #include "monitor/host_info_monitor.h"
 #include "monitor/mem_monitor.h"
-
-#ifdef ENABLE_EBPF
 #include "monitor/net_ebpf_monitor.h"
-#else
-#include "monitor/net_monitor.h"
-#endif
 
 namespace monitor {
 
@@ -34,13 +29,9 @@ MetricCollector::MetricCollector() {
 
   // 初始化所有监控器
   monitors_.push_back(std::make_unique<CpuLoadMonitor>());
-  monitors_.push_back(std::unique_ptr<CpuStatMonitor>(new CpuStatMonitor()));
+  monitors_.push_back(std::make_unique<CpuStatMonitor>());
   monitors_.push_back(std::make_unique<MemMonitor>());
-#ifdef ENABLE_EBPF
   monitors_.push_back(std::make_unique<NetEbpfMonitor>());
-#else
-  monitors_.push_back(std::make_unique<NetMonitor>());
-#endif
   monitors_.push_back(std::make_unique<DiskMonitor>());
   monitors_.push_back(std::make_unique<HostInfoMonitor>());
 }
