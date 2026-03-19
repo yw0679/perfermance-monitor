@@ -1,6 +1,6 @@
 /**
- * 文件归类：eBPF 模块文件（可选能力，默认未启用）
- * 说明：仅在 ENABLE_EBPF 打开且依赖满足时参与构建或运行。
+ * 文件归类：eBPF 模块文件（当前网络采集主线）
+ * 说明：worker 通过 TC ingress/egress + eBPF map 统计网卡流量。
  */
 
 #pragma once
@@ -63,6 +63,6 @@ class NetEbpfMonitor : public MonitorInter {
 
 }  // namespace monitor
 /**
- * 文件归类：eBPF 模块文件（可选能力，默认未启用）
- * 说明：仅在 ENABLE_EBPF 打开且依赖满足时参与构建或运行。
+ * 文件归类：eBPF 模块文件（当前网络采集主线）
+ * 说明：worker 通过 TC ingress/egress + eBPF map 统计网卡流量。
  */

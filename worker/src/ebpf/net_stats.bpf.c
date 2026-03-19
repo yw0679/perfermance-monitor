@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-2.0
 /*
- * 文件归类：eBPF 模块文件（可选能力，默认未启用）
- * 说明：仅在 ENABLE_EBPF 打开且依赖满足时参与构建或运行。
+ * 文件归类：eBPF 模块文件（当前网络采集主线）
+ * 说明：worker 通过 TC ingress/egress + eBPF map 统计网卡流量。
  */
 /*
  * net_stats.bpf.c - 基于 TC Hook 的 eBPF 网络流量统计程序
@@ -38,9 +38,13 @@ struct net_stats {
     __u64 snd_packets;    /* 发送包数 */
 };
 
-/* 
+/*
  * BPF Hash Map: key = ifindex (网卡索引), value = net_stats
- * 使用 ifindex 作为 key，用户空间通过 if_indextoname() 转换为网卡名
+ *
+ * 这里选择 HASH 而不是 ARRAY/QUEUE/RINGBUF：
+ * 1. ifindex 是整数，但通常不连续，用 HASH 更节省空间；
+ * 2. 每块网卡都需要按 key 单独维护一份累计状态；
+ * 3. 用户空间会再通过 if_indextoname() 将 ifindex 转成网卡名。
  */
 struct {
     __uint(type, BPF_MAP_TYPE_HASH);
@@ -58,7 +62,7 @@ static __always_inline void update_stats(__u32 ifindex, __u32 len, bool is_rx)
     struct net_stats *stats;
     struct net_stats new_stats = {};
 
-    stats = bpf_map_lookup_elem(&net_stats_map, &ifindex);
+    stats = bpf_map_lookup_elem(&net_stats_map, &ifindex);//根bpfmap的key来查
     if (!stats) {
         /* 首次看到此网卡，初始化统计 */
         if (is_rx) {
@@ -72,8 +76,8 @@ static __always_inline void update_stats(__u32 ifindex, __u32 len, bool is_rx)
     } else {
         /* 使用原子操作更新已有统计 */
         if (is_rx) {
-            __sync_fetch_and_add(&stats->rcv_bytes, len);
-            __sync_fetch_and_add(&stats->rcv_packets, 1);
+            __atomic_fetch_add(&stats->rcv_bytes,len , __ATOMIC_SEQ_CST);
+            __atomic_fetch_add(&stats->rcv_packets,1 , __ATOMIC_SEQ_CST);
         } else {
             __sync_fetch_and_add(&stats->snd_bytes, len);
             __sync_fetch_and_add(&stats->snd_packets, 1);
@@ -87,7 +91,7 @@ static __always_inline void update_stats(__u32 ifindex, __u32 len, bool is_rx)
  * 当数据包从网卡进入协议栈时触发
  * ctx->ingress_ifindex 包含入口网卡的 ifindex
  */
-SEC("tc/ingress")
+SEC("tc/ingress")//对libbpf申明下面函数放在tc/ingress段
 int tc_ingress(struct __sk_buff *skb)
 {
     __u32 ifindex = skb->ifindex;

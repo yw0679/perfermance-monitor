@@ -64,18 +64,6 @@ class QueryServiceImpl : public monitor::proto::QueryService::Service {
       const ::monitor::proto::QueryDetailRequest* request,
       ::monitor::proto::QueryDiskDetailResponse* response) override;
 
-  // 内存详细数据查询
-  ::grpc::Status QueryMemDetail(
-      ::grpc::ServerContext* context,
-      const ::monitor::proto::QueryDetailRequest* request,
-      ::monitor::proto::QueryMemDetailResponse* response) override;
-
-  // 软中断详细数据查询
-  ::grpc::Status QuerySoftIrqDetail(
-      ::grpc::ServerContext* context,
-      const ::monitor::proto::QueryDetailRequest* request,
-      ::monitor::proto::QuerySoftIrqDetailResponse* response) override;
-
  private:
   // 转换时间范围
   TimeRange ConvertTimeRange(const ::monitor::proto::TimeRange& proto_range);

@@ -66,17 +66,11 @@ void QueryServiceImpl::SetTimestamp(
     proto_rec->set_cpu_percent(rec.cpu_percent);
     proto_rec->set_usr_percent(rec.usr_percent);
     proto_rec->set_system_percent(rec.system_percent);
-    proto_rec->set_nice_percent(rec.nice_percent);
-    proto_rec->set_idle_percent(rec.idle_percent);
-    proto_rec->set_io_wait_percent(rec.io_wait_percent);
-    proto_rec->set_irq_percent(rec.irq_percent);
-    proto_rec->set_soft_irq_percent(rec.soft_irq_percent);
     proto_rec->set_load_avg_1(rec.load_avg_1);
     proto_rec->set_load_avg_3(rec.load_avg_3);
     proto_rec->set_load_avg_15(rec.load_avg_15);
     proto_rec->set_mem_used_percent(rec.mem_used_percent);
     proto_rec->set_mem_total(rec.mem_total);
-    proto_rec->set_mem_free(rec.mem_free);
     proto_rec->set_mem_avail(rec.mem_avail);
     proto_rec->set_disk_util_percent(rec.disk_util_percent);
     proto_rec->set_send_rate(rec.send_rate);
@@ -86,6 +80,8 @@ void QueryServiceImpl::SetTimestamp(
     proto_rec->set_mem_used_percent_rate(rec.mem_used_percent_rate);
     proto_rec->set_disk_util_percent_rate(rec.disk_util_percent_rate);
     proto_rec->set_load_avg_1_rate(rec.load_avg_1_rate);
+    proto_rec->set_send_rate_rate(rec.send_rate_rate);
+    proto_rec->set_rcv_rate_rate(rec.rcv_rate_rate);
   }
 
   response->set_total_count(total_count);
@@ -122,11 +118,12 @@ void QueryServiceImpl::SetTimestamp(
     proto_rec->set_cpu_percent(rec.cpu_percent);
     proto_rec->set_usr_percent(rec.usr_percent);
     proto_rec->set_system_percent(rec.system_percent);
-    proto_rec->set_io_wait_percent(rec.io_wait_percent);
     proto_rec->set_load_avg_1(rec.load_avg_1);
     proto_rec->set_load_avg_3(rec.load_avg_3);
     proto_rec->set_load_avg_15(rec.load_avg_15);
     proto_rec->set_mem_used_percent(rec.mem_used_percent);
+    proto_rec->set_mem_total(rec.mem_total);
+    proto_rec->set_mem_avail(rec.mem_avail);
     proto_rec->set_disk_util_percent(rec.disk_util_percent);
     proto_rec->set_send_rate(rec.send_rate);
     proto_rec->set_rcv_rate(rec.rcv_rate);
@@ -135,6 +132,8 @@ void QueryServiceImpl::SetTimestamp(
     proto_rec->set_mem_used_percent_rate(rec.mem_used_percent_rate);
     proto_rec->set_disk_util_percent_rate(rec.disk_util_percent_rate);
     proto_rec->set_load_avg_1_rate(rec.load_avg_1_rate);
+    proto_rec->set_send_rate_rate(rec.send_rate_rate);
+    proto_rec->set_rcv_rate_rate(rec.rcv_rate_rate);
   }
 
   response->set_interval_seconds(request->interval_seconds());
@@ -317,10 +316,6 @@ void QueryServiceImpl::SetTimestamp(
     proto_rec->set_server_name(rec.server_name);
     proto_rec->set_net_name(rec.net_name);
     SetTimestamp(proto_rec->mutable_timestamp(), rec.timestamp);
-    proto_rec->set_err_in(rec.err_in);
-    proto_rec->set_err_out(rec.err_out);
-    proto_rec->set_drop_in(rec.drop_in);
-    proto_rec->set_drop_out(rec.drop_out);
     proto_rec->set_rcv_bytes_rate(rec.rcv_bytes_rate);
     proto_rec->set_snd_bytes_rate(rec.snd_bytes_rate);
     proto_rec->set_rcv_packets_rate(rec.rcv_packets_rate);
@@ -372,99 +367,6 @@ void QueryServiceImpl::SetTimestamp(
     proto_rec->set_avg_read_latency_ms(rec.avg_read_latency_ms);
     proto_rec->set_avg_write_latency_ms(rec.avg_write_latency_ms);
     proto_rec->set_util_percent(rec.util_percent);
-  }
-
-  response->set_total_count(total_count);
-  response->set_page(page);
-  response->set_page_size(page_size);
-
-  return grpc::Status::OK;
-}
-
-::grpc::Status QueryServiceImpl::QueryMemDetail(
-    ::grpc::ServerContext* context,
-    const ::monitor::proto::QueryDetailRequest* request,
-    ::monitor::proto::QueryMemDetailResponse* response) {
-  (void)context;
-
-  if (!query_manager_) {
-    return grpc::Status(grpc::StatusCode::UNAVAILABLE,
-                        "Query manager not initialized");
-  }
-
-  TimeRange time_range = ConvertTimeRange(request->time_range());
-  if (!query_manager_->ValidateTimeRange(time_range)) {
-    return grpc::Status(grpc::StatusCode::INVALID_ARGUMENT,
-                        "Invalid time range: start_time > end_time");
-  }
-
-  int page = request->pagination().page();
-  int page_size = request->pagination().page_size();
-  if (page < 1) page = 1;
-  if (page_size < 1) page_size = 100;
-
-  int total_count = 0;
-  auto records = query_manager_->QueryMemDetail(
-      request->server_name(), time_range, page, page_size, &total_count);
-
-  for (const auto& rec : records) {
-    auto* proto_rec = response->add_records();
-    proto_rec->set_server_name(rec.server_name);
-    SetTimestamp(proto_rec->mutable_timestamp(), rec.timestamp);
-    proto_rec->set_total(rec.total);
-    proto_rec->set_free(rec.free);
-    proto_rec->set_avail(rec.avail);
-    proto_rec->set_buffers(rec.buffers);
-    proto_rec->set_cached(rec.cached);
-    proto_rec->set_active(rec.active);
-    proto_rec->set_inactive(rec.inactive);
-    proto_rec->set_dirty(rec.dirty);
-  }
-
-  response->set_total_count(total_count);
-  response->set_page(page);
-  response->set_page_size(page_size);
-
-  return grpc::Status::OK;
-}
-
-::grpc::Status QueryServiceImpl::QuerySoftIrqDetail(
-    ::grpc::ServerContext* context,
-    const ::monitor::proto::QueryDetailRequest* request,
-    ::monitor::proto::QuerySoftIrqDetailResponse* response) {
-  (void)context;
-
-  if (!query_manager_) {
-    return grpc::Status(grpc::StatusCode::UNAVAILABLE,
-                        "Query manager not initialized");
-  }
-
-  TimeRange time_range = ConvertTimeRange(request->time_range());
-  if (!query_manager_->ValidateTimeRange(time_range)) {
-    return grpc::Status(grpc::StatusCode::INVALID_ARGUMENT,
-                        "Invalid time range: start_time > end_time");
-  }
-
-  int page = request->pagination().page();
-  int page_size = request->pagination().page_size();
-  if (page < 1) page = 1;
-  if (page_size < 1) page_size = 100;
-
-  int total_count = 0;
-  auto records = query_manager_->QuerySoftIrqDetail(
-      request->server_name(), time_range, page, page_size, &total_count);
-
-  for (const auto& rec : records) {
-    auto* proto_rec = response->add_records();
-    proto_rec->set_server_name(rec.server_name);
-    proto_rec->set_cpu_name(rec.cpu_name);
-    SetTimestamp(proto_rec->mutable_timestamp(), rec.timestamp);
-    proto_rec->set_hi(rec.hi);
-    proto_rec->set_timer(rec.timer);
-    proto_rec->set_net_tx(rec.net_tx);
-    proto_rec->set_net_rx(rec.net_rx);
-    proto_rec->set_block(rec.block);
-    proto_rec->set_sched(rec.sched);
   }
 
   response->set_total_count(total_count);

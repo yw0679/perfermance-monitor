@@ -19,18 +19,40 @@ if(NOT gRPC_FOUND)
 endif()
 
 # eBPF 是当前网络采集主线
-find_library(LIBBPF_LIBRARY bpf PATHS /usr/lib64 /usr/lib/x86_64-linux-gnu /usr/local/lib)
-find_library(LIBELF_LIBRARY elf)
-find_library(LIBZ_LIBRARY z)
+find_package(PkgConfig QUIET)
 
-if(EXISTS "/usr/include/bpf/libbpf.h")
-    set(LIBBPF_INCLUDE_DIR "/usr/include")
-else()
-    find_path(LIBBPF_INCLUDE_DIR bpf/libbpf.h)
+set(LIBBPF_MIN_VERSION "1.0.0")
+set(LIBBPF_LINK_TARGET "")
+set(LIBBPF_INCLUDE_DIRS "")
+set(LIBBPF_RUNTIME_DIRS "")
+
+if(PkgConfig_FOUND)
+    pkg_check_modules(LIBBPF QUIET IMPORTED_TARGET libbpf)
 endif()
 
-if(NOT LIBBPF_LIBRARY OR NOT LIBELF_LIBRARY OR NOT LIBZ_LIBRARY OR NOT LIBBPF_INCLUDE_DIR)
-    message(FATAL_ERROR "eBPF dependencies not found. Please install libbpf/libelf/zlib headers and libraries.")
+if(LIBBPF_FOUND)
+    message(STATUS "Found libbpf via pkg-config: ${LIBBPF_VERSION}")
+    if(LIBBPF_VERSION VERSION_LESS LIBBPF_MIN_VERSION)
+        message(WARNING
+            "libbpf ${LIBBPF_VERSION} is older than recommended ${LIBBPF_MIN_VERSION}. "
+            "Install a newer libbpf and update PKG_CONFIG_PATH if eBPF loading still fails.")
+    endif()
+
+    set(LIBBPF_LINK_TARGET PkgConfig::LIBBPF)
+    set(LIBBPF_INCLUDE_DIRS ${LIBBPF_INCLUDE_DIRS})
+    set(LIBBPF_RUNTIME_DIRS ${LIBBPF_LIBRARY_DIRS})
+else()
+    find_library(LIBBPF_LIBRARY bpf PATHS /usr/local/lib /usr/lib64 /usr/lib/x86_64-linux-gnu)
+    find_library(LIBELF_LIBRARY elf)
+    find_library(LIBZ_LIBRARY z)
+    find_path(LIBBPF_INCLUDE_DIR bpf/libbpf.h PATHS /usr/local/include /usr/include)
+
+    if(NOT LIBBPF_LIBRARY OR NOT LIBELF_LIBRARY OR NOT LIBZ_LIBRARY OR NOT LIBBPF_INCLUDE_DIR)
+        message(FATAL_ERROR "eBPF dependencies not found. Please install libbpf/libelf/zlib headers and libraries.")
+    endif()
+
+    set(LIBBPF_INCLUDE_DIRS ${LIBBPF_INCLUDE_DIR})
+    set(LIBBPF_RUNTIME_DIRS /usr/local/lib)
 endif()
 
 message(STATUS "eBPF support enabled")
@@ -75,10 +97,20 @@ set(WORKER_LIBS monitor_proto gRPC::grpc++)
 # eBPF 依赖
 add_dependencies(worker ebpf_skeleton)
 target_compile_definitions(worker PRIVATE ENABLE_EBPF=1)
-target_include_directories(worker PRIVATE ${LIBBPF_INCLUDE_DIR})
-list(APPEND WORKER_LIBS ${LIBBPF_LIBRARY} ${LIBELF_LIBRARY} ${LIBZ_LIBRARY})
+target_include_directories(worker PRIVATE ${LIBBPF_INCLUDE_DIRS})
+if(LIBBPF_LINK_TARGET)
+    list(APPEND WORKER_LIBS ${LIBBPF_LINK_TARGET})
+else()
+    list(APPEND WORKER_LIBS ${LIBBPF_LIBRARY} ${LIBELF_LIBRARY} ${LIBZ_LIBRARY})
+endif()
 
 target_link_libraries(worker PUBLIC ${WORKER_LIBS})
+
+if(LIBBPF_RUNTIME_DIRS)
+    set_target_properties(worker PROPERTIES
+        BUILD_RPATH "${LIBBPF_RUNTIME_DIRS}"
+        INSTALL_RPATH "${LIBBPF_RUNTIME_DIRS}")
+endif()
 # 文件归类：当前版本使用文件（简化版主线）
 # 说明：当前默认构建流程会直接使用该 Worker 构建配置。
 #find_package

@@ -44,11 +44,6 @@ struct PerformanceRecord {
   float cpu_percent = 0;
   float usr_percent = 0;
   float system_percent = 0;
-  float nice_percent = 0;
-  float idle_percent = 0;
-  float io_wait_percent = 0;
-  float irq_percent = 0;
-  float soft_irq_percent = 0;
   // 负载指标
   float load_avg_1 = 0;
   float load_avg_3 = 0;
@@ -56,7 +51,6 @@ struct PerformanceRecord {
   // 内存指标
   float mem_used_percent = 0;
   float mem_total = 0;
-  float mem_free = 0;
   float mem_avail = 0;
   // 磁盘指标
   float disk_util_percent = 0;
@@ -115,10 +109,6 @@ struct NetDetailRecord {
   std::string server_name;
   std::string net_name;
   std::chrono::system_clock::time_point timestamp;
-  uint64_t err_in = 0;
-  uint64_t err_out = 0;
-  uint64_t drop_in = 0;
-  uint64_t drop_out = 0;
   float rcv_bytes_rate = 0;
   float snd_bytes_rate = 0;
   float rcv_packets_rate = 0;
@@ -137,33 +127,6 @@ struct DiskDetailRecord {
   float avg_read_latency_ms = 0;
   float avg_write_latency_ms = 0;
   float util_percent = 0;
-};
-
-// 内存详细数据
-struct MemDetailRecord {
-  std::string server_name;
-  std::chrono::system_clock::time_point timestamp;
-  float total = 0;
-  float free = 0;
-  float avail = 0;
-  float buffers = 0;
-  float cached = 0;
-  float active = 0;
-  float inactive = 0;
-  float dirty = 0;
-};
-
-// 软中断详细数据
-struct SoftIrqDetailRecord {
-  std::string server_name;
-  std::string cpu_name;
-  std::chrono::system_clock::time_point timestamp;
-  int64_t hi = 0;
-  int64_t timer = 0;
-  int64_t net_tx = 0;
-  int64_t net_rx = 0;
-  int64_t block = 0;
-  int64_t sched = 0;
 };
 
 // 查询管理器 - 封装MySQL查询逻辑
@@ -218,15 +181,6 @@ class QueryManager {
                                                  const TimeRange& time_range,
                                                  int page, int page_size,
                                                  int* total_count);
-
-  std::vector<MemDetailRecord> QueryMemDetail(const std::string& server_name,
-                                               const TimeRange& time_range,
-                                               int page, int page_size,
-                                               int* total_count);
-
-  std::vector<SoftIrqDetailRecord> QuerySoftIrqDetail(
-      const std::string& server_name, const TimeRange& time_range, int page,
-      int page_size, int* total_count);
 
  private:
   // 格式化时间为MySQL格式

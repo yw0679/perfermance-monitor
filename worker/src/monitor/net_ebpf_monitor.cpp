@@ -1,6 +1,6 @@
 /**
- * 文件归类：eBPF 模块文件（可选能力，默认未启用）
- * 说明：仅在 ENABLE_EBPF 打开且依赖满足时参与构建或运行。
+ * 文件归类：eBPF 模块文件（当前网络采集主线）
+ * 说明：worker 通过 TC ingress/egress + eBPF map 统计网卡流量。
  */
 
 #include "monitor/net_ebpf_monitor.h"
@@ -8,12 +8,12 @@
 #include <bpf/bpf.h>
 #include <bpf/libbpf.h>
 #include <cerrno>
-#include <cstdlib>
 #include <cstring>
 #include <dirent.h>
 #include <iostream>
 #include <net/if.h>
 #include <string>
+#include <sys/stat.h>
 
 #include "monitor_info.pb.h"
 #include "monitor/net_stats.skel.h"
@@ -34,10 +34,15 @@ namespace {
 constexpr __u32 kTcHandle = 1;
 constexpr __u32 kTcPriority = 1;
 
-bool ShouldSkipInterface(const std::string& ifname) {
-  return ifname == "lo" || ifname.rfind("docker", 0) == 0 ||
-         ifname.rfind("veth", 0) == 0 || ifname.rfind("br-", 0) == 0 ||
-         ifname.rfind("virbr", 0) == 0;
+bool IsPhysicalInterface(const std::string& ifname) {
+  if (ifname == "lo") {
+    return false;
+  }
+
+  // 物理网卡（以及带真实底层设备的 virtio/pci 网卡）在 sysfs 下会有 device 链接。
+  const std::string device_path = "/sys/class/net/" + ifname + "/device";
+  struct stat st = {};
+  return lstat(device_path.c_str(), &st) == 0;
 }
 
 std::vector<uint32_t> GetAllIfIndexes() {
@@ -52,7 +57,7 @@ std::vector<uint32_t> GetAllIfIndexes() {
     if (entry->d_name[0] == '.') {
       continue;
     }
-    if (ShouldSkipInterface(entry->d_name)) {
+    if (!IsPhysicalInterface(entry->d_name)) {
       continue;
     }
 
@@ -66,28 +71,22 @@ std::vector<uint32_t> GetAllIfIndexes() {
   return indexes;
 }
 
-int CreateClsactQdisc(int ifindex) {
-  char ifname[IF_NAMESIZE] = {};
-  if (if_indextoname(ifindex, ifname) == nullptr) {
-    return -1;
+void DestroyClsactQdisc(int ifindex) {
+  bpf_tc_hook hook = {};
+  hook.sz = sizeof(hook);
+  hook.ifindex = ifindex;
+  hook.attach_point =
+      static_cast<bpf_tc_attach_point>(BPF_TC_INGRESS | BPF_TC_EGRESS);
+
+  const int err = bpf_tc_hook_destroy(&hook);
+  if (err != 0 && err != -ENOENT && err != -EINVAL) {
+    char ifname[IF_NAMESIZE] = {};
+    if (if_indextoname(ifindex, ifname) == nullptr) {
+      std::strncpy(ifname, "unknown", sizeof(ifname) - 1);
+    }
+    std::cerr << "Destroy clsact qdisc failed on " << ifname
+              << ": " << std::strerror(-err) << std::endl;
   }
-
-  std::string command = "tc qdisc add dev ";
-  command += ifname;
-  command += " clsact >/dev/null 2>&1";
-  return std::system(command.c_str());
-}
-
-void DeleteClsactQdisc(int ifindex) {
-  char ifname[IF_NAMESIZE] = {};
-  if (if_indextoname(ifindex, ifname) == nullptr) {
-    return;
-  }
-
-  std::string command = "tc qdisc del dev ";
-  command += ifname;
-  command += " clsact >/dev/null 2>&1";
-  std::system(command.c_str());
 }
 
 bpf_tc_hook MakeHook(int ifindex, bpf_tc_attach_point attach_point) {
@@ -115,6 +114,7 @@ bpf_tc_opts MakeDetachOpts() {
   return opts;
 }
 
+//把某个prog_fd这个ebpf程序fd挂到ifindex网卡的attach_point上
 bool AttachTcProgram(int ifindex, bpf_tc_attach_point attach_point, int prog_fd,
                      const char* direction) {
   bpf_tc_hook hook = MakeHook(ifindex, attach_point);
@@ -187,9 +187,10 @@ bool NetEbpfMonitor::InitEbpf() {
 
   const int ingress_fd = bpf_program__fd(skel_->progs.tc_ingress);
   const int egress_fd = bpf_program__fd(skel_->progs.tc_egress);
-  for (uint32_t ifindex : GetAllIfIndexes()) {
-    CreateClsactQdisc(static_cast<int>(ifindex));
 
+  // 当前实现会复用同一个已加载的 ingress/egress 程序挂到多块物理网卡上。
+  // 每块网卡的数据通过 skb->ifindex 作为 map key 进行区分。
+  for (uint32_t ifindex : GetAllIfIndexes()) {
     const bool ingress_ok =
         AttachTcProgram(static_cast<int>(ifindex), BPF_TC_INGRESS, ingress_fd,
                         "ingress");
@@ -199,7 +200,7 @@ bool NetEbpfMonitor::InitEbpf() {
     if (!ingress_ok || !egress_ok) {
       DetachTcProgram(static_cast<int>(ifindex), BPF_TC_INGRESS);
       DetachTcProgram(static_cast<int>(ifindex), BPF_TC_EGRESS);
-      DeleteClsactQdisc(static_cast<int>(ifindex));
+      DestroyClsactQdisc(static_cast<int>(ifindex));
       continue;
     }
 
@@ -222,7 +223,7 @@ void NetEbpfMonitor::CleanupEbpf() {
   for (uint32_t ifindex : attached_ifindexes_) {
     DetachTcProgram(static_cast<int>(ifindex), BPF_TC_INGRESS);
     DetachTcProgram(static_cast<int>(ifindex), BPF_TC_EGRESS);
-    DeleteClsactQdisc(static_cast<int>(ifindex));
+    DestroyClsactQdisc(static_cast<int>(ifindex));
   }
   attached_ifindexes_.clear();
 
@@ -274,16 +275,12 @@ void NetEbpfMonitor::UpdateOnce(monitor::proto::MonitorInfo* monitor_info) {
     }
 
     std::string ifname = GetIfName(next_key);
-    if (ifname.empty() || ShouldSkipInterface(ifname)) {
+    if (ifname.empty() || !IsPhysicalInterface(ifname)) {
       continue;
     }
 
     auto* net_info = monitor_info->add_net_info();
     net_info->set_name(ifname);
-    net_info->set_err_in(0);
-    net_info->set_err_out(0);
-    net_info->set_drop_in(0);
-    net_info->set_drop_out(0);
 
     auto cache_it = cache_.find(next_key);
     if (cache_it != cache_.end()) {
@@ -328,6 +325,6 @@ void NetEbpfMonitor::Stop() {
 
 }  // namespace monitor
 /**
- * 文件归类：eBPF 模块文件（可选能力，默认未启用）
- * 说明：仅在 ENABLE_EBPF 打开且依赖满足时参与构建或运行。
+ * 文件归类：eBPF 模块文件（当前网络采集主线）
+ * 说明：worker 通过 TC ingress/egress + eBPF map 统计网卡流量。
  */

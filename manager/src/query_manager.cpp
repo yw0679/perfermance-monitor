@@ -149,9 +149,8 @@ std::vector<PerformanceRecord> QueryManager::QueryPerformance(
   int offset = (page - 1) * page_size;
   std::ostringstream sql;
   sql << "SELECT server_name, timestamp, cpu_percent, usr_percent, "
-         "system_percent, nice_percent, idle_percent, io_wait_percent, "
-         "irq_percent, soft_irq_percent, load_avg_1, load_avg_3, load_avg_15, "
-         "mem_used_percent, total, free, avail, disk_util_percent, "
+         "system_percent, load_avg_1, load_avg_3, load_avg_15, "
+         "mem_used_percent, total, avail, disk_util_percent, "
          "send_rate, rcv_rate, score, cpu_percent_rate, mem_used_percent_rate, "
          "disk_util_percent_rate, load_avg_1_rate, send_rate_rate, rcv_rate_rate "
          "FROM server_performance WHERE server_name='"
@@ -180,17 +179,11 @@ std::vector<PerformanceRecord> QueryManager::QueryPerformance(
     rec.cpu_percent = row[i] ? std::atof(row[i]) : 0; i++;
     rec.usr_percent = row[i] ? std::atof(row[i]) : 0; i++;
     rec.system_percent = row[i] ? std::atof(row[i]) : 0; i++;
-    rec.nice_percent = row[i] ? std::atof(row[i]) : 0; i++;
-    rec.idle_percent = row[i] ? std::atof(row[i]) : 0; i++;
-    rec.io_wait_percent = row[i] ? std::atof(row[i]) : 0; i++;
-    rec.irq_percent = row[i] ? std::atof(row[i]) : 0; i++;
-    rec.soft_irq_percent = row[i] ? std::atof(row[i]) : 0; i++;
     rec.load_avg_1 = row[i] ? std::atof(row[i]) : 0; i++;
     rec.load_avg_3 = row[i] ? std::atof(row[i]) : 0; i++;
     rec.load_avg_15 = row[i] ? std::atof(row[i]) : 0; i++;
     rec.mem_used_percent = row[i] ? std::atof(row[i]) : 0; i++;
     rec.mem_total = row[i] ? std::atof(row[i]) : 0; i++;
-    rec.mem_free = row[i] ? std::atof(row[i]) : 0; i++;
     rec.mem_avail = row[i] ? std::atof(row[i]) : 0; i++;
     rec.disk_util_percent = row[i] ? std::atof(row[i]) : 0; i++;
     rec.send_rate = row[i] ? std::atof(row[i]) : 0; i++;
@@ -246,11 +239,12 @@ std::vector<PerformanceRecord> QueryManager::QueryTrend(
            "AVG(cpu_percent) as cpu_percent, "
            "AVG(usr_percent) as usr_percent, "
            "AVG(system_percent) as system_percent, "
-           "AVG(io_wait_percent) as io_wait_percent, "
            "AVG(load_avg_1) as load_avg_1, "
            "AVG(load_avg_3) as load_avg_3, "
            "AVG(load_avg_15) as load_avg_15, "
            "AVG(mem_used_percent) as mem_used_percent, "
+           "AVG(total) as total, "
+           "AVG(avail) as avail, "
            "AVG(disk_util_percent) as disk_util_percent, "
            "AVG(send_rate) as send_rate, "
            "AVG(rcv_rate) as rcv_rate, "
@@ -258,7 +252,9 @@ std::vector<PerformanceRecord> QueryManager::QueryTrend(
            "AVG(cpu_percent_rate) as cpu_percent_rate, "
            "AVG(mem_used_percent_rate) as mem_used_percent_rate, "
            "AVG(disk_util_percent_rate) as disk_util_percent_rate, "
-           "AVG(load_avg_1_rate) as load_avg_1_rate "
+           "AVG(load_avg_1_rate) as load_avg_1_rate, "
+           "AVG(send_rate_rate) as send_rate_rate, "
+           "AVG(rcv_rate_rate) as rcv_rate_rate "
            "FROM server_performance WHERE server_name='"
         << server_name << "' AND timestamp BETWEEN '" << start_time
         << "' AND '" << end_time
@@ -266,10 +262,10 @@ std::vector<PerformanceRecord> QueryManager::QueryTrend(
   } else {
     // 不聚合，直接查询
     sql << "SELECT server_name, timestamp, cpu_percent, usr_percent, "
-           "system_percent, io_wait_percent, load_avg_1, load_avg_3, "
-           "load_avg_15, mem_used_percent, disk_util_percent, send_rate, "
+           "system_percent, load_avg_1, load_avg_3, load_avg_15, "
+           "mem_used_percent, total, avail, disk_util_percent, send_rate, "
            "rcv_rate, score, cpu_percent_rate, mem_used_percent_rate, "
-           "disk_util_percent_rate, load_avg_1_rate "
+           "disk_util_percent_rate, load_avg_1_rate, send_rate_rate, rcv_rate_rate "
            "FROM server_performance WHERE server_name='"
         << server_name << "' AND timestamp BETWEEN '" << start_time
         << "' AND '" << end_time << "' ORDER BY timestamp";
@@ -296,11 +292,12 @@ std::vector<PerformanceRecord> QueryManager::QueryTrend(
     rec.cpu_percent = row[i] ? std::atof(row[i]) : 0; i++;
     rec.usr_percent = row[i] ? std::atof(row[i]) : 0; i++;
     rec.system_percent = row[i] ? std::atof(row[i]) : 0; i++;
-    rec.io_wait_percent = row[i] ? std::atof(row[i]) : 0; i++;
     rec.load_avg_1 = row[i] ? std::atof(row[i]) : 0; i++;
     rec.load_avg_3 = row[i] ? std::atof(row[i]) : 0; i++;
     rec.load_avg_15 = row[i] ? std::atof(row[i]) : 0; i++;
     rec.mem_used_percent = row[i] ? std::atof(row[i]) : 0; i++;
+    rec.mem_total = row[i] ? std::atof(row[i]) : 0; i++;
+    rec.mem_avail = row[i] ? std::atof(row[i]) : 0; i++;
     rec.disk_util_percent = row[i] ? std::atof(row[i]) : 0; i++;
     rec.send_rate = row[i] ? std::atof(row[i]) : 0; i++;
     rec.rcv_rate = row[i] ? std::atof(row[i]) : 0; i++;
@@ -308,7 +305,9 @@ std::vector<PerformanceRecord> QueryManager::QueryTrend(
     rec.cpu_percent_rate = row[i] ? std::atof(row[i]) : 0; i++;
     rec.mem_used_percent_rate = row[i] ? std::atof(row[i]) : 0; i++;
     rec.disk_util_percent_rate = row[i] ? std::atof(row[i]) : 0; i++;
-    rec.load_avg_1_rate = row[i] ? std::atof(row[i]) : 0;
+    rec.load_avg_1_rate = row[i] ? std::atof(row[i]) : 0; i++;
+    rec.send_rate_rate = row[i] ? std::atof(row[i]) : 0; i++;
+    rec.rcv_rate_rate = row[i] ? std::atof(row[i]) : 0;
     records.push_back(rec);
   }
   mysql_free_result(result);
@@ -661,9 +660,8 @@ std::vector<NetDetailRecord> QueryManager::QueryNetDetail(
   // 查询数据
   int offset = (page - 1) * page_size;
   std::ostringstream sql;
-  sql << "SELECT server_name, net_name, timestamp, err_in, err_out, "
-         "drop_in, drop_out, rcv_bytes_rate, snd_bytes_rate, "
-         "rcv_packets_rate, snd_packets_rate "
+  sql << "SELECT server_name, net_name, timestamp, rcv_bytes_rate, "
+         "snd_bytes_rate, rcv_packets_rate, snd_packets_rate "
          "FROM server_net_detail WHERE server_name='"
       << server_name << "' AND timestamp BETWEEN '" << start_time << "' AND '"
       << end_time << "' ORDER BY timestamp DESC LIMIT " << page_size
@@ -688,10 +686,6 @@ std::vector<NetDetailRecord> QueryManager::QueryNetDetail(
     rec.net_name = row[i++] ? row[i - 1] : "";
     rec.timestamp = row[i] ? ParseTime(row[i]) : std::chrono::system_clock::now();
     i++;
-    rec.err_in = row[i] ? std::stoull(row[i]) : 0; i++;
-    rec.err_out = row[i] ? std::stoull(row[i]) : 0; i++;
-    rec.drop_in = row[i] ? std::stoull(row[i]) : 0; i++;
-    rec.drop_out = row[i] ? std::stoull(row[i]) : 0; i++;
     rec.rcv_bytes_rate = row[i] ? std::atof(row[i]) : 0; i++;
     rec.snd_bytes_rate = row[i] ? std::atof(row[i]) : 0; i++;
     rec.rcv_packets_rate = row[i] ? std::atof(row[i]) : 0; i++;
@@ -776,163 +770,6 @@ std::vector<DiskDetailRecord> QueryManager::QueryDiskDetail(
     rec.avg_read_latency_ms = row[i] ? std::atof(row[i]) : 0; i++;
     rec.avg_write_latency_ms = row[i] ? std::atof(row[i]) : 0; i++;
     rec.util_percent = row[i] ? std::atof(row[i]) : 0;
-    records.push_back(rec);
-  }
-  mysql_free_result(result);
-#else
-  (void)server_name;
-  (void)time_range;
-  (void)page;
-  (void)page_size;
-  (void)total_count;
-#endif
-
-  return records;
-}
-
-std::vector<MemDetailRecord> QueryManager::QueryMemDetail(
-    const std::string& server_name, const TimeRange& time_range, int page,
-    int page_size, int* total_count) {
-  std::vector<MemDetailRecord> records;
-
-#ifdef ENABLE_MYSQL
-  std::lock_guard<std::mutex> lock(mtx_);
-  if (!initialized_ || !conn_) {
-    return records;
-  }
-
-  if (!ValidateTimeRange(time_range)) {
-    return records;
-  }
-  if (page < 1) page = 1;
-  if (page_size < 1) page_size = 100;
-
-  std::string start_time = FormatTime(time_range.start_time);
-  std::string end_time = FormatTime(time_range.end_time);
-
-  // 获取总数
-  std::ostringstream count_sql;
-  count_sql << "SELECT COUNT(*) FROM server_mem_detail WHERE server_name='"
-            << server_name << "' AND timestamp BETWEEN '" << start_time
-            << "' AND '" << end_time << "'";
-  if (total_count) {
-    *total_count = GetTotalCount(count_sql.str());
-  }
-
-  // 查询数据
-  int offset = (page - 1) * page_size;
-  std::ostringstream sql;
-  sql << "SELECT server_name, timestamp, total, free, avail, buffers, "
-         "cached, active, inactive, dirty "
-         "FROM server_mem_detail WHERE server_name='"
-      << server_name << "' AND timestamp BETWEEN '" << start_time << "' AND '"
-      << end_time << "' ORDER BY timestamp DESC LIMIT " << page_size
-      << " OFFSET " << offset;
-
-  if (mysql_query(conn_, sql.str().c_str()) != 0) {
-    std::cerr << "QueryManager: mem detail query failed: " << mysql_error(conn_)
-              << std::endl;
-    return records;
-  }
-
-  MYSQL_RES* result = mysql_store_result(conn_);
-  if (!result) {
-    return records;
-  }
-
-  MYSQL_ROW row;
-  while ((row = mysql_fetch_row(result))) {
-    MemDetailRecord rec;
-    int i = 0;
-    rec.server_name = row[i++] ? row[i - 1] : "";
-    rec.timestamp = row[i] ? ParseTime(row[i]) : std::chrono::system_clock::now();
-    i++;
-    rec.total = row[i] ? std::atof(row[i]) : 0; i++;
-    rec.free = row[i] ? std::atof(row[i]) : 0; i++;
-    rec.avail = row[i] ? std::atof(row[i]) : 0; i++;
-    rec.buffers = row[i] ? std::atof(row[i]) : 0; i++;
-    rec.cached = row[i] ? std::atof(row[i]) : 0; i++;
-    rec.active = row[i] ? std::atof(row[i]) : 0; i++;
-    rec.inactive = row[i] ? std::atof(row[i]) : 0; i++;
-    rec.dirty = row[i] ? std::atof(row[i]) : 0;
-    records.push_back(rec);
-  }
-  mysql_free_result(result);
-#else
-  (void)server_name;
-  (void)time_range;
-  (void)page;
-  (void)page_size;
-  (void)total_count;
-#endif
-
-  return records;
-}
-
-std::vector<SoftIrqDetailRecord> QueryManager::QuerySoftIrqDetail(
-    const std::string& server_name, const TimeRange& time_range, int page,
-    int page_size, int* total_count) {
-  std::vector<SoftIrqDetailRecord> records;
-
-#ifdef ENABLE_MYSQL
-  std::lock_guard<std::mutex> lock(mtx_);
-  if (!initialized_ || !conn_) {
-    return records;
-  }
-
-  if (!ValidateTimeRange(time_range)) {
-    return records;
-  }
-  if (page < 1) page = 1;
-  if (page_size < 1) page_size = 100;
-
-  std::string start_time = FormatTime(time_range.start_time);
-  std::string end_time = FormatTime(time_range.end_time);
-
-  // 获取总数
-  std::ostringstream count_sql;
-  count_sql << "SELECT COUNT(*) FROM server_softirq_detail WHERE server_name='"
-            << server_name << "' AND timestamp BETWEEN '" << start_time
-            << "' AND '" << end_time << "'";
-  if (total_count) {
-    *total_count = GetTotalCount(count_sql.str());
-  }
-
-  // 查询数据
-  int offset = (page - 1) * page_size;
-  std::ostringstream sql;
-  sql << "SELECT server_name, cpu_name, timestamp, hi, timer, net_tx, "
-         "net_rx, block, sched "
-         "FROM server_softirq_detail WHERE server_name='"
-      << server_name << "' AND timestamp BETWEEN '" << start_time << "' AND '"
-      << end_time << "' ORDER BY timestamp DESC LIMIT " << page_size
-      << " OFFSET " << offset;
-
-  if (mysql_query(conn_, sql.str().c_str()) != 0) {
-    std::cerr << "QueryManager: softirq detail query failed: "
-              << mysql_error(conn_) << std::endl;
-    return records;
-  }
-
-  MYSQL_RES* result = mysql_store_result(conn_);
-  if (!result) {
-    return records;
-  }
-
-  MYSQL_ROW row;
-  while ((row = mysql_fetch_row(result))) {
-    SoftIrqDetailRecord rec;
-    int i = 0;
-    rec.server_name = row[i++] ? row[i - 1] : "";
-    rec.cpu_name = row[i++] ? row[i - 1] : "";
-    rec.timestamp = row[i] ? ParseTime(row[i]) : std::chrono::system_clock::now();
-    i++;
-    rec.hi = row[i] ? std::stoll(row[i]) : 0; i++;
-    rec.timer = row[i] ? std::stoll(row[i]) : 0; i++;
-    rec.net_tx = row[i] ? std::stoll(row[i]) : 0; i++;
-    rec.net_rx = row[i] ? std::stoll(row[i]) : 0; i++;
-    rec.block = row[i] ? std::stoll(row[i]) : 0; i++;
-    rec.sched = row[i] ? std::stoll(row[i]) : 0;
     records.push_back(rec);
   }
   mysql_free_result(result);

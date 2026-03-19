@@ -54,18 +54,9 @@ class HostManager {
   double CalcSchedulingWeight(double score) const;
   std::string SelectHighestScoreHostLocked() const;
   bool WriteToMysql(const std::string& host_name, const HostScore& host_score,
-                    double net_in_rate, double net_out_rate,
-                    float cpu_percent_rate, float usr_percent_rate,
-                    float system_percent_rate, float nice_percent_rate,
-                    float idle_percent_rate, float io_wait_percent_rate,
-                    float irq_percent_rate, float soft_irq_percent_rate,
-                    float steal_percent_rate, float guest_percent_rate,
-                    float guest_nice_percent_rate, float load_avg_1_rate,
-                    float load_avg_3_rate, float load_avg_15_rate,
-                    float mem_used_percent_rate, float mem_total_rate,
-                    float mem_free_rate, float mem_avail_rate,
-                    float net_in_rate_rate, float net_out_rate_rate,
-                    float net_in_drop_rate_rate, float net_out_drop_rate_rate);
+                    float cpu_percent_rate, float load_avg_1_rate,
+                    float mem_used_percent_rate, float disk_util_percent_rate,
+                    float net_in_rate_rate, float net_out_rate_rate);
 
   std::unordered_map<std::string, HostScore> host_scores_;
   std::unordered_map<std::string, ScheduleState> schedule_states_;

@@ -31,6 +31,16 @@
 4. `metric_collector.cpp` 汇总所有指标。
 5. `monitor_pusher.cpp` 通过 gRPC 推送到 `manager`。
 
+## eBPF 设计说明
+
+1. 挂载点选择：当前项目选择 `TC ingress/egress`，而不是 `XDP`。
+2. 选择原因：`TC` 可以同时覆盖收包和发包，适合这里的双向流量统计；`XDP` 更早、更快，但主要适合入方向场景。
+3. 网卡选择：用户态遍历 `/sys/class/net/`，并通过 `/sys/class/net/<ifname>/device` 识别带真实底层设备的网卡，过滤 `lo` 和常见虚拟接口。
+4. 统计方式：eBPF 程序在每个数据包经过 `TC ingress/egress` 时触发，用 `skb->ifindex` 作为 key，把累计字节数和包数写入 `net_stats_map`。
+5. map 设计：`net_stats_map` 使用 `BPF_MAP_TYPE_HASH`，因为 `ifindex` 通常不是连续下标，更适合按 key 做状态统计。
+6. 用户态加载：`net_ebpf_monitor.cpp` 通过 `libbpf + skeleton` 加载同一份 eBPF 程序，并把它复用挂载到多块物理网卡上。
+7. 用户态读取：定时遍历 BPF map，读取累计值，并结合上一次采样结果计算 `KB/s` 和 `pkt/s`。
+
 ## 构建
 
 依赖：
