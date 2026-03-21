@@ -29,8 +29,6 @@ int main(int argc, char* argv[]) {
   if (argc > 1) {
     listen_address = argv[1];
   }
-
-  std::cout << "Starting Monitor Client (Manager Mode)..." << std::endl;
   std::cout << "Listening on: " << listen_address << std::endl;
 
   // 创建 gRPC 服务
@@ -49,7 +47,6 @@ int main(int argc, char* argv[]) {
   // 创建 QueryManager 并初始化
   monitor::QueryManager query_mgr;
   bool query_available = false;
-#ifdef ENABLE_MYSQL
   if (query_mgr.Init(kDefaultMysqlHost, kDefaultMysqlUser, kDefaultMysqlPass,
                      kDefaultMysqlDb)) {
     query_available = true;
@@ -58,7 +55,6 @@ int main(int argc, char* argv[]) {
     std::cerr << "Warning: QueryManager initialization failed, "
               << "query service will not be available" << std::endl;
   }
-#endif
 
   // 创建查询服务
   monitor::QueryServiceImpl query_service(&query_mgr);
@@ -70,10 +66,6 @@ int main(int argc, char* argv[]) {
   builder.RegisterService(&query_service);
 
   std::unique_ptr<grpc::Server> server(builder.BuildAndStart());
-  std::cout << "Monitor Client listening on " << listen_address << std::endl;
-  std::cout << "Waiting for workers to push data..." << std::endl;
-  std::cout << "Query service: "
-            << (query_available ? "available" : "disabled") << std::endl;
 
   server->Wait();
 

@@ -39,7 +39,7 @@ class HostManager {
   void Start();
   void Stop();
 
-  // 接收工作者推送的数据（由 gRPC 服务调用）
+  // 接收工作者推送的数据（由 gRPC 服务调用），并且写进mysql，输出到终端。
   void OnDataReceived(const monitor::proto::MonitorInfo& info);
 
   // 获取所有主机评分

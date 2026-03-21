@@ -17,8 +17,7 @@ add_subdirectory(proto)
 add_subdirectory(worker)
 
 # Manager - 管理者服务器，部署在管理端，接收数据、存储、提供查询服务
-if(BUILD_MANAGER)
-    add_subdirectory(manager)
-endif()
+add_subdirectory(manager)
+
 # 文件归类：当前版本使用文件（简化版主线）
 # 说明：当前默认构建流程会直接使用该构建入口。
