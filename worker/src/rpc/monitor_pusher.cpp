@@ -44,13 +44,13 @@ void PrintCollectSummary(const monitor::proto::MonitorInfo& info) {
 
 namespace monitor {
 
-MonitorPusher::MonitorPusher(const std::string& manager_address,
-                             int interval_seconds)
+MonitorPusher::MonitorPusher(const std::string& manager_address,int interval_seconds)
     : manager_address_(manager_address),
       interval_seconds_(interval_seconds),
       running_(false) {
-  auto channel =
-      grpc::CreateChannel(manager_address, grpc::InsecureChannelCredentials());
+  //grpc创建通道，InsecureChannelCredentials(不加密凭证)
+  auto channel =grpc::CreateChannel(manager_address, grpc::InsecureChannelCredentials());
+  //根据通道创建客户端stub，后面可以通过stub_调用远程rpc接口
   stub_ = monitor::proto::GrpcManager::NewStub(channel);
   collector_ = std::make_unique<MetricCollector>();
 }
@@ -58,7 +58,7 @@ MonitorPusher::MonitorPusher(const std::string& manager_address,
 MonitorPusher::~MonitorPusher() {
   Stop();
 }
-
+//启动一个线程执行PushLoop。
 void MonitorPusher::Start() {
   if (running_) {
     return;
@@ -88,10 +88,11 @@ void MonitorPusher::PushLoop() {
     }
   }
 }
-
+//建立一个info，然后把所有数据装入info，通过setMonitorInfo传输。
 bool MonitorPusher::PushOnce() {
   monitor::proto::MonitorInfo info;
   collector_->CollectAll(&info);
+  //打印结果
   PrintCollectSummary(info);
 
   grpc::ClientContext context;

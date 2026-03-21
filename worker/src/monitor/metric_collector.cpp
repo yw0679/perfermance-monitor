@@ -21,6 +21,7 @@ namespace monitor {
 MetricCollector::MetricCollector() {
   // 获取主机名
   char hostname[256];
+  //gethostname：linux中获取本机名字的函数
   if (gethostname(hostname, sizeof(hostname)) == 0) {
     hostname_ = hostname;
   } else {

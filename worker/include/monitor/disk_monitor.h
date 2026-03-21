@@ -5,8 +5,8 @@
 
 #pragma once
 
+#include <map>
 #include <string>
-#include <unordered_map>
 
 #include "monitor/monitor_inter.h"
 #include "monitor_info.pb.h"
@@ -18,6 +18,22 @@ class DiskMonitor : public MonitorInter {
   DiskMonitor() {}
   void UpdateOnce(monitor::proto::MonitorInfo* monitor_info) override;
   void Stop() override {}
+
+ private:
+  struct DiskSample {
+    uint64_t reads;
+    uint64_t writes;
+    uint64_t sectors_read;
+    uint64_t sectors_written;
+    uint64_t read_time_ms;
+    uint64_t write_time_ms;
+    uint64_t io_in_progress;
+    uint64_t io_time_ms;
+    uint64_t weighted_io_time_ms;
+  };
+
+  std::map<std::string, DiskSample> last_samples_;
+  std::map<std::string, double> last_time_;
 };
 
 }  // namespace monitor

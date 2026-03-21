@@ -13,15 +13,6 @@
 
 namespace monitor {
 
-struct DiskSample {
-  uint64_t reads, writes, sectors_read, sectors_written;
-  uint64_t read_time_ms, write_time_ms, io_in_progress, io_time_ms,
-      weighted_io_time_ms;
-};
-
-static std::map<std::string, DiskSample> last_samples;
-static std::map<std::string, double> last_time;
-
 void DiskMonitor::UpdateOnce(monitor::proto::MonitorInfo* monitor_info) {
   std::ifstream ifs("/proc/diskstats");
   std::string line;
@@ -31,7 +22,7 @@ void DiskMonitor::UpdateOnce(monitor::proto::MonitorInfo* monitor_info) {
     std::istringstream iss(line);
     int major, minor;
     std::string name;
-    DiskSample curr{};
+    DiskMonitor::DiskSample curr{};
     uint64_t reads_merged = 0;
     uint64_t writes_merged = 0;
     if (!(iss >> major >> minor >> name >> curr.reads >> reads_merged >>
@@ -58,9 +49,9 @@ void DiskMonitor::UpdateOnce(monitor::proto::MonitorInfo* monitor_info) {
     disk->set_weighted_io_time_ms(curr.weighted_io_time_ms);
 
     // 速率/变化率计算
-    auto it = last_samples.find(name);
-    double dt = now - last_time[name];
-    if (it != last_samples.end() && dt > 0) {
+    auto it = last_samples_.find(name);
+    double dt = now - last_time_[name];
+    if (it != last_samples_.end() && dt > 0) {
       const auto& last = it->second;
       double read_ios = curr.reads - last.reads;
       double write_ios = curr.writes - last.writes;
@@ -86,8 +77,8 @@ void DiskMonitor::UpdateOnce(monitor::proto::MonitorInfo* monitor_info) {
       disk->set_avg_write_latency_ms(0);
       disk->set_util_percent(0);
     }
-    last_samples[name] = curr;
-    last_time[name] = now;
+    last_samples_[name] = curr;
+    last_time_[name] = now;
   }
 }
 

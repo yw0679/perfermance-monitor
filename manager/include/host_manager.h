@@ -42,23 +42,28 @@ class HostManager {
   // 接收工作者推送的数据（由 gRPC 服务调用），并且写进mysql，输出到终端。
   void OnDataReceived(const monitor::proto::MonitorInfo& info);
 
-  // 获取所有主机评分
+  // 预留接口：当前版本没有外部调用点。
+  // host_scores_ 本身仍会在 OnDataReceived/ProcessLoop 中被维护。
   std::unordered_map<std::string, HostScore> GetAllHostScores();
 
-  // 获取最优主机
+  // 预留接口：当前版本没有外部调用点。
+  // 对应的调度状态 schedule_states_ 仍会在 OnDataReceived 中持续更新。
   std::string GetBestHost();
 
  private:
   void ProcessLoop();
   double CalcScore(const monitor::proto::MonitorInfo& info);
   double CalcSchedulingWeight(double score) const;
+  // 预留给 GetBestHost() 的兜底选择逻辑；当前版本没有实际走到这里。
   std::string SelectHighestScoreHostLocked() const;
   bool WriteToMysql(const std::string& host_name, const HostScore& host_score,
                     float cpu_percent_rate, float load_avg_1_rate,
                     float mem_used_percent_rate, float disk_util_percent_rate,
                     float net_in_rate_rate, float net_out_rate_rate);
 
+  // 当前在用：保存每台主机最新一次上报后的内存态快照和评分。
   std::unordered_map<std::string, HostScore> host_scores_;
+  // 当前在用：保存平滑加权轮询所需的调度状态，虽然对外调度接口暂未接入。
   std::unordered_map<std::string, ScheduleState> schedule_states_;
   std::mutex mtx_;
   std::atomic<bool> running_;

@@ -16,7 +16,6 @@ constexpr int kDefaultPushInterval = 10;  // 秒
 
 
 void PrintUsage(const std::string &ManagerAddress,int PushInterval) {
-  std::cout <<"START"<< std::endl;
   std::cout <<"manager_address:" << ManagerAddress << std::endl;
   std::cout << "Push interval: " << PushInterval << " s" << std::endl;
 }

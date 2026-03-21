@@ -74,6 +74,7 @@ void HostManager::Stop() {
 }
 
 void HostManager::ProcessLoop() {
+  // 当前在用：后台定期清理长时间未上报的主机内存状态。
   while (running_) {
     std::this_thread::sleep_for(std::chrono::seconds(60));
     
@@ -95,6 +96,8 @@ void HostManager::ProcessLoop() {
 }
 
 void HostManager::OnDataReceived(const monitor::proto::MonitorInfo& info) {
+  // 当前主流程入口：gRPC 收到一条 MonitorInfo 后会回调到这里，
+  // 在这里完成标识归一化、评分、变化率计算、内存状态维护和 MySQL 落库。
   // 构建服务器唯一标识: hostname_ip
   std::string host_name;
   if (info.has_host_info()) {
@@ -200,6 +203,9 @@ void HostManager::OnDataReceived(const monitor::proto::MonitorInfo& info) {
     }
   }
 
+  auto all_host_scores = GetAllHostScores();
+  std::string best_host = GetBestHost();
+
   // 写入所有表
   bool mysql_write_ok = WriteToMysql(
       host_name, host_score, cpu_percent_rate, load_avg_1_rate,
@@ -263,14 +269,26 @@ void HostManager::OnDataReceived(const monitor::proto::MonitorInfo& info) {
   std::cout << "\n--- Database ---" << std::endl;
   std::cout << "  MySQL write: " << (mysql_write_ok ? "success" : "skipped/failed")
             << std::endl;
+  std::cout << "\n--- Host Scores ---" << std::endl;
+  std::cout << "  Best host: "
+            << (best_host.empty() ? "<none>" : best_host) << std::endl;
+  if (all_host_scores.empty()) {
+    std::cout << "  No host scores" << std::endl;
+  } else {
+    for (const auto& [name, score_info] : all_host_scores) {
+      std::cout << "  " << name << " => " << score_info.score << std::endl;
+    }
+  }
   std::cout << "====================================================\n" << std::endl;
 }
 
+// 预留接口：当前版本没有外部调用点。
 std::unordered_map<std::string, HostScore> HostManager::GetAllHostScores() {
   std::lock_guard<std::mutex> lock(mtx_);
   return host_scores_;
 }
 
+// 预留接口：当前版本没有外部调用点。
 std::string HostManager::GetBestHost() {
   std::lock_guard<std::mutex> lock(mtx_);
   if (host_scores_.empty()) {
@@ -312,7 +330,7 @@ std::string HostManager::GetBestHost() {
 double HostManager::CalcSchedulingWeight(double score) const {
   return score > 0 ? score : 0;
 }
-
+// 预留给 GetBestHost() 的内部辅助逻辑；当前版本没有实际走到这里。
 std::string HostManager::SelectHighestScoreHostLocked() const {
   std::string best_host;
   double best_score = -1;
@@ -326,7 +344,7 @@ std::string HostManager::SelectHighestScoreHostLocked() const {
 
   return best_host;
 }
-
+//计算得分
 double HostManager::CalcScore(const monitor::proto::MonitorInfo& info) {
   // ============================================================
   // 性能评分模型 - 针对学校选课/查成绩系统高并发场景优化
@@ -392,7 +410,7 @@ double HostManager::CalcScore(const monitor::proto::MonitorInfo& info) {
   score *= 100.0;
   return score < 0 ? 0 : (score > 100 ? 100 : score);
 }
-
+//写入mysql，被OnDataReceived调用
 bool HostManager::WriteToMysql(
     const std::string& host_name, const HostScore& host_score,
     float cpu_percent_rate, float load_avg_1_rate,

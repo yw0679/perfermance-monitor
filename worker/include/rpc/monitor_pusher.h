@@ -37,7 +37,7 @@ class MonitorPusher {
                          int interval_seconds = 10);
   ~MonitorPusher();
 
-  // 启动推送线程
+  // 启动一个线程执行PushLoop。
   void Start();
 
   // 停止推送
@@ -47,14 +47,17 @@ class MonitorPusher {
   const std::string& GetManagerAddress() const { return manager_address_; }
 
  private:
+  //循环推送，每次循环调用一个pushOnce，然后睡10s。
   void PushLoop();
-  bool PushOnce();//单次推送
+  //单次推送，建立一个info，然后把所有数据装入info，通过setMonitorInfo传输。
+  bool PushOnce();
 
   std::string manager_address_;
   int interval_seconds_;
   std::atomic<bool> running_; //保证原子性的bool
   std::unique_ptr<std::thread> thread_;
   std::unique_ptr<MetricCollector> collector_;
+  //stub存根，远程服务器在本地的代理，通过调stub里的函数来使用远端函数。
   std::unique_ptr<monitor::proto::GrpcManager::Stub> stub_;
 };
 
