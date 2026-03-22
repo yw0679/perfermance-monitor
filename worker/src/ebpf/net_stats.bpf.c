@@ -79,8 +79,8 @@ static __always_inline void update_stats(__u32 ifindex, __u32 len, bool is_rx)
             __atomic_fetch_add(&stats->rcv_bytes,len , __ATOMIC_SEQ_CST);
             __atomic_fetch_add(&stats->rcv_packets,1 , __ATOMIC_SEQ_CST);
         } else {
-            __sync_fetch_and_add(&stats->snd_bytes, len);
-            __sync_fetch_and_add(&stats->snd_packets, 1);
+            __atomic_fetch_add(&stats->snd_bytes, len, __ATOMIC_SEQ_CST);
+            __atomic_fetch_add(&stats->snd_packets, 1, __ATOMIC_SEQ_CST);
         }
     }
 }

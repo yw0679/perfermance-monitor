@@ -129,6 +129,7 @@ bool AttachTcProgram(int ifindex, bpf_tc_attach_point attach_point, int prog_fd,
     return false;
   }
 
+  //清空钩子处可能遗留的ebpf程序
   bpf_tc_opts detach_opts = MakeDetachOpts();
   bpf_tc_detach(&hook, &detach_opts);
 
@@ -164,12 +165,13 @@ NetEbpfMonitor::~NetEbpfMonitor() {
 }
 
 bool NetEbpfMonitor::InitEbpf() {
+  //打开自己写好的bpf的skeleton，在内存里准备好
   skel_ = net_stats_bpf__open();
   if (!skel_) {
     std::cerr << "NetEbpfMonitor: failed to open BPF skeleton" << std::endl;
     return false;
   }
-
+  //把bpf程序加载进内核
   const int err = net_stats_bpf__load(skel_);
   if (err != 0) {
     std::cerr << "NetEbpfMonitor: failed to load BPF program: "
@@ -177,7 +179,7 @@ bool NetEbpfMonitor::InitEbpf() {
     CleanupEbpf();
     return false;
   }
-
+  //取出map_fd，用户态靠这个fd读数据
   map_fd_ = bpf_map__fd(skel_->maps.net_stats_map);
   if (map_fd_ < 0) {
     std::cerr << "NetEbpfMonitor: failed to get map fd" << std::endl;
@@ -281,7 +283,7 @@ void NetEbpfMonitor::UpdateOnce(monitor::proto::MonitorInfo* monitor_info) {
 
     auto* net_info = monitor_info->add_net_info();
     net_info->set_name(ifname);
-
+    //计算速率
     auto cache_it = cache_.find(next_key);
     if (cache_it != cache_.end()) {
       const auto elapsed =

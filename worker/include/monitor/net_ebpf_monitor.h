@@ -34,7 +34,7 @@ class NetEbpfMonitor : public MonitorInter {
   bool IsLoaded() const { return loaded_; }
 
  private:
-  // 初始化 eBPF 程序
+  // 初始化 eBPF 程序:打开skeleton，把ebpf加载进内核，取出map的fd，把tc程序挂上去。
   bool InitEbpf();
   
   // 清理 eBPF 资源
