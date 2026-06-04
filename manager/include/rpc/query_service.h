@@ -1,77 +1,56 @@
 /**
  * 文件归类：1
- * 说明：定义查询 gRPC 服务实现类及其对外提供的查询接口。
+ * 说明：定义查询 gRPC 服务实现类及其对外提供的最小查询接口集。
  */
 
 #pragma once
 
-#include <grpcpp/support/status.h>
 #include <grpcpp/server_context.h>
-
-#include <memory>
+#include <grpcpp/support/status.h>
 
 #include "query_api.grpc.pb.h"
-#include "query_api.pb.h"
 #include "query_manager.h"
 
 namespace monitor {
 
-// gRPC 查询服务实现类
+class HostManager;
+
 class QueryServiceImpl : public monitor::proto::QueryService::Service {
  public:
-  explicit QueryServiceImpl(QueryManager* query_manager);
-  virtual ~QueryServiceImpl() = default;
+  QueryServiceImpl(HostManager* host_manager, QueryManager* query_manager);
+  ~QueryServiceImpl() override = default;
 
-  // 时间段性能数据查询
+  ::grpc::Status QueryBestHost(
+      ::grpc::ServerContext* context,
+      const ::monitor::proto::QueryBestHostRequest* request,
+      ::monitor::proto::QueryBestHostResponse* response) override;
+
+  ::grpc::Status QueryClusterOverview(
+      ::grpc::ServerContext* context,
+      const ::monitor::proto::QueryClusterOverviewRequest* request,
+      ::monitor::proto::QueryClusterOverviewResponse* response) override;
+
   ::grpc::Status QueryPerformance(
       ::grpc::ServerContext* context,
       const ::monitor::proto::QueryPerformanceRequest* request,
       ::monitor::proto::QueryPerformanceResponse* response) override;
 
-  // 变化率趋势查询
-  ::grpc::Status QueryTrend(
-      ::grpc::ServerContext* context,
-      const ::monitor::proto::QueryTrendRequest* request,
-      ::monitor::proto::QueryTrendResponse* response) override;
-
-  // 异常数据查询
-  ::grpc::Status QueryAnomaly(
-      ::grpc::ServerContext* context,
-      const ::monitor::proto::QueryAnomalyRequest* request,
-      ::monitor::proto::QueryAnomalyResponse* response) override;
-
-  // 评分排序查询
-  ::grpc::Status QueryScoreRank(
-      ::grpc::ServerContext* context,
-      const ::monitor::proto::QueryScoreRankRequest* request,
-      ::monitor::proto::QueryScoreRankResponse* response) override;
-
-  // 最新评分查询
-  ::grpc::Status QueryLatestScore(
-      ::grpc::ServerContext* context,
-      const ::monitor::proto::QueryLatestScoreRequest* request,
-      ::monitor::proto::QueryLatestScoreResponse* response) override;
-
-  // 网络详细数据查询
   ::grpc::Status QueryNetDetail(
       ::grpc::ServerContext* context,
       const ::monitor::proto::QueryDetailRequest* request,
       ::monitor::proto::QueryNetDetailResponse* response) override;
 
-  // 磁盘详细数据查询
   ::grpc::Status QueryDiskDetail(
       ::grpc::ServerContext* context,
       const ::monitor::proto::QueryDetailRequest* request,
       ::monitor::proto::QueryDiskDetailResponse* response) override;
 
  private:
-  // 转换时间范围
   TimeRange ConvertTimeRange(const ::monitor::proto::TimeRange& proto_range);
-
-  // 转换时间点到protobuf Timestamp
   void SetTimestamp(::google::protobuf::Timestamp* ts,
                     const std::chrono::system_clock::time_point& tp);
 
+  HostManager* host_manager_;
   QueryManager* query_manager_;
 };
 

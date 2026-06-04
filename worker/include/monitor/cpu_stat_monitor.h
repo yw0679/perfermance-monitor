@@ -26,11 +26,16 @@ class CpuStatMonitor : public MonitorInter {
     uint64_t steal = 0;
     uint64_t guest = 0;
     uint64_t guest_nice = 0;
-  };
+ };
 
  public:
+  // 初始化 CPU 状态监控器。
   CpuStatMonitor() {}
+
+  // 采集一轮 CPU 状态并写入统一监控消息。
   void UpdateOnce(monitor::proto::MonitorInfo* monitor_info) override;
+
+  // 停止监控器并释放相关资源。
   void Stop() override {}
 
  private:

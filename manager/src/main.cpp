@@ -46,18 +46,17 @@ int main(int argc, char* argv[]) {
 
   // 创建 QueryManager 并初始化
   monitor::QueryManager query_mgr;
-  bool query_available = false;
   if (query_mgr.Init(kDefaultMysqlHost, kDefaultMysqlUser, kDefaultMysqlPass,
                      kDefaultMysqlDb)) {
-    query_available = true;
-    std::cout << "QueryManager initialized successfully" << std::endl;
+    std::cout << "Historical query backend initialized successfully"
+              << std::endl;
   } else {
-    std::cerr << "Warning: QueryManager initialization failed, "
-              << "query service will not be available" << std::endl;
+    std::cerr << "Warning: historical query backend initialization failed, "
+              << "current overview queries will use memory only" << std::endl;
   }
 
   // 创建查询服务
-  monitor::QueryServiceImpl query_service(&query_mgr);
+  monitor::QueryServiceImpl query_service(&mgr, &query_mgr);
 
   // 启动 gRPC 服务器
   grpc::ServerBuilder builder;

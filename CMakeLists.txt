@@ -3,12 +3,7 @@
 
 cmake_minimum_required(VERSION 3.10.2)
 project(monitor_system LANGUAGES CXX) # 项目名称
-
-set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake") # 给变量赋值
 set(CMAKE_CXX_STANDARD 17) # 定义版本 c++17
-
-option(BUILD_MANAGER "Build manager server (requires MySQL)" ON) 
-# option(变量名 "说明" 默认值)  通过在terminal输入cmake -BUILD_MANAGER=OFF,关闭编译manager
 
 # Proto 定义（必须先编译）
 add_subdirectory(proto)

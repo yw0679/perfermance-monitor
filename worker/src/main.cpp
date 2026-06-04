@@ -12,7 +12,7 @@
 #include "rpc/monitor_pusher.h"
 
 constexpr char kDefaultManagerAddress[] = "localhost:50051";
-constexpr int kDefaultPushInterval = 10;  // 秒
+constexpr int kDefaultPushInterval = 1;  // 秒
 
 
 void PrintUsage(const std::string &ManagerAddress,int PushInterval) {

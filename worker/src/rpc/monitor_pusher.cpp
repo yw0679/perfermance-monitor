@@ -7,6 +7,8 @@
 
 namespace {
 
+constexpr auto kSetMonitorInfoDeadline = std::chrono::seconds(3);
+
 void PrintCollectSummary(const monitor::proto::MonitorInfo& info) {
   std::cout << "[collect] ";
 
@@ -96,6 +98,8 @@ bool MonitorPusher::PushOnce() {
   PrintCollectSummary(info);
 
   grpc::ClientContext context;
+  context.set_deadline(std::chrono::system_clock::now() +
+                       kSetMonitorInfoDeadline);
   google::protobuf::Empty response;
   grpc::Status status = stub_->SetMonitorInfo(&context, info, &response);
 

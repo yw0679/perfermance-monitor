@@ -114,7 +114,7 @@ bpf_tc_opts MakeDetachOpts() {
   return opts;
 }
 
-//把某个prog_fd这个ebpf程序fd挂到ifindex网卡的attach_point上
+//把prog_fd这个ebpf程序fd挂到ifindex网卡的attach_point上
 bool AttachTcProgram(int ifindex, bpf_tc_attach_point attach_point, int prog_fd,
                      const char* direction) {
   bpf_tc_hook hook = MakeHook(ifindex, attach_point);

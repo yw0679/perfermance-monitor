@@ -1,108 +1,80 @@
 // 文件归类：当前版本使用文件（简化版主线）
-// 说明：manager对外提供的查询api，定义“查询接口怎么问、怎么答”
+// 说明：manager 对外提供的查询 API，保留适合 MCP/运维查询的最小接口集。
 
 syntax = "proto3";
 package monitor.proto;
 
 import "google/protobuf/timestamp.proto";
 
-// ========== 基础类型 ==========
-
-// 时间范围
 message TimeRange {
     google.protobuf.Timestamp start_time = 1;
     google.protobuf.Timestamp end_time = 2;
 }
 
-// 分页参数
 message Pagination {
-    int32 page = 1;      // 页码，从1开始
-    int32 page_size = 2; // 每页大小，默认100
+    int32 page = 1;
+    int32 page_size = 2;
 }
 
-// 排序方式
-enum SortOrder {
-    DESC = 0;  // 降序（默认）
-    ASC = 1;   // 升序
-}
-
-// 服务器状态
 enum ServerStatus {
     ONLINE = 0;
     OFFLINE = 1;
 }
 
-// ========== 请求消息 ==========
+message QueryClusterOverviewRequest {
+}
 
-// 时间段性能数据查询请求
+message QueryBestHostRequest {
+}
+
 message QueryPerformanceRequest {
     string server_name = 1;
     TimeRange time_range = 2;
     Pagination pagination = 3;
 }
 
-// 变化率趋势查询请求
-message QueryTrendRequest {
-    string server_name = 1;
-    TimeRange time_range = 2;
-    int32 interval_seconds = 3;  // 聚合间隔（秒），0表示不聚合
-}
-
-// 异常查询请求
-message QueryAnomalyRequest {
-    string server_name = 1;       // 可选，空表示查询所有服务器
-    TimeRange time_range = 2;
-    float cpu_threshold = 3;      // CPU使用率阈值，默认80
-    float mem_threshold = 4;      // 内存使用率阈值，默认90
-    float disk_threshold = 5;     // 磁盘利用率阈值，默认85
-    float change_rate_threshold = 6;  // 变化率阈值，默认0.5（50%）
-    Pagination pagination = 7;
-}
-
-// 评分排序查询请求
-message QueryScoreRankRequest {
-    SortOrder order = 1;
-    Pagination pagination = 2;
-}
-
-// 最新评分查询请求
-message QueryLatestScoreRequest {
-    // 无参数，返回所有服务器最新数据
-}
-
-// 详细数据查询请求
 message QueryDetailRequest {
     string server_name = 1;
     TimeRange time_range = 2;
     Pagination pagination = 3;
 }
 
-// ========== 数据记录 ==========
-
-// 性能数据记录
 message PerformanceRecord {
     string server_name = 1;
     google.protobuf.Timestamp timestamp = 2;
-    // CPU指标
+
+    // CPU 指标
     float cpu_percent = 10;
     float usr_percent = 11;
     float system_percent = 12;
+    float nice_percent = 13;
+    float idle_percent = 14;
+    float io_wait_percent = 15;
+    float irq_percent = 16;
+    float soft_irq_percent = 17;
+
     // 负载指标
     float load_avg_1 = 20;
     float load_avg_3 = 21;
     float load_avg_15 = 22;
+
     // 内存指标
     float mem_used_percent = 30;
     float mem_total = 31;
+    float mem_free = 32;
     float mem_avail = 33;
+
     // 磁盘指标
     float disk_util_percent = 40;
+
     // 网络指标
     float send_rate = 50;
     float rcv_rate = 51;
-    // 评分
+    float send_packets_rate = 52;
+    float rcv_packets_rate = 53;
+
+    // 评分与变化率
     float score = 60;
-    // 变化率
     float cpu_percent_rate = 70;
     float load_avg_1_rate = 74;
     float mem_used_percent_rate = 77;
@@ -111,31 +83,20 @@ message PerformanceRecord {
     float rcv_rate_rate = 80;
 }
 
-// 异常记录
-message AnomalyRecord {
-    string server_name = 1;
-    google.protobuf.Timestamp timestamp = 2;
-    string anomaly_type = 3;      // CPU_HIGH, MEM_HIGH, DISK_HIGH, RATE_SPIKE
-    string severity = 4;          // WARNING, CRITICAL
-    float value = 5;              // 异常值
-    float threshold = 6;          // 阈值
-    string metric_name = 7;       // 指标名称
-}
-
-// 服务器评分摘要
-message ServerScoreSummary {
+message ServerOverview {
     string server_name = 1;
     float score = 2;
     google.protobuf.Timestamp last_update = 3;
     ServerStatus status = 4;
-    // 关键指标快照
+
     float cpu_percent = 10;
     float mem_used_percent = 11;
     float disk_util_percent = 12;
     float load_avg_1 = 13;
+    float send_rate = 14;
+    float rcv_rate = 15;
 }
 
-// 集群统计信息
 message ClusterStats {
     int32 total_servers = 1;
     int32 online_servers = 2;
@@ -147,65 +108,20 @@ message ClusterStats {
     string worst_server = 8;
 }
 
-
-// ========== 响应消息 ==========
-
-// 时间段性能数据查询响应
-message QueryPerformanceResponse {
-    repeated PerformanceRecord records = 1;
-    int32 total_count = 2;
-    int32 page = 3;
-    int32 page_size = 4;
-}
-
-// 变化率趋势查询响应
-message QueryTrendResponse {
-    repeated PerformanceRecord records = 1;
-    int32 interval_seconds = 2;
-}
-
-// 异常查询响应
-message QueryAnomalyResponse {
-    repeated AnomalyRecord anomalies = 1;
-    int32 total_count = 2;
-    int32 page = 3;
-    int32 page_size = 4;
-}
-
-// 评分排序查询响应
-message QueryScoreRankResponse {
-    repeated ServerScoreSummary servers = 1;
-    int32 total_count = 2;
-    int32 page = 3;
-    int32 page_size = 4;
-}
-
-// 最新评分查询响应
-message QueryLatestScoreResponse {
-    repeated ServerScoreSummary servers = 1;
-    ClusterStats cluster_stats = 2;
-}
-
-// ========== 详细数据记录 ==========
-
-// 网络详细数据
 message NetDetailRecord {
     string server_name = 1;
     string net_name = 2;
     google.protobuf.Timestamp timestamp = 3;
-    // 速率指标
     float rcv_bytes_rate = 20;
     float snd_bytes_rate = 21;
     float rcv_packets_rate = 22;
     float snd_packets_rate = 23;
 }
 
-// 磁盘详细数据
 message DiskDetailRecord {
     string server_name = 1;
     string disk_name = 2;
     google.protobuf.Timestamp timestamp = 3;
-    // 性能指标
     float read_bytes_per_sec = 10;
     float write_bytes_per_sec = 11;
     float read_iops = 12;
@@ -215,7 +131,22 @@ message DiskDetailRecord {
     float util_percent = 16;
 }
 
-// ========== 详细数据查询响应 ==========
+message QueryClusterOverviewResponse {
+    repeated ServerOverview servers = 1;
+    ClusterStats cluster_stats = 2;
+}
+
+message QueryBestHostResponse {
+    ServerOverview best_server = 1;
+    ClusterStats cluster_stats = 2;
+}
+
+message QueryPerformanceResponse {
+    repeated PerformanceRecord records = 1;
+    int32 total_count = 2;
+    int32 page = 3;
+    int32 page_size = 4;
+}
 
 message QueryNetDetailResponse {
     repeated NetDetailRecord records = 1;
@@ -231,27 +162,23 @@ message QueryDiskDetailResponse {
     int32 page_size = 4;
 }
 
-// ========== 查询服务定义 ==========
-
 service QueryService {
-    // 时间段性能数据查询
-    rpc QueryPerformance(QueryPerformanceRequest) returns (QueryPerformanceResponse);
-    
-    // 变化率趋势查询
-    rpc QueryTrend(QueryTrendRequest) returns (QueryTrendResponse);
-    
-    // 异常数据查询
-    rpc QueryAnomaly(QueryAnomalyRequest) returns (QueryAnomalyResponse);
-    
-    // 评分排序查询
-    rpc QueryScoreRank(QueryScoreRankRequest) returns (QueryScoreRankResponse);
-    
-    // 最新评分查询
-    rpc QueryLatestScore(QueryLatestScoreRequest) returns (QueryLatestScoreResponse);
-    
-    // 详细数据查询
-    rpc QueryNetDetail(QueryDetailRequest) returns (QueryNetDetailResponse);
-    rpc QueryDiskDetail(QueryDetailRequest) returns (QueryDiskDetailResponse);
+    // 返回当前集群中最适合作为调度目标的主机。
+    // 优先选择最近 60 秒内仍在线、且最新评分最高的主机。
+    rpc QueryBestHost(QueryBestHostRequest)
+        returns (QueryBestHostResponse);
+    // 返回每台主机最新一次监控快照，用于总览/列表页/MCP 汇总查询。
+    rpc QueryClusterOverview(QueryClusterOverviewRequest)
+        returns (QueryClusterOverviewResponse);
+    // 查询单台主机在一段时间内的综合性能历史。
+    rpc QueryPerformance(QueryPerformanceRequest)
+        returns (QueryPerformanceResponse);
+    // 查询单台主机的网络明细历史。
+    rpc QueryNetDetail(QueryDetailRequest)
+        returns (QueryNetDetailResponse);
+    // 查询单台主机的磁盘明细历史。
+    rpc QueryDiskDetail(QueryDetailRequest)
+        returns (QueryDiskDetailResponse);
 }
 // 文件归类：当前版本使用文件（简化版主线）
 // 说明：当前默认查询服务与协议生成流程会直接使用该文件。

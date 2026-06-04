@@ -16,50 +16,43 @@
 
 namespace monitor {
 
-// 排序方式
-enum class SortOrder { DESC = 0, ASC = 1 };
-
-// 服务器状态
 enum class ServerStatus { ONLINE = 0, OFFLINE = 1 };
 
-// 异常阈值配置
-struct AnomalyThresholds {
-  float cpu_threshold = 80.0f;
-  float mem_threshold = 90.0f;
-  float disk_threshold = 85.0f;
-  float change_rate_threshold = 0.5f;  // 50%
-};
-
-// 时间范围
 struct TimeRange {
   std::chrono::system_clock::time_point start_time;
   std::chrono::system_clock::time_point end_time;
 };
 
-// 性能数据记录
 struct PerformanceRecord {
   std::string server_name;
   std::chrono::system_clock::time_point timestamp;
-  // CPU指标
+
   float cpu_percent = 0;
   float usr_percent = 0;
   float system_percent = 0;
-  // 负载指标
+  float nice_percent = 0;
+  float idle_percent = 0;
+  float io_wait_percent = 0;
+  float irq_percent = 0;
+  float soft_irq_percent = 0;
+
   float load_avg_1 = 0;
   float load_avg_3 = 0;
   float load_avg_15 = 0;
-  // 内存指标
+
   float mem_used_percent = 0;
   float mem_total = 0;
+  float mem_free = 0;
   float mem_avail = 0;
-  // 磁盘指标
+
   float disk_util_percent = 0;
-  // 网络指标
+
   float send_rate = 0;
   float rcv_rate = 0;
-  // 评分
+  float send_packets_rate = 0;
+  float rcv_packets_rate = 0;
+
   float score = 0;
-  // 变化率
   float cpu_percent_rate = 0;
   float mem_used_percent_rate = 0;
   float disk_util_percent_rate = 0;
@@ -68,30 +61,20 @@ struct PerformanceRecord {
   float rcv_rate_rate = 0;
 };
 
-// 异常记录
-struct AnomalyRecord {
-  std::string server_name;
-  std::chrono::system_clock::time_point timestamp;
-  std::string anomaly_type;  // CPU_HIGH, MEM_HIGH, DISK_HIGH, RATE_SPIKE
-  std::string severity;      // WARNING, CRITICAL
-  float value = 0;
-  float threshold = 0;
-  std::string metric_name;
-};
-
-// 服务器评分摘要
-struct ServerScoreSummary {
+struct ServerOverviewRecord {
   std::string server_name;
   float score = 0;
   std::chrono::system_clock::time_point last_update;
   ServerStatus status = ServerStatus::ONLINE;
+
   float cpu_percent = 0;
   float mem_used_percent = 0;
   float disk_util_percent = 0;
   float load_avg_1 = 0;
+  float send_rate = 0;
+  float rcv_rate = 0;
 };
 
-// 集群统计信息
 struct ClusterStats {
   int total_servers = 0;
   int online_servers = 0;
@@ -103,8 +86,6 @@ struct ClusterStats {
   std::string worst_server;
 };
 
-
-// 网络详细数据
 struct NetDetailRecord {
   std::string server_name;
   std::string net_name;
@@ -115,7 +96,6 @@ struct NetDetailRecord {
   float snd_packets_rate = 0;
 };
 
-// 磁盘详细数据
 struct DiskDetailRecord {
   std::string server_name;
   std::string disk_name;
@@ -129,67 +109,34 @@ struct DiskDetailRecord {
   float util_percent = 0;
 };
 
-// 查询管理器 - 封装MySQL查询逻辑
 class QueryManager {
  public:
   QueryManager();
   ~QueryManager();
 
-  // 初始化MySQL连接
   bool Init(const std::string& host, const std::string& user,
             const std::string& password, const std::string& database);
-
-  // 关闭连接
   void Close();
+  bool IsInitialized();
 
-  // 验证时间范围
   bool ValidateTimeRange(const TimeRange& range) const;
 
-  // 时间段性能数据查询
   std::vector<PerformanceRecord> QueryPerformance(const std::string& server_name,
-                                                   const TimeRange& time_range,
-                                                   int page, int page_size,
-                                                   int* total_count);
-
-  // 变化率趋势查询（支持聚合）
-  std::vector<PerformanceRecord> QueryTrend(const std::string& server_name,
-                                             const TimeRange& time_range,
-                                             int interval_seconds);
-
-  // 异常数据查询
-  std::vector<AnomalyRecord> QueryAnomaly(const std::string& server_name,
-                                           const TimeRange& time_range,
-                                           const AnomalyThresholds& thresholds,
-                                           int page, int page_size,
-                                           int* total_count);
-
-  // 评分排序查询
-  std::vector<ServerScoreSummary> QueryScoreRank(SortOrder order, int page,
-                                                  int page_size,
+                                                  const TimeRange& time_range,
+                                                  int page, int page_size,
                                                   int* total_count);
-
-  // 最新评分查询
-  std::vector<ServerScoreSummary> QueryLatestScore(ClusterStats* stats);
-
-  // 详细数据查询
   std::vector<NetDetailRecord> QueryNetDetail(const std::string& server_name,
-                                               const TimeRange& time_range,
-                                               int page, int page_size,
-                                               int* total_count);
-
+                                              const TimeRange& time_range,
+                                              int page, int page_size,
+                                              int* total_count);
   std::vector<DiskDetailRecord> QueryDiskDetail(const std::string& server_name,
-                                                 const TimeRange& time_range,
-                                                 int page, int page_size,
-                                                 int* total_count);
+                                                const TimeRange& time_range,
+                                                int page, int page_size,
+                                                int* total_count);
 
  private:
-  // 格式化时间为MySQL格式
   std::string FormatTime(const std::chrono::system_clock::time_point& tp) const;
-
-  // 解析MySQL时间
   std::chrono::system_clock::time_point ParseTime(const char* str) const;
-
-  // 执行查询并获取总数
   int GetTotalCount(const std::string& count_sql);
 
 #ifdef ENABLE_MYSQL
