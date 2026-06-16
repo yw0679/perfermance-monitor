@@ -16,9 +16,7 @@
 #include <unordered_map>
 #include <vector>
 
-#ifdef ENABLE_MYSQL
 #include <mysql/mysql.h>
-#endif
 
 #include "monitor_info.pb.h"
 
@@ -96,9 +94,7 @@ class HostManager {
   // 使用已经建立好的 MySQL 连接执行一次完整落库。
   // 返回 true 表示三类表写入都成功，返回 false 表示任意一条 SQL 执行失败。
   bool WriteToMysql(
-#ifdef ENABLE_MYSQL
       MYSQL* conn,
-#endif
       const std::string& host_name, const HostScore& host_score,
       float cpu_percent_rate, float load_avg_1_rate,
       float mem_used_percent_rate, float disk_util_percent_rate,

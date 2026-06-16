@@ -13,9 +13,7 @@
 #include <sstream>
 #include <utility>
 
-#ifdef ENABLE_MYSQL
 #include <mysql/mysql.h>
-#endif
 
 namespace monitor {
 
@@ -25,7 +23,6 @@ constexpr auto kHostCleanupInterval = std::chrono::seconds(60);
 constexpr auto kHostExpireWindow = std::chrono::seconds(60);
 }  // namespace
 
-#ifdef ENABLE_MYSQL
 namespace {
 const char* MYSQL_HOST = "127.0.0.1";
 const char* MYSQL_USER = "monitor";
@@ -33,7 +30,6 @@ const char* MYSQL_PASS = "monitor123";
 const char* MYSQL_DB = "monitor_db";
 
 }  // namespace
-#endif
 
 // 用于变化率计算的性能采样数据。
 // 这些样本只保存在 manager 内存里，用于比较当前值和上一次值，从而生成变化率字段。
@@ -119,7 +115,6 @@ void HostManager::ProcessLoop() {
 // 该线程会长期持有一个可复用连接；如果连接断开或尚未建立，会在消费下一条任务前尝试重连。
 // 退出条件是 running_ 已关闭且队列已被消费完毕，从而保证 Stop() 前已入队的数据尽量完成刷盘。
 void HostManager::MysqlWriteLoop() {
-#ifdef ENABLE_MYSQL
   MYSQL* conn = nullptr;
 
   while (true) {
@@ -173,21 +168,16 @@ void HostManager::MysqlWriteLoop() {
   if (conn) {
     mysql_close(conn);
   }
-#endif
 }
 
 // 将已计算完成的写库任务压入队列。
 // 这里使用移动语义减少 HostScore/MonitorInfo 拷贝成本，并在入队后立刻通知后台写线程。
 void HostManager::EnqueueMysqlWrite(MysqlWriteTask task) {
-#ifdef ENABLE_MYSQL
   {
     std::lock_guard<std::mutex> lock(mysql_queue_mtx_);
     mysql_write_queue_.push_back(std::move(task));
   }
   mysql_queue_cv_.notify_one();
-#else
-  (void)task;
-#endif
 }
 
 // 监控数据主处理入口。
@@ -526,7 +516,6 @@ bool HostManager::WriteToMysql(
     float cpu_percent_rate, float load_avg_1_rate,
     float mem_used_percent_rate, float disk_util_percent_rate,
     float net_in_rate_rate, float net_out_rate_rate) {
-#ifdef ENABLE_MYSQL
   if (!conn) {
     return false;
   }
@@ -654,18 +643,6 @@ bool HostManager::WriteToMysql(
   }
 
   return true;
-#else
-  (void)conn;
-  (void)host_name;
-  (void)host_score;
-  (void)cpu_percent_rate;
-  (void)load_avg_1_rate;
-  (void)mem_used_percent_rate;
-  (void)disk_util_percent_rate;
-  (void)net_in_rate_rate;
-  (void)net_out_rate_rate;
-  return false;
-#endif
 }
 
 }  // namespace monitor

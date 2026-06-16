@@ -18,8 +18,13 @@ if(NOT gRPC_FOUND)
     endif()
 endif()
 
-# MySQL 支持选项
-option(ENABLE_MYSQL "Enable MySQL support for data persistence" ON)
+# MySQL 依赖（必需）
+find_package(PkgConfig QUIET)
+if(PkgConfig_FOUND)
+    pkg_check_modules(MYSQL REQUIRED mysqlclient)
+else()
+    message(FATAL_ERROR "PkgConfig is required to find MySQL")
+endif()
 
 set(MANAGER_SOURCES
     src/main.cpp
@@ -36,24 +41,11 @@ target_include_directories(manager PUBLIC
     ${PROJECT_SOURCE_DIR}/manager/include
 )
 
-# 基础链接库
-set(MANAGER_LIBS monitor_proto gRPC::grpc++)
+target_compile_definitions(manager PRIVATE ENABLE_MYSQL=1)
+target_include_directories(manager PUBLIC ${MYSQL_INCLUDE_DIRS})
 
-# MySQL 依赖（可选）
-if(ENABLE_MYSQL)
-    find_package(PkgConfig QUIET)
-    if(PkgConfig_FOUND)
-        pkg_check_modules(MYSQL mysqlclient)
-    endif()
-    
-    if(MYSQL_FOUND)
-        message(STATUS "MySQL support enabled")
-        target_compile_definitions(manager PRIVATE ENABLE_MYSQL=1)
-        target_include_directories(manager PUBLIC ${MYSQL_INCLUDE_DIRS})
-        list(APPEND MANAGER_LIBS ${MYSQL_LIBRARIES})
-    else()
-        message(WARNING "MySQL not found, disabling MySQL support")
-    endif()
-endif()
-
-target_link_libraries(manager PUBLIC ${MANAGER_LIBS})
+target_link_libraries(manager PUBLIC
+    monitor_proto
+    gRPC::grpc++
+    ${MYSQL_LIBRARIES}
+)

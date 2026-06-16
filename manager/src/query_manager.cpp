@@ -21,7 +21,6 @@ std::chrono::system_clock::time_point ParseMysqlTime(const char* str) {
   return std::chrono::system_clock::from_time_t(std::mktime(&tm));
 }
 
-#ifdef ENABLE_MYSQL
 const char kPerformanceSelectColumns[] =
     "server_name, timestamp, cpu_percent, usr_percent, system_percent, "
     "nice_percent, idle_percent, io_wait_percent, irq_percent, "
@@ -67,7 +66,6 @@ PerformanceRecord ParsePerformanceRecordRow(MYSQL_ROW row) {
   rec.rcv_rate_rate = row[i] ? std::atof(row[i]) : 0;
   return rec;
 }
-#endif
 
 }  // namespace
 
@@ -78,7 +76,6 @@ QueryManager::~QueryManager() { Close(); }
 bool QueryManager::Init(const std::string& host, const std::string& user,
                         const std::string& password,
                         const std::string& database) {
-#ifdef ENABLE_MYSQL
   std::lock_guard<std::mutex> lock(mtx_);
   if (initialized_) {
     return true;
@@ -103,25 +100,15 @@ bool QueryManager::Init(const std::string& host, const std::string& user,
   initialized_ = true;
   std::cout << "QueryManager: MySQL connection initialized" << std::endl;
   return true;
-#else
-  (void)host;
-  (void)user;
-  (void)password;
-  (void)database;
-  std::cerr << "QueryManager: MySQL support not enabled" << std::endl;
-  return false;
-#endif
 }
 
 void QueryManager::Close() {
-#ifdef ENABLE_MYSQL
   std::lock_guard<std::mutex> lock(mtx_);
   if (conn_) {
     mysql_close(conn_);
     conn_ = nullptr;
   }
   initialized_ = false;
-#endif
 }
 
 bool QueryManager::IsInitialized() {
@@ -149,7 +136,6 @@ std::chrono::system_clock::time_point QueryManager::ParseTime(
 }
 
 int QueryManager::GetTotalCount(const std::string& count_sql) {
-#ifdef ENABLE_MYSQL
   if (mysql_query(conn_, count_sql.c_str()) != 0) {
     std::cerr << "QueryManager: count query failed: " << mysql_error(conn_)
               << std::endl;
@@ -168,10 +154,6 @@ int QueryManager::GetTotalCount(const std::string& count_sql) {
   }
   mysql_free_result(result);
   return count;
-#else
-  (void)count_sql;
-  return 0;
-#endif
 }
 
 std::vector<PerformanceRecord> QueryManager::QueryPerformance(
@@ -179,7 +161,6 @@ std::vector<PerformanceRecord> QueryManager::QueryPerformance(
     int page_size, int* total_count) {
   std::vector<PerformanceRecord> records;
 
-#ifdef ENABLE_MYSQL
   std::lock_guard<std::mutex> lock(mtx_);
   if (!initialized_ || !conn_) {
     return records;
@@ -226,13 +207,6 @@ std::vector<PerformanceRecord> QueryManager::QueryPerformance(
     records.push_back(ParsePerformanceRecordRow(row));
   }
   mysql_free_result(result);
-#else
-  (void)server_name;
-  (void)time_range;
-  (void)page;
-  (void)page_size;
-  (void)total_count;
-#endif
 
   return records;
 }
@@ -242,7 +216,6 @@ std::vector<NetDetailRecord> QueryManager::QueryNetDetail(
     int page_size, int* total_count) {
   std::vector<NetDetailRecord> records;
 
-#ifdef ENABLE_MYSQL
   std::lock_guard<std::mutex> lock(mtx_);
   if (!initialized_ || !conn_) {
     return records;
@@ -300,13 +273,6 @@ std::vector<NetDetailRecord> QueryManager::QueryNetDetail(
     records.push_back(rec);
   }
   mysql_free_result(result);
-#else
-  (void)server_name;
-  (void)time_range;
-  (void)page;
-  (void)page_size;
-  (void)total_count;
-#endif
 
   return records;
 }
@@ -316,7 +282,6 @@ std::vector<DiskDetailRecord> QueryManager::QueryDiskDetail(
     int page_size, int* total_count) {
   std::vector<DiskDetailRecord> records;
 
-#ifdef ENABLE_MYSQL
   std::lock_guard<std::mutex> lock(mtx_);
   if (!initialized_ || !conn_) {
     return records;
@@ -378,13 +343,6 @@ std::vector<DiskDetailRecord> QueryManager::QueryDiskDetail(
     records.push_back(rec);
   }
   mysql_free_result(result);
-#else
-  (void)server_name;
-  (void)time_range;
-  (void)page;
-  (void)page_size;
-  (void)total_count;
-#endif
 
   return records;
 }

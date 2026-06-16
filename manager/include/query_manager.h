@@ -10,9 +10,7 @@
 #include <string>
 #include <vector>
 
-#ifdef ENABLE_MYSQL
 #include <mysql/mysql.h>
-#endif
 
 namespace monitor {
 
@@ -139,9 +137,7 @@ class QueryManager {
   std::chrono::system_clock::time_point ParseTime(const char* str) const;
   int GetTotalCount(const std::string& count_sql);
 
-#ifdef ENABLE_MYSQL
   MYSQL* conn_ = nullptr;
-#endif
   std::mutex mtx_;
   bool initialized_ = false;
 };
