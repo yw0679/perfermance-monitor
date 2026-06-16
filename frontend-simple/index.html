@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>性能监控仪表盘 - 实时曲线图</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #0f1419;
+            color: #e6edf3;
+            padding: 10px;
+        }
+
+        .header {
+            background: #161b22;
+            padding: 10px 15px;
+            border-radius: 6px;
+            border: 1px solid #30363d;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            color: #58a6ff;
+            margin-bottom: 6px;
+            font-size: 18px;
+        }
+
+        .controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            font-size: 12px;
+        }
+
+        select {
+            background: #0d1117;
+            color: #e6edf3;
+            border: 1px solid #30363d;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        select:hover {
+            border-color: #58a6ff;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+
+        .status-online {
+            background: #238636;
+            color: white;
+        }
+
+        .status-offline {
+            background: #da3633;
+            color: white;
+        }
+
+        .refresh-info {
+            color: #8b949e;
+            font-size: 11px;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .stat-card {
+            background: #161b22;
+            padding: 8px 10px;
+            border-radius: 6px;
+            border: 1px solid #30363d;
+        }
+
+        .stat-label {
+            color: #8b949e;
+            font-size: 11px;
+            margin-bottom: 2px;
+        }
+
+        .stat-value {
+            font-size: 22px;
+            font-weight: bold;
+            color: #58a6ff;
+        }
+
+        .charts-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+        }
+
+        .chart-container {
+            background: #161b22;
+            padding: 8px 10px;
+            border-radius: 6px;
+            border: 1px solid #30363d;
+        }
+
+        .chart-title {
+            color: #e6edf3;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chart-value {
+            font-size: 12px;
+            color: #58a6ff;
+        }
+
+        canvas {
+            max-height: 160px;
+        }
+
+        .error {
+            background: #da3633;
+            color: white;
+            padding: 8px;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            font-size: 12px;
+            display: none;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 20px;
+            color: #8b949e;
+            font-size: 13px;
+        }
+
+        .pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📊 性能监控仪表盘 - 实时曲线图</h1>
+        <div class="controls">
+            <label style="color: #8b949e;">选择服务器:</label>
+            <select id="serverSelect" onchange="switchServer()">
+                <option value="">加载中...</option>
+            </select>
+            <span id="serverStatus" class="status-badge status-offline">
+                <span class="pulse">●</span> 离线
+            </span>
+            <span class="refresh-info">自动刷新: 每1秒</span>
+            <span class="refresh-info" id="lastUpdate"></span>
+        </div>
+    </div>
+
+    <div id="error" class="error"></div>
+
+    <div id="loading" class="loading">
+        <div class="pulse">⏳ 正在加载数据...</div>
+    </div>
+
+    <div id="dashboard" style="display: none;">
+        <!-- 实时指标卡片 -->
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-label">CPU 使用率</div>
+                <div class="stat-value" id="currentCpu">-</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">内存使用率</div>
+                <div class="stat-value" id="currentMem">-</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">磁盘使用率</div>
+                <div class="stat-value" id="currentDisk">-</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">健康评分</div>
+                <div class="stat-value" id="currentScore" style="color: #56d364;">-</div>
+            </div>
+        </div>
+
+        <!-- 曲线图 2x2 网格 -->
+        <div class="charts-grid">
+            <!-- CPU 使用率曲线 -->
+            <div class="chart-container">
+                <div class="chart-title">
+                    <span>CPU 使用率</span>
+                    <span class="chart-value" id="cpuChartValue">-</span>
+                </div>
+                <canvas id="cpuChart"></canvas>
+            </div>
+
+            <!-- 内存使用率曲线 -->
+            <div class="chart-container">
+                <div class="chart-title">
+                    <span>内存使用率</span>
+                    <span class="chart-value" id="memChartValue">-</span>
+                </div>
+                <canvas id="memChart"></canvas>
+            </div>
+
+            <!-- 网络流量曲线 -->
+            <div class="chart-container">
+                <div class="chart-title">
+                    <span>网络流量</span>
+                    <span class="chart-value" id="netChartValue">-</span>
+                </div>
+                <canvas id="netChart"></canvas>
+            </div>
+
+            <!-- 系统负载曲线 -->
+            <div class="chart-container">
+                <div class="chart-title">
+                    <span>系统负载</span>
+                    <span class="chart-value" id="loadChartValue">-</span>
+                </div>
+                <canvas id="loadChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = 'http://localhost:8000';
+        const MAX_DATA_POINTS = 60; // 显示最近60个数据点（60秒）
+
+        let currentServer = null;
+        let lastTimestamp = null;
+        let charts = {};
+        let dataHistory = {
+            labels: [],
+            cpu: [],
+            mem: [],
+            disk: [],
+            sendRate: [],
+            rcvRate: [],
+            load: [],
+            score: []
+        };
+
+        // 初始化图表
+        function initCharts() {
+            const commonOptions = {
+                responsive: true,
+                maintainAspectRatio: true,
+                animation: {
+                    duration: 200
+                },
+                interaction: {
+                    intersect: false,
+                    mode: 'index'
+                },
+                plugins: {
+                    legend: {
+                        display: true,
+                        labels: {
+                            color: '#8b949e',
+                            font: { size: 10 },
+                            boxWidth: 10,
+                            padding: 8
+                        }
+                    },
+                    tooltip: {
+                        backgroundColor: '#161b22',
+                        borderColor: '#30363d',
+                        borderWidth: 1,
+                        titleColor: '#e6edf3',
+                        bodyColor: '#e6edf3',
+                        bodyFont: { size: 11 },
+                        titleFont: { size: 11 }
+                    }
+                },
+                scales: {
+                    x: {
+                        display: true,
+                        grid: { color: '#30363d' },
+                        ticks: { color: '#8b949e', font: { size: 9 }, maxRotation: 0, maxTicksLimit: 8 }
+                    },
+                    y: {
+                        display: true,
+                        grid: { color: '#30363d' },
+                        ticks: { color: '#8b949e', font: { size: 9 }, maxTicksLimit: 5 }
+                    }
+                }
+            };
+
+            // CPU 图表
+            charts.cpu = new Chart(document.getElementById('cpuChart'), {
+                type: 'line',
+                data: {
+                    labels: [],
+                    datasets: [{
+                        label: 'CPU %',
+                        data: [],
+                        borderColor: '#f85149',
+                        backgroundColor: 'rgba(248, 81, 73, 0.1)',
+                        borderWidth: 2,
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    ...commonOptions,
+                    scales: {
+                        ...commonOptions.scales,
+                        y: { ...commonOptions.scales.y, max: 100 }
+                    }
+                }
+            });
+
+            // 内存图表
+            charts.mem = new Chart(document.getElementById('memChart'), {
+                type: 'line',
+                data: {
+                    labels: [],
+                    datasets: [{
+                        label: '内存 %',
+                        data: [],
+                        borderColor: '#58a6ff',
+                        backgroundColor: 'rgba(88, 166, 255, 0.1)',
+                        borderWidth: 2,
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    ...commonOptions,
+                    scales: {
+                        ...commonOptions.scales,
+                        y: { ...commonOptions.scales.y, max: 100 }
+                    }
+                }
+            });
+
+            // 网络图表
+            charts.net = new Chart(document.getElementById('netChart'), {
+                type: 'line',
+                data: {
+                    labels: [],
+                    datasets: [
+                        {
+                            label: '发送',
+                            data: [],
+                            borderColor: '#56d364',
+                            backgroundColor: 'rgba(86, 211, 100, 0.1)',
+                            borderWidth: 2,
+                            fill: true,
+                            tension: 0.4
+                        },
+                        {
+                            label: '接收',
+                            data: [],
+                            borderColor: '#d2a8ff',
+                            backgroundColor: 'rgba(210, 168, 255, 0.1)',
+                            borderWidth: 2,
+                            fill: true,
+                            tension: 0.4
+                        }
+                    ]
+                },
+                options: commonOptions
+            });
+
+            // 负载图表
+            charts.load = new Chart(document.getElementById('loadChart'), {
+                type: 'line',
+                data: {
+                    labels: [],
+                    datasets: [{
+                        label: '负载',
+                        data: [],
+                        borderColor: '#ffa657',
+                        backgroundColor: 'rgba(255, 166, 87, 0.1)',
+                        borderWidth: 2,
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: commonOptions
+            });
+        }
+
+        // 更新图表数据
+        function updateCharts() {
+            const labels = dataHistory.labels.slice(-MAX_DATA_POINTS);
+
+            // 更新 CPU
+            charts.cpu.data.labels = labels;
+            charts.cpu.data.datasets[0].data = dataHistory.cpu.slice(-MAX_DATA_POINTS);
+            charts.cpu.update('none');
+
+            // 更新内存
+            charts.mem.data.labels = labels;
+            charts.mem.data.datasets[0].data = dataHistory.mem.slice(-MAX_DATA_POINTS);
+            charts.mem.update('none');
+
+            // 更新网络
+            charts.net.data.labels = labels;
+            charts.net.data.datasets[0].data = dataHistory.sendRate.slice(-MAX_DATA_POINTS);
+            charts.net.data.datasets[1].data = dataHistory.rcvRate.slice(-MAX_DATA_POINTS);
+            charts.net.update('none');
+
+            // 更新负载
+            charts.load.data.labels = labels;
+            charts.load.data.datasets[0].data = dataHistory.load.slice(-MAX_DATA_POINTS);
+            charts.load.update('none');
+        }
+
+        // 获取服务器列表
+        async function fetchServerList() {
+            try {
+                const response = await fetch(`${API_URL}/api/servers`);
+                if (!response.ok) throw new Error('无法连接到 API');
+
+                const data = await response.json();
+                const select = document.getElementById('serverSelect');
+                select.innerHTML = '';
+
+                if (data.servers && data.servers.length > 0) {
+                    data.servers.forEach(server => {
+                        const option = document.createElement('option');
+                        option.value = server.server_name;
+                        option.textContent = server.server_name;
+                        select.appendChild(option);
+                    });
+
+                    // 自动选择第一台服务器
+                    if (!currentServer) {
+                        currentServer = data.servers[0].server_name;
+                        select.value = currentServer;
+                        switchServer();
+                    }
+                } else {
+                    select.innerHTML = '<option>暂无服务器</option>';
+                }
+            } catch (error) {
+                console.error('获取服务器列表失败:', error);
+                showError('无法获取服务器列表: ' + error.message);
+            }
+        }
+
+        // 切换服务器
+        function switchServer() {
+            currentServer = document.getElementById('serverSelect').value;
+            lastTimestamp = null;
+            // 清空历史数据
+            dataHistory = {
+                labels: [],
+                cpu: [],
+                mem: [],
+                disk: [],
+                sendRate: [],
+                rcvRate: [],
+                load: [],
+                score: []
+            };
+            updateCharts();
+        }
+
+        // 获取实时数据
+        async function fetchRealtimeData() {
+            if (!currentServer) return;
+
+            try {
+                const response = await fetch(`${API_URL}/api/servers`);
+                if (!response.ok) throw new Error('API 连接失败');
+
+                const data = await response.json();
+                const server = data.servers.find(s => s.server_name === currentServer);
+
+                if (server) {
+                    updateRealtimeData(server);
+                    hideError();
+                } else {
+                    showError('未找到服务器: ' + currentServer);
+                }
+            } catch (error) {
+                console.error('获取数据失败:', error);
+                showError('获取数据失败: ' + error.message);
+            }
+        }
+
+        // 更新实时数据
+        function updateRealtimeData(server) {
+            // 只有新数据才追加到历史，避免离线后重复填充旧数据
+            const serverTs = server.timestamp;
+            const isNewData = server.is_online && (!lastTimestamp || serverTs > lastTimestamp);
+
+            if (isNewData) {
+                lastTimestamp = serverTs;
+
+                const timeLabel = serverTs
+                    ? new Date(serverTs).toLocaleTimeString('zh-CN', {
+                        hour: '2-digit', minute: '2-digit', second: '2-digit'
+                      })
+                    : new Date().toLocaleTimeString('zh-CN', {
+                        hour: '2-digit', minute: '2-digit', second: '2-digit'
+                      });
+
+                dataHistory.labels.push(timeLabel);
+                dataHistory.cpu.push(server.cpu_percent || 0);
+                dataHistory.mem.push(server.mem_used_percent || 0);
+                dataHistory.disk.push(server.disk_util_percent || 0);
+                dataHistory.sendRate.push(server.send_rate || 0);
+                dataHistory.rcvRate.push(server.rcv_rate || 0);
+                dataHistory.load.push(server.load_avg_1 || 0);
+                dataHistory.score.push(server.score || 0);
+
+                // 保持数据点数量
+                if (dataHistory.labels.length > MAX_DATA_POINTS) {
+                    dataHistory.labels.shift();
+                    dataHistory.cpu.shift();
+                    dataHistory.mem.shift();
+                    dataHistory.disk.shift();
+                    dataHistory.sendRate.shift();
+                    dataHistory.rcvRate.shift();
+                    dataHistory.load.shift();
+                    dataHistory.score.shift();
+                }
+            }
+
+            // 更新实时数值
+            document.getElementById('currentCpu').textContent = (server.cpu_percent || 0).toFixed(1) + '%';
+            document.getElementById('currentMem').textContent = (server.mem_used_percent || 0).toFixed(1) + '%';
+            document.getElementById('currentDisk').textContent = (server.disk_util_percent || 0).toFixed(1) + '%';
+            document.getElementById('currentScore').textContent = (server.score || 0).toFixed(2);
+
+            // 更新图表显示值
+            document.getElementById('cpuChartValue').textContent = (server.cpu_percent || 0).toFixed(1) + '%';
+            document.getElementById('memChartValue').textContent = (server.mem_used_percent || 0).toFixed(1) + '%';
+            document.getElementById('netChartValue').textContent =
+                `↑ ${formatRate(server.send_rate)} ↓ ${formatRate(server.rcv_rate)}`;
+            document.getElementById('loadChartValue').textContent = (server.load_avg_1 || 0).toFixed(2);
+
+            // 更新状态
+            const statusBadge = document.getElementById('serverStatus');
+            if (server.is_online) {
+                statusBadge.className = 'status-badge status-online';
+                statusBadge.innerHTML = '<span class="pulse">●</span> 在线';
+            } else {
+                statusBadge.className = 'status-badge status-offline';
+                statusBadge.innerHTML = '<span class="pulse">●</span> 离线';
+            }
+
+            // 更新时间戳（使用当前浏览器时间表示上次轮询时刻）
+            const nowTs = new Date().toLocaleTimeString('zh-CN', {
+                hour: '2-digit', minute: '2-digit', second: '2-digit'
+            });
+            document.getElementById('lastUpdate').textContent = '最后更新: ' + nowTs;
+
+            // 更新图表
+            updateCharts();
+
+            // 显示仪表盘
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('dashboard').style.display = 'block';
+        }
+
+        function formatRate(rate) {
+            if (!rate) return '0 KB/s';
+            if (rate > 1024) return (rate / 1024).toFixed(2) + ' MB/s';
+            return rate.toFixed(2) + ' KB/s';
+        }
+
+        function showError(message) {
+            const errorDiv = document.getElementById('error');
+            errorDiv.textContent = '⚠️ ' + message;
+            errorDiv.style.display = 'block';
+        }
+
+        function hideError() {
+            document.getElementById('error').style.display = 'none';
+        }
+
+        // 初始化
+        document.addEventListener('DOMContentLoaded', async () => {
+            initCharts();
+            await fetchServerList();
+
+            // 每1秒更新一次数据
+            setInterval(fetchRealtimeData, 1000);
+
+            // 每10秒刷新服务器列表
+            setInterval(fetchServerList, 10000);
+        });
+    </script>
+</body>
+</html>

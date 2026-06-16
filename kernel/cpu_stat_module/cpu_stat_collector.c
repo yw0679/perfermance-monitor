@@ -131,7 +131,8 @@ static int cpu_stat_monitor_mmap(struct file *file, struct vm_area_struct *vma)
 	requested_size = vma->vm_end - vma->vm_start;
 	if (requested_size > cpu_stat_region_size())
 		return -EINVAL;
-		return remap_vmalloc_range(vma, g_shared_region, 0);
+
+	return remap_vmalloc_range(vma, g_shared_region, 0);
 
 }
 
