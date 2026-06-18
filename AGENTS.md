@@ -5,8 +5,10 @@
 ## Build
 
 ```bash
-cmake -B build -S . && cmake --build build
+cmake -B build -S . -DCMAKE_EXPORT_COMPILE_COMMANDS=ON && cmake --build build
 ```
+
+编译后会在项目根目录创建 `compile_commands.json` 符号链接（`ln -sf build/compile_commands.json .`），供 VS Code C/C++ IntelliSense 使用。
 
 CMake 会自动处理 subdirectory 依赖顺序：`proto/` → `proto` 静态库 → `worker` / `manager`。
 

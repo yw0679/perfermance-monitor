@@ -1,8 +1,3 @@
-/**
- * 文件归类：当前版本使用文件（简化版主线）
- * 说明：当前默认构建、运行或联调流程会直接使用该文件。
- */
-
 #include "utils/read_file.h"
 
 namespace monitor {
@@ -25,7 +20,4 @@ bool ReadFile::ReadLine(std::vector<std::string>* args) {
 
 
 }  // namespace monitor
-/**
- * 文件归类：当前版本使用文件（简化版主线）
- * 说明：当前默认构建、运行或联调流程会直接使用该文件。
- */
+
