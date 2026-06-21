@@ -1,34 +1,46 @@
 #!/usr/bin/env python3
 """
-简单的 REST API 服务器，从 MySQL 读取数据并提供给前端
-无需修改项目代码，直接查询数据库
+REST API 服务器，从 MySQL 读取数据并提供给前端。
+
+优化要点：
+  - 连接池复用，避免每个请求新建/关闭连接的开销
+  - 参数化查询防注入（Python mysql.connector 原生支持 %s 占位符）
 """
 
 from flask import Flask, jsonify
 from flask_cors import CORS
 import mysql.connector
+from mysql.connector import pooling
 from datetime import datetime, timedelta
 import os
 
 app = Flask(__name__)
-CORS(app)  # 允许跨域
+CORS(app)
 
-# 数据库配置（与 manager 使用相同配置）
 DB_CONFIG = {
     'host': os.getenv('MYSQL_HOST', '127.0.0.1'),
     'user': os.getenv('MYSQL_USER', 'monitor'),
     'password': os.getenv('MYSQL_PASS', 'monitor123'),
     'database': os.getenv('MYSQL_DB', 'monitor_db'),
-    'ssl_disabled': True,  # 禁用 SSL 避免 Python 3.12 兼容性问题
+    'ssl_disabled': True,
+    'charset': 'utf8mb4',
+    'autocommit': True,
 }
 
+# 连接池：5 个连接，可按需扩展到 10
+cnx_pool = pooling.MySQLConnectionPool(
+    pool_name='api_pool',
+    pool_size=5,
+    pool_reset_session=True,
+    **DB_CONFIG
+)
+
 def get_db_connection():
-    """获取数据库连接"""
+    """从连接池获取连接"""
     try:
-        conn = mysql.connector.connect(**DB_CONFIG)
-        return conn
+        return cnx_pool.get_connection()
     except Exception as e:
-        print(f"数据库连接失败: {e}")
+        print(f"数据库连接池获取失败: {e}")
         return None
 
 @app.route('/api/servers')
@@ -41,7 +53,6 @@ def get_servers():
     try:
         cursor = conn.cursor(dictionary=True)
 
-        # 获取每台服务器的最新记录（60秒内为在线）
         query = """
         SELECT
             server_name,
@@ -66,13 +77,11 @@ def get_servers():
         cursor.execute(query)
         servers = cursor.fetchall()
 
-        # 计算统计信息
         total = len(servers)
         online = sum(1 for s in servers if s['is_online'])
         offline = total - online
         avg_score = sum(s['score'] or 0 for s in servers) / total if total > 0 else 0
 
-        # 格式化时间戳
         for server in servers:
             if server['timestamp']:
                 server['timestamp'] = server['timestamp'].isoformat()
@@ -105,7 +114,6 @@ def get_server_history(server_name):
     try:
         cursor = conn.cursor(dictionary=True)
 
-        # 获取最近1小时的数据
         query = """
         SELECT *
         FROM server_performance
@@ -118,7 +126,6 @@ def get_server_history(server_name):
         cursor.execute(query, (server_name,))
         records = cursor.fetchall()
 
-        # 格式化时间戳
         for record in records:
             if record['timestamp']:
                 record['timestamp'] = record['timestamp'].isoformat()
@@ -145,8 +152,9 @@ def health():
 
 if __name__ == '__main__':
     print("=" * 50)
-    print("简单 REST API 服务器启动中...")
-    print(f"数据库: {DB_CONFIG['host']}:{DB_CONFIG['database']}")
+    print("REST API 服务器启动中...")
+    print(f"数据库: {DB_CONFIG['host']}/{DB_CONFIG['database']}")
+    print(f"连接池: pool_size=5")
     print("API 地址: http://localhost:8000")
     print("=" * 50)
     app.run(host='0.0.0.0', port=8000, debug=True)

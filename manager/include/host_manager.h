@@ -1,6 +1,11 @@
 /**
  * 文件归类：1
  * 说明：定义主机监控数据管理、评分计算和落库相关接口。
+ *
+ * MySQL 写入架构：
+ *   - gRPC 接收线程：OnDataReceived() 做评分 + 变化率计算 + 内存态更新后立即返回
+ *   - 后台写线程：MysqlWriteLoop() 复用连接 + prepared statement，异步消费写入队列
+ *   - 3 表 INSERT 用事务包裹，保证同一采样快照的原子性
  */
 
 #pragma once
@@ -16,11 +21,14 @@
 #include <unordered_map>
 #include <vector>
 
-#include <mysql/mysql.h>
-
 #include "monitor_info.pb.h"
 
 namespace monitor {
+
+// 前向声明 prepared statement 上下文（定义在 host_manager.cpp 中）
+struct StmtPerfCtx;
+struct StmtNetCtx;
+struct StmtDiskCtx;
 
 struct HostScore {
   monitor::proto::MonitorInfo info;
@@ -91,10 +99,10 @@ class HostManager {
   double CalcSchedulingWeight(double score) const;
   // 预留给 GetBestHost() 的兜底选择逻辑；当前版本没有实际走到这里。
   std::string SelectHighestScoreHostLocked() const;
-  // 使用已经建立好的 MySQL 连接执行一次完整落库。
-  // 返回 true 表示三类表写入都成功，返回 false 表示任意一条 SQL 执行失败。
+  // 使用预编译语句 + 事务完成一次完整落库。
+  // 返回 true 表示 3 表写入+COMMIT 都成功；任意失败则 ROLLBACK 并返回 false。
   bool WriteToMysql(
-      MYSQL* conn,
+      StmtPerfCtx* stmt_perf, StmtNetCtx* stmt_net, StmtDiskCtx* stmt_disk,
       const std::string& host_name, const HostScore& host_score,
       float cpu_percent_rate, float load_avg_1_rate,
       float mem_used_percent_rate, float disk_util_percent_rate,

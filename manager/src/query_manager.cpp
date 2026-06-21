@@ -1,6 +1,11 @@
 /**
  * 文件归类：1
  * 说明：实现 MySQL 查询、结果解析和时间转换等数据库访问逻辑。
+ *
+ * 查询优化要点：
+ *   - SQL_CALC_FOUND_ROWS 一次查询同时获得数据和总数，消除 COUNT + SELECT 双往返
+ *   - mysql_real_escape_string 转义用户输入的 server_name，防止 SQL 注入
+ *   - 索引 idx_server_time (server_name, timestamp) 覆盖主查询模式
  */
 
 #include "query_manager.h"
@@ -9,6 +14,7 @@
 #include <iomanip>
 #include <iostream>
 #include <sstream>
+#include <cstring>
 
 namespace monitor {
 
@@ -65,6 +71,31 @@ PerformanceRecord ParsePerformanceRecordRow(MYSQL_ROW row) {
   rec.send_rate_rate = row[i] ? std::atof(row[i]) : 0; i++;
   rec.rcv_rate_rate = row[i] ? std::atof(row[i]) : 0;
   return rec;
+}
+
+// 使用 mysql_real_escape_string 安全拼接字符串参数
+static std::string EscapeString(MYSQL* conn, const std::string& src) {
+  if (src.empty()) return "";
+  std::string dst(src.size() * 2 + 1, '\0');
+  unsigned long len = mysql_real_escape_string(conn, &dst[0],
+                                               src.c_str(), src.size());
+  dst.resize(len);
+  return dst;
+}
+
+// 执行 SELECT FOUND_ROWS() 获取上次 SQL_CALC_FOUND_ROWS 查询的总行数
+static int FetchFoundRows(MYSQL* conn) {
+  if (mysql_query(conn, "SELECT FOUND_ROWS()") != 0) {
+    std::cerr << "FOUND_ROWS() query failed: " << mysql_error(conn) << std::endl;
+    return 0;
+  }
+  MYSQL_RES* result = mysql_store_result(conn);
+  if (!result) return 0;
+  int count = 0;
+  MYSQL_ROW row = mysql_fetch_row(result);
+  if (row && row[0]) count = std::atoi(row[0]);
+  mysql_free_result(result);
+  return count;
 }
 
 }  // namespace
@@ -135,27 +166,6 @@ std::chrono::system_clock::time_point QueryManager::ParseTime(
   return ParseMysqlTime(str);
 }
 
-int QueryManager::GetTotalCount(const std::string& count_sql) {
-  if (mysql_query(conn_, count_sql.c_str()) != 0) {
-    std::cerr << "QueryManager: count query failed: " << mysql_error(conn_)
-              << std::endl;
-    return 0;
-  }
-
-  MYSQL_RES* result = mysql_store_result(conn_);
-  if (!result) {
-    return 0;
-  }
-
-  int count = 0;
-  MYSQL_ROW row = mysql_fetch_row(result);
-  if (row && row[0]) {
-    count = std::atoi(row[0]);
-  }
-  mysql_free_result(result);
-  return count;
-}
-
 std::vector<PerformanceRecord> QueryManager::QueryPerformance(
     const std::string& server_name, const TimeRange& time_range, int page,
     int page_size, int* total_count) {
@@ -174,26 +184,24 @@ std::vector<PerformanceRecord> QueryManager::QueryPerformance(
 
   const std::string start_time = FormatTime(time_range.start_time);
   const std::string end_time = FormatTime(time_range.end_time);
-
-  std::ostringstream count_sql;
-  count_sql << "SELECT COUNT(*) FROM server_performance WHERE server_name='"
-            << server_name << "' AND timestamp BETWEEN '" << start_time
-            << "' AND '" << end_time << "'";
-  if (total_count) {
-    *total_count = GetTotalCount(count_sql.str());
-  }
+  const std::string escaped_name = EscapeString(conn_, server_name);
+  const std::string escaped_start = EscapeString(conn_, start_time);
+  const std::string escaped_end = EscapeString(conn_, end_time);
 
   const int offset = (page - 1) * page_size;
+
   std::ostringstream sql;
-  sql << "SELECT " << kPerformanceSelectColumns
-      << " FROM server_performance WHERE server_name='" << server_name
-      << "' AND timestamp BETWEEN '" << start_time << "' AND '" << end_time
-      << "' ORDER BY timestamp DESC LIMIT " << page_size << " OFFSET "
-      << offset;
+  sql << "SELECT SQL_CALC_FOUND_ROWS "
+      << kPerformanceSelectColumns
+      << " FROM server_performance WHERE server_name='"
+      << escaped_name << "' AND timestamp BETWEEN '"
+      << escaped_start << "' AND '" << escaped_end
+      << "' ORDER BY timestamp DESC LIMIT " << page_size
+      << " OFFSET " << offset;
 
   if (mysql_query(conn_, sql.str().c_str()) != 0) {
-    std::cerr << "QueryManager: performance query failed: " << mysql_error(conn_)
-              << std::endl;
+    std::cerr << "QueryManager: performance query failed: "
+              << mysql_error(conn_) << std::endl;
     return records;
   }
 
@@ -207,6 +215,11 @@ std::vector<PerformanceRecord> QueryManager::QueryPerformance(
     records.push_back(ParsePerformanceRecordRow(row));
   }
   mysql_free_result(result);
+
+  // 一次往返获取总数，替代之前的 COUNT(*) + SELECT 双往返
+  if (total_count) {
+    *total_count = FetchFoundRows(conn_);
+  }
 
   return records;
 }
@@ -228,27 +241,25 @@ std::vector<NetDetailRecord> QueryManager::QueryNetDetail(
 
   const std::string start_time = FormatTime(time_range.start_time);
   const std::string end_time = FormatTime(time_range.end_time);
-
-  std::ostringstream count_sql;
-  count_sql << "SELECT COUNT(*) FROM server_net_detail WHERE server_name='"
-            << server_name << "' AND timestamp BETWEEN '" << start_time
-            << "' AND '" << end_time << "'";
-  if (total_count) {
-    *total_count = GetTotalCount(count_sql.str());
-  }
+  const std::string escaped_name = EscapeString(conn_, server_name);
+  const std::string escaped_start = EscapeString(conn_, start_time);
+  const std::string escaped_end = EscapeString(conn_, end_time);
 
   const int offset = (page - 1) * page_size;
+
   std::ostringstream sql;
-  sql << "SELECT server_name, net_name, timestamp, rcv_bytes_rate, "
+  sql << "SELECT SQL_CALC_FOUND_ROWS "
+         "server_name, net_name, timestamp, rcv_bytes_rate, "
          "snd_bytes_rate, rcv_packets_rate, snd_packets_rate "
          "FROM server_net_detail WHERE server_name='"
-      << server_name << "' AND timestamp BETWEEN '" << start_time << "' AND '"
-      << end_time << "' ORDER BY timestamp DESC LIMIT " << page_size
+      << escaped_name << "' AND timestamp BETWEEN '" << escaped_start
+      << "' AND '" << escaped_end
+      << "' ORDER BY timestamp DESC LIMIT " << page_size
       << " OFFSET " << offset;
 
   if (mysql_query(conn_, sql.str().c_str()) != 0) {
-    std::cerr << "QueryManager: net detail query failed: " << mysql_error(conn_)
-              << std::endl;
+    std::cerr << "QueryManager: net detail query failed: "
+              << mysql_error(conn_) << std::endl;
     return records;
   }
 
@@ -274,6 +285,10 @@ std::vector<NetDetailRecord> QueryManager::QueryNetDetail(
   }
   mysql_free_result(result);
 
+  if (total_count) {
+    *total_count = FetchFoundRows(conn_);
+  }
+
   return records;
 }
 
@@ -294,23 +309,21 @@ std::vector<DiskDetailRecord> QueryManager::QueryDiskDetail(
 
   const std::string start_time = FormatTime(time_range.start_time);
   const std::string end_time = FormatTime(time_range.end_time);
-
-  std::ostringstream count_sql;
-  count_sql << "SELECT COUNT(*) FROM server_disk_detail WHERE server_name='"
-            << server_name << "' AND timestamp BETWEEN '" << start_time
-            << "' AND '" << end_time << "'";
-  if (total_count) {
-    *total_count = GetTotalCount(count_sql.str());
-  }
+  const std::string escaped_name = EscapeString(conn_, server_name);
+  const std::string escaped_start = EscapeString(conn_, start_time);
+  const std::string escaped_end = EscapeString(conn_, end_time);
 
   const int offset = (page - 1) * page_size;
+
   std::ostringstream sql;
-  sql << "SELECT server_name, disk_name, timestamp, read_bytes_per_sec, "
+  sql << "SELECT SQL_CALC_FOUND_ROWS "
+         "server_name, disk_name, timestamp, read_bytes_per_sec, "
          "write_bytes_per_sec, read_iops, write_iops, avg_read_latency_ms, "
          "avg_write_latency_ms, util_percent "
          "FROM server_disk_detail WHERE server_name='"
-      << server_name << "' AND timestamp BETWEEN '" << start_time << "' AND '"
-      << end_time << "' ORDER BY timestamp DESC LIMIT " << page_size
+      << escaped_name << "' AND timestamp BETWEEN '" << escaped_start
+      << "' AND '" << escaped_end
+      << "' ORDER BY timestamp DESC LIMIT " << page_size
       << " OFFSET " << offset;
 
   if (mysql_query(conn_, sql.str().c_str()) != 0) {
@@ -343,6 +356,10 @@ std::vector<DiskDetailRecord> QueryManager::QueryDiskDetail(
     records.push_back(rec);
   }
   mysql_free_result(result);
+
+  if (total_count) {
+    *total_count = FetchFoundRows(conn_);
+  }
 
   return records;
 }

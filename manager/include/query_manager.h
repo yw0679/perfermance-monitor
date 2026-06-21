@@ -135,7 +135,6 @@ class QueryManager {
  private:
   std::string FormatTime(const std::chrono::system_clock::time_point& tp) const;
   std::chrono::system_clock::time_point ParseTime(const char* str) const;
-  int GetTotalCount(const std::string& count_sql);
 
   MYSQL* conn_ = nullptr;
   std::mutex mtx_;
