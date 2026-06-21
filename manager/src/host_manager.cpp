@@ -181,8 +181,7 @@ void HostManager::EnqueueMysqlWrite(MysqlWriteTask task) {
 }
 
 // 监控数据主处理入口。
-// 该函数仍然负责完成评分、变化率计算和内存态刷新，但数据库写入已改为异步入队，
-// 因此 gRPC 请求线程不再为 MySQL 连接建立和 SQL 执行阻塞。
+// 该函数仍然负责完成评分、变化率计算和内存态刷新。
 void HostManager::OnDataReceived(const monitor::proto::MonitorInfo& info) {
   // 构建服务器唯一标识: hostname_ip
   std::string host_name;

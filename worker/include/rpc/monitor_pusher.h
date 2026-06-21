@@ -15,6 +15,7 @@
 #include <chrono>
 
 #include "monitor/metric_collector.h"
+#include "utils/ring_buffer.h"
 #include "monitor_info.grpc.pb.h"
 #include "monitor_info.pb.h"
 
@@ -47,18 +48,24 @@ class MonitorPusher {
   const std::string& GetManagerAddress() const { return manager_address_; }
 
  private:
-  //循环推送，每次循环调用一个pushOnce，然后睡10s。
   void PushLoop();
-  //单次推送，建立一个info，然后把所有数据装入info，通过setMonitorInfo传输。
   bool PushOnce();
+
+  // 执行一次 gRPC SetMonitorInfo 调用，封装 deadline + 日志
+  bool PushData(const monitor::proto::MonitorInfo& info);
+  // 尝试补推环形缓冲中的积压数据
+  void FlushBacklog();
 
   std::string manager_address_;
   int interval_seconds_;
   std::atomic<bool> running_; //保证原子性的bool
   std::unique_ptr<std::thread> thread_;
   std::unique_ptr<MetricCollector> collector_;
-  //stub存根，远程服务器在本地的代理，通过调stub里的函数来使用远端函数。
   std::unique_ptr<monitor::proto::GrpcManager::Stub> stub_;
+
+  // 环形缓冲：manager 不可达时暂存 MonitorInfo，恢复后补推
+  // 容量 120 = 2 分钟（每秒 1 条），旧数据被自然覆盖
+  monitor::RingBuffer<monitor::proto::MonitorInfo> backlog_{120};
 };
 
 }  // namespace monitor

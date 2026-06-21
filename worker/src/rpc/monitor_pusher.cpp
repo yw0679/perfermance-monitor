@@ -80,6 +80,11 @@ void MonitorPusher::Stop() {
 
 void MonitorPusher::PushLoop() {
   while (running_) {
+    // 有积压先补推（旧数据在前），失败的不丢、放回 buffer
+    if (!backlog_.Empty()) {
+      FlushBacklog();
+    }
+
     if (!PushOnce()) {
       std::cerr << "Failed to push monitor data to " << manager_address_
                 << std::endl;
@@ -90,13 +95,51 @@ void MonitorPusher::PushLoop() {
     }
   }
 }
-//建立一个info，然后把所有数据装入info，通过setMonitorInfo传输。
+
+void MonitorPusher::FlushBacklog() {
+  std::vector<monitor::proto::MonitorInfo> pending;
+  backlog_.Drain(pending);
+
+  if (pending.empty()) return;
+
+  std::cout << "[backlog] replaying " << pending.size()
+            << " buffered samples..." << std::endl;
+
+  size_t ok = 0;
+  for (auto& info : pending) {
+    if (PushData(info)) {
+      ++ok;
+    } else {
+      // 补推失败 → 放回 buffer，下次继续尝试
+      backlog_.Push(std::move(info));
+    }
+  }
+
+  if (ok == pending.size()) {
+    std::cout << "[backlog] all " << ok
+              << " samples replayed successfully" << std::endl;
+  } else {
+    std::cout << "[backlog] " << ok << "/" << pending.size()
+              << " succeeded, " << (pending.size() - ok)
+              << " returned to buffer" << std::endl;
+  }
+}
+
 bool MonitorPusher::PushOnce() {
   monitor::proto::MonitorInfo info;
   collector_->CollectAll(&info);
-  //打印结果
   PrintCollectSummary(info);
 
+  bool ok = PushData(info);
+
+  if (!ok) {
+    backlog_.Push(std::move(info));
+  }
+
+  return ok;
+}
+
+bool MonitorPusher::PushData(const monitor::proto::MonitorInfo& info) {
   grpc::ClientContext context;
   context.set_deadline(std::chrono::system_clock::now() +
                        kSetMonitorInfoDeadline);
@@ -104,7 +147,6 @@ bool MonitorPusher::PushOnce() {
   grpc::Status status = stub_->SetMonitorInfo(&context, info, &response);
 
   if (status.ok()) {
-    std::cout << ">>>向" << manager_address_ << " 推送成功 <<<" << std::endl;
     return true;
   }
 
