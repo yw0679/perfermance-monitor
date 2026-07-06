@@ -26,30 +26,13 @@ struct PerformanceRecord {
   std::chrono::system_clock::time_point timestamp;
 
   float cpu_percent = 0;
-  float usr_percent = 0;
-  float system_percent = 0;
-  float nice_percent = 0;
-  float idle_percent = 0;
-  float io_wait_percent = 0;
-  float irq_percent = 0;
-  float soft_irq_percent = 0;
-
   float load_avg_1 = 0;
   float load_avg_3 = 0;
   float load_avg_15 = 0;
-
   float mem_used_percent = 0;
-  float mem_total = 0;
-  float mem_free = 0;
-  float mem_avail = 0;
-
   float disk_util_percent = 0;
-
   float send_rate = 0;
   float rcv_rate = 0;
-  float send_packets_rate = 0;
-  float rcv_packets_rate = 0;
-
   float score = 0;
   float cpu_percent_rate = 0;
   float mem_used_percent_rate = 0;
@@ -107,6 +90,18 @@ struct DiskDetailRecord {
   float util_percent = 0;
 };
 
+struct CpuDetailRecord {
+  std::string server_name;
+  std::chrono::system_clock::time_point timestamp;
+  float usr_percent = 0;
+  float system_percent = 0;
+  float nice_percent = 0;
+  float idle_percent = 0;
+  float io_wait_percent = 0;
+  float irq_percent = 0;
+  float soft_irq_percent = 0;
+};
+
 class QueryManager {
  public:
   QueryManager();
@@ -131,6 +126,10 @@ class QueryManager {
                                                 const TimeRange& time_range,
                                                 int page, int page_size,
                                                 int* total_count);
+  std::vector<CpuDetailRecord> QueryCpuDetail(const std::string& server_name,
+                                              const TimeRange& time_range,
+                                              int page, int page_size,
+                                              int* total_count);
 
  private:
   std::string FormatTime(const std::chrono::system_clock::time_point& tp) const;

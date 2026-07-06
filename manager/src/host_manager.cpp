@@ -57,11 +57,12 @@ static std::map<std::string, PerfSample> last_perf_samples;
 
 struct StmtPerfCtx {
   MYSQL_STMT* stmt = nullptr;
-  static constexpr int kNumParams = 29;
+  static constexpr int kNumParams = 18;
 
   char  srv_name[256] = {};
   unsigned long srv_name_len = 0;
-  float fvals[27] = {};
+  float fvals[15] = {};
+  unsigned long long seq_val = 0;
   char  ts_buf[32] = {};
   unsigned long ts_len = 0;
 
@@ -72,17 +73,13 @@ struct StmtPerfCtx {
     if (!stmt) return false;
 
     const char* sql =
-        "INSERT INTO server_performance "
-        "(server_name, cpu_percent, usr_percent, system_percent, "
-        "nice_percent, idle_percent, io_wait_percent, irq_percent, soft_irq_percent, "
-        "load_avg_1, load_avg_3, load_avg_15, "
-        "mem_used_percent, total, mem_free, avail, "
-        "disk_util_percent, send_rate, rcv_rate, send_packets_rate, rcv_packets_rate, score, "
+        "INSERT IGNORE INTO server_performance "
+        "(server_name, cpu_percent, load_avg_1, load_avg_3, load_avg_15, "
+        "mem_used_percent, disk_util_percent, send_rate, rcv_rate, score, "
         "cpu_percent_rate, load_avg_1_rate, mem_used_percent_rate, "
-        "disk_util_percent_rate, send_rate_rate, rcv_rate_rate, timestamp) "
-        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?,"
-        "        ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,"
-        "        ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        "disk_util_percent_rate, send_rate_rate, rcv_rate_rate, sequence, "
+        "timestamp) "
+        "VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?)";
 
     if (mysql_stmt_prepare(stmt, sql, std::strlen(sql)) != 0) {
       std::cerr << "perf stmt prepare: " << mysql_stmt_error(stmt) << std::endl;
@@ -95,15 +92,19 @@ struct StmtPerfCtx {
     bind[0].buffer_length = sizeof(srv_name);
     bind[0].length        = &srv_name_len;
 
-    for (int i = 0; i < 27; ++i) {
+    for (int i = 0; i < 15; ++i) {
       bind[1 + i].buffer_type = MYSQL_TYPE_FLOAT;
       bind[1 + i].buffer      = &fvals[i];
     }
 
-    bind[28].buffer_type   = MYSQL_TYPE_STRING;
-    bind[28].buffer        = ts_buf;
-    bind[28].buffer_length = sizeof(ts_buf);
-    bind[28].length        = &ts_len;
+    bind[16].buffer_type   = MYSQL_TYPE_LONGLONG;
+    bind[16].buffer        = &seq_val;
+    bind[16].is_unsigned   = 1;
+
+    bind[17].buffer_type   = MYSQL_TYPE_STRING;
+    bind[17].buffer        = ts_buf;
+    bind[17].buffer_length = sizeof(ts_buf);
+    bind[17].length        = &ts_len;
 
     if (mysql_stmt_bind_param(stmt, bind) != 0) {
       std::cerr << "perf stmt bind: " << mysql_stmt_error(stmt) << std::endl;
@@ -119,15 +120,14 @@ struct StmtPerfCtx {
   }
 };
 
-struct StmtNetCtx {
+struct StmtCpuCtx {
   MYSQL_STMT* stmt = nullptr;
-  static constexpr int kNumParams = 7;
+  static constexpr int kNumParams = 10;
 
   char  srv_name[256] = {};
   unsigned long srv_name_len = 0;
-  char  net_name[64] = {};
-  unsigned long net_name_len = 0;
-  float fvals[4] = {};
+  float fvals[7] = {};
+  unsigned long long seq_val = 0;
   char  ts_buf[32] = {};
   unsigned long ts_len = 0;
 
@@ -138,10 +138,74 @@ struct StmtNetCtx {
     if (!stmt) return false;
 
     const char* sql =
-        "INSERT INTO server_net_detail "
+        "INSERT IGNORE INTO server_cpu_detail "
+        "(server_name, usr_percent, system_percent, nice_percent, "
+        "idle_percent, io_wait_percent, irq_percent, soft_irq_percent, "
+        "sequence, timestamp) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+    if (mysql_stmt_prepare(stmt, sql, std::strlen(sql)) != 0) {
+      std::cerr << "cpu stmt prepare: " << mysql_stmt_error(stmt) << std::endl;
+      return false;
+    }
+
+    std::memset(bind, 0, sizeof(bind));
+    bind[0].buffer_type   = MYSQL_TYPE_STRING;
+    bind[0].buffer        = srv_name;
+    bind[0].buffer_length = sizeof(srv_name);
+    bind[0].length        = &srv_name_len;
+
+    for (int i = 0; i < 7; ++i) {
+      bind[1 + i].buffer_type = MYSQL_TYPE_FLOAT;
+      bind[1 + i].buffer      = &fvals[i];
+    }
+
+    bind[8].buffer_type   = MYSQL_TYPE_LONGLONG;
+    bind[8].buffer        = &seq_val;
+    bind[8].is_unsigned   = 1;
+
+    bind[9].buffer_type   = MYSQL_TYPE_STRING;
+    bind[9].buffer        = ts_buf;
+    bind[9].buffer_length = sizeof(ts_buf);
+    bind[9].length        = &ts_len;
+
+    if (mysql_stmt_bind_param(stmt, bind) != 0) {
+      std::cerr << "cpu stmt bind: " << mysql_stmt_error(stmt) << std::endl;
+      return false;
+    }
+    return true;
+  }
+
+  bool Execute() { return mysql_stmt_execute(stmt) == 0; }
+
+  void Close() {
+    if (stmt) { mysql_stmt_close(stmt); stmt = nullptr; }
+  }
+};
+
+struct StmtNetCtx {
+  MYSQL_STMT* stmt = nullptr;
+  static constexpr int kNumParams = 8;
+
+  char  srv_name[256] = {};
+  unsigned long srv_name_len = 0;
+  char  net_name[64] = {};
+  unsigned long net_name_len = 0;
+  float fvals[4] = {};
+  unsigned long long seq_val = 0;
+  char  ts_buf[32] = {};
+  unsigned long ts_len = 0;
+
+  MYSQL_BIND bind[kNumParams] = {};
+
+  bool Prepare(MYSQL* conn) {
+    stmt = mysql_stmt_init(conn);
+    if (!stmt) return false;
+
+    const char* sql =
+        "INSERT IGNORE INTO server_net_detail "
         "(server_name, net_name, rcv_bytes_rate, rcv_packets_rate, "
-        "snd_bytes_rate, snd_packets_rate, timestamp) "
-        "VALUES (?, ?, ?, ?, ?, ?, ?)";
+        "snd_bytes_rate, snd_packets_rate, sequence, timestamp) "
+        "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
     if (mysql_stmt_prepare(stmt, sql, std::strlen(sql)) != 0) {
       std::cerr << "net stmt prepare: " << mysql_stmt_error(stmt) << std::endl;
@@ -164,10 +228,14 @@ struct StmtNetCtx {
       bind[2 + i].buffer      = &fvals[i];
     }
 
-    bind[6].buffer_type   = MYSQL_TYPE_STRING;
-    bind[6].buffer        = ts_buf;
-    bind[6].buffer_length = sizeof(ts_buf);
-    bind[6].length        = &ts_len;
+    bind[6].buffer_type   = MYSQL_TYPE_LONGLONG;
+    bind[6].buffer        = &seq_val;
+    bind[6].is_unsigned   = 1;
+
+    bind[7].buffer_type   = MYSQL_TYPE_STRING;
+    bind[7].buffer        = ts_buf;
+    bind[7].buffer_length = sizeof(ts_buf);
+    bind[7].length        = &ts_len;
 
     if (mysql_stmt_bind_param(stmt, bind) != 0) {
       std::cerr << "net stmt bind: " << mysql_stmt_error(stmt) << std::endl;
@@ -185,13 +253,14 @@ struct StmtNetCtx {
 
 struct StmtDiskCtx {
   MYSQL_STMT* stmt = nullptr;
-  static constexpr int kNumParams = 10;
+  static constexpr int kNumParams = 11;
 
   char  srv_name[256] = {};
   unsigned long srv_name_len = 0;
   char  disk_name[64] = {};
   unsigned long disk_name_len = 0;
   float fvals[7] = {};
+  unsigned long long seq_val = 0;
   char  ts_buf[32] = {};
   unsigned long ts_len = 0;
 
@@ -202,10 +271,11 @@ struct StmtDiskCtx {
     if (!stmt) return false;
 
     const char* sql =
-        "INSERT INTO server_disk_detail "
+        "INSERT IGNORE INTO server_disk_detail "
         "(server_name, disk_name, read_bytes_per_sec, write_bytes_per_sec, "
-        "read_iops, write_iops, avg_read_latency_ms, avg_write_latency_ms, util_percent, "
-        "timestamp) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        "read_iops, write_iops, avg_read_latency_ms, avg_write_latency_ms, "
+        "util_percent, sequence, timestamp) "
+        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     if (mysql_stmt_prepare(stmt, sql, std::strlen(sql)) != 0) {
       std::cerr << "disk stmt prepare: " << mysql_stmt_error(stmt) << std::endl;
@@ -228,10 +298,14 @@ struct StmtDiskCtx {
       bind[2 + i].buffer      = &fvals[i];
     }
 
-    bind[9].buffer_type   = MYSQL_TYPE_STRING;
-    bind[9].buffer        = ts_buf;
-    bind[9].buffer_length = sizeof(ts_buf);
-    bind[9].length        = &ts_len;
+    bind[9].buffer_type   = MYSQL_TYPE_LONGLONG;
+    bind[9].buffer        = &seq_val;
+    bind[9].is_unsigned   = 1;
+
+    bind[10].buffer_type   = MYSQL_TYPE_STRING;
+    bind[10].buffer        = ts_buf;
+    bind[10].buffer_length = sizeof(ts_buf);
+    bind[10].length        = &ts_len;
 
     if (mysql_stmt_bind_param(stmt, bind) != 0) {
       std::cerr << "disk stmt bind: " << mysql_stmt_error(stmt) << std::endl;
@@ -306,6 +380,7 @@ void HostManager::ProcessLoop() {
         const std::string host_name = it->first;
         std::cout << "Removing stale host: " << host_name << std::endl;
         schedule_states_.erase(host_name);
+        last_sequences_.erase(host_name);
         it = host_scores_.erase(it);
       } else {
         ++it;
@@ -319,12 +394,14 @@ void HostManager::ProcessLoop() {
 void HostManager::MysqlWriteLoop() {
   MYSQL* conn = nullptr;
   StmtPerfCtx stmt_perf;
+  StmtCpuCtx  stmt_cpu;
   StmtNetCtx  stmt_net;
   StmtDiskCtx stmt_disk;
 
   auto connect_and_prepare = [&]() -> bool {
     if (conn) {
       stmt_perf.Close();
+      stmt_cpu.Close();
       stmt_net.Close();
       stmt_disk.Close();
       mysql_close(conn);
@@ -349,9 +426,11 @@ void HostManager::MysqlWriteLoop() {
     mysql_set_character_set(conn, "utf8mb4");
 
     if (!stmt_perf.Prepare(conn) ||
+        !stmt_cpu.Prepare(conn) ||
         !stmt_net.Prepare(conn) ||
         !stmt_disk.Prepare(conn)) {
       stmt_perf.Close();
+      stmt_cpu.Close();
       stmt_net.Close();
       stmt_disk.Close();
       mysql_close(conn);
@@ -385,7 +464,7 @@ void HostManager::MysqlWriteLoop() {
     }
 
     const bool write_ok = WriteToMysql(
-        &stmt_perf, &stmt_net, &stmt_disk,
+        &stmt_perf, &stmt_cpu, &stmt_net, &stmt_disk,
         task.host_name, task.host_score,
         task.cpu_percent_rate, task.load_avg_1_rate,
         task.mem_used_percent_rate, task.disk_util_percent_rate,
@@ -395,6 +474,7 @@ void HostManager::MysqlWriteLoop() {
       std::cerr << "MySQL write failed for host: " << task.host_name
                 << ", reconnecting..." << std::endl;
       stmt_perf.Close();
+      stmt_cpu.Close();
       stmt_net.Close();
       stmt_disk.Close();
       mysql_close(conn);
@@ -404,6 +484,7 @@ void HostManager::MysqlWriteLoop() {
 
   if (conn) {
     stmt_perf.Close();
+    stmt_cpu.Close();
     stmt_net.Close();
     stmt_disk.Close();
     mysql_close(conn);
@@ -441,6 +522,22 @@ void HostManager::OnDataReceived(const monitor::proto::MonitorInfo& info) {
   if (host_name.empty()) {
     std::cerr << "Received data with empty server identifier" << std::endl;
     return;
+  }
+
+  // 幂等去重：拦截 gRPC 重试导致的重复上报。
+  // sequence == 0 表示旧版 worker，跳过检查保持兼容。
+  {
+    uint64_t seq = info.sequence();
+    std::lock_guard<std::mutex> lock(mtx_);
+    if (seq > 0 && last_sequences_.count(host_name) &&
+        last_sequences_[host_name] == seq) {
+      std::cout << "[dedup] host=" << host_name << " seq=" << seq
+                << " is duplicate, skipped" << std::endl;
+      return;
+    }
+    if (seq > 0) {
+      last_sequences_[host_name] = seq;
+    }
   }
 
   double score = CalcScore(info);
@@ -525,6 +622,7 @@ void HostManager::OnDataReceived(const monitor::proto::MonitorInfo& info) {
   EnqueueMysqlWrite(MysqlWriteTask{
       host_name,
       host_score,
+      info.sequence(),
       cpu_percent_rate,
       load_avg_1_rate,
       mem_used_percent_rate,
@@ -712,15 +810,17 @@ double HostManager::CalcScore(const monitor::proto::MonitorInfo& info) {
 }
 
 // 使用预编译语句 + 事务完成一次完整落库。
-// 同一采样快照的 3 表数据要么全部写入，要么全部回滚。
+// 同一采样快照的 4 表数据要么全部写入，要么全部回滚。
 bool HostManager::WriteToMysql(
-    StmtPerfCtx* stmt_perf, StmtNetCtx* stmt_net, StmtDiskCtx* stmt_disk,
+    StmtPerfCtx* stmt_perf, StmtCpuCtx* stmt_cpu,
+    StmtNetCtx* stmt_net, StmtDiskCtx* stmt_disk,
     const std::string& host_name, const HostScore& host_score,
     float cpu_percent_rate, float load_avg_1_rate,
     float mem_used_percent_rate, float disk_util_percent_rate,
     float net_in_rate_rate, float net_out_rate_rate) {
 
   if (!stmt_perf || !stmt_perf->stmt ||
+      !stmt_cpu  || !stmt_cpu->stmt ||
       !stmt_net  || !stmt_net->stmt ||
       !stmt_disk || !stmt_disk->stmt) {
     return false;
@@ -728,12 +828,10 @@ bool HostManager::WriteToMysql(
 
   const auto& info = host_score.info;
 
-  // 时间戳格式化（3 个 stmt 共用）
   char time_buf[32];
   unsigned long time_len;
   FormatTimestamp(host_score.timestamp, time_buf, sizeof(time_buf), &time_len);
 
-  // ========== 填充 server_name（3 个 stmt 共用） ==========
   auto set_server_name = [&](char* buf, unsigned long* len) {
     std::memcpy(buf, host_name.c_str(),
                 std::min(host_name.size(), (size_t)255));
@@ -741,40 +839,28 @@ bool HostManager::WriteToMysql(
         std::min(host_name.size(), (size_t)255));
   };
   set_server_name(stmt_perf->srv_name, &stmt_perf->srv_name_len);
+  set_server_name(stmt_cpu->srv_name, &stmt_cpu->srv_name_len);
   set_server_name(stmt_net->srv_name, &stmt_net->srv_name_len);
   set_server_name(stmt_disk->srv_name, &stmt_disk->srv_name_len);
 
-  // 时间戳（3 个 stmt 共用）
   std::memcpy(stmt_perf->ts_buf, time_buf, time_len);
   stmt_perf->ts_len = time_len;
+  std::memcpy(stmt_cpu->ts_buf, time_buf, time_len);
+  stmt_cpu->ts_len = time_len;
   std::memcpy(stmt_net->ts_buf, time_buf, time_len);
   stmt_net->ts_len = time_len;
   std::memcpy(stmt_disk->ts_buf, time_buf, time_len);
   stmt_disk->ts_len = time_len;
 
-  // ========== 提取公共字段 ==========
-  float total = 0, free = 0, avail = 0;
-  float send_rate = 0, rcv_rate = 0;
-  float send_packets_rate = 0, rcv_packets_rate = 0;
+  // ========== 提取字段 ==========
   float cpu_percent = 0, usr_percent = 0, system_percent = 0;
   float nice_percent = 0, idle_percent = 0, io_wait_percent = 0;
   float irq_percent = 0, soft_irq_percent = 0;
-  float load_avg_1 = 0, load_avg_3 = 0, load_avg_15 = 0, mem_used_percent = 0;
+  float load_avg_1 = 0, load_avg_3 = 0, load_avg_15 = 0;
+  float mem_used_percent = 0;
   float disk_util_percent = 0;
+  float send_rate = 0, rcv_rate = 0;
 
-  if (info.has_mem_info()) {
-    total = info.mem_info().total();
-    free = info.mem_info().free();
-    avail = info.mem_info().avail();
-    mem_used_percent = info.mem_info().used_percent();
-  }
-  for (int i = 0; i < info.net_info_size(); ++i) {
-    const auto& net = info.net_info(i);
-    send_rate += net.send_rate();
-    rcv_rate += net.rcv_rate();
-    send_packets_rate += net.send_packets_rate();
-    rcv_packets_rate += net.rcv_packets_rate();
-  }
   if (info.cpu_stat_size() > 0) {
     const auto& cpu = info.cpu_stat(0);
     cpu_percent = cpu.cpu_percent();
@@ -791,53 +877,72 @@ bool HostManager::WriteToMysql(
     load_avg_3 = info.cpu_load().load_avg_3();
     load_avg_15 = info.cpu_load().load_avg_15();
   }
+  if (info.has_mem_info()) {
+    mem_used_percent = info.mem_info().used_percent();
+  }
+  for (int i = 0; i < info.net_info_size(); ++i) {
+    send_rate += info.net_info(i).send_rate();
+    rcv_rate += info.net_info(i).rcv_rate();
+  }
   for (int i = 0; i < info.disk_info_size(); ++i) {
     const auto util = static_cast<float>(info.disk_info(i).util_percent());
     if (util > disk_util_percent) disk_util_percent = util;
   }
 
-  // ========== 填充 server_performance 的 fvals ==========
-  // fvals 索引对齐 VALUES 子句中的 27 个 FLOAT 列:
-  //   0:cpu_percent 1:usr_percent 2:system_percent 3:nice_percent
-  //   4:idle_percent 5:io_wait_percent 6:irq_percent 7:soft_irq_percent
-  //   8:load_avg_1 9:load_avg_3 10:load_avg_15
-  //   11:mem_used_percent 12:total 13:mem_free 14:avail
-  //   15:disk_util_percent 16:send_rate 17:rcv_rate
-  //   18:send_packets_rate 19:rcv_packets_rate 20:score
-  //   21:cpu_percent_rate 22:load_avg_1_rate 23:mem_used_percent_rate
-  //   24:disk_util_percent_rate 25:send_rate_rate 26:rcv_rate_rate
+  // ========== 填充 server_performance fvals (15 个) ==========
+  // 索引: 0:cpu_percent 1:load_avg_1 2:load_avg_3 3:load_avg_15
+  //       4:mem_used_percent 5:disk_util_percent 6:send_rate 7:rcv_rate
+  //       8:score
+  //       9:cpu_percent_rate 10:load_avg_1_rate 11:mem_used_percent_rate
+  //       12:disk_util_percent_rate 13:send_rate_rate 14:rcv_rate_rate
   float* p = stmt_perf->fvals;
-  p[0]  = cpu_percent;        p[1]  = usr_percent;
-  p[2]  = system_percent;     p[3]  = nice_percent;
-  p[4]  = idle_percent;       p[5]  = io_wait_percent;
-  p[6]  = irq_percent;        p[7]  = soft_irq_percent;
-  p[8]  = load_avg_1;         p[9]  = load_avg_3;
-  p[10] = load_avg_15;        p[11] = mem_used_percent;
-  p[12] = total;              p[13] = free;
-  p[14] = avail;              p[15] = disk_util_percent;
-  p[16] = send_rate;          p[17] = rcv_rate;
-  p[18] = send_packets_rate;  p[19] = rcv_packets_rate;
-  p[20] = static_cast<float>(host_score.score);
-  p[21] = cpu_percent_rate;   p[22] = load_avg_1_rate;
-  p[23] = mem_used_percent_rate; p[24] = disk_util_percent_rate;
-  p[25] = net_in_rate_rate;   p[26] = net_out_rate_rate;
+  p[0]  = cpu_percent;
+  p[1]  = load_avg_1;          p[2]  = load_avg_3;
+  p[3]  = load_avg_15;         p[4]  = mem_used_percent;
+  p[5]  = disk_util_percent;   p[6]  = send_rate;
+  p[7]  = rcv_rate;            p[8]  = static_cast<float>(host_score.score);
+  p[9]  = cpu_percent_rate;    p[10] = load_avg_1_rate;
+  p[11] = mem_used_percent_rate; p[12] = disk_util_percent_rate;
+  p[13] = net_in_rate_rate;    p[14] = net_out_rate_rate;
+
+  // ========== 填充 server_cpu_detail fvals (7 个) ==========
+  // 索引: 0:usr_percent 1:system_percent 2:nice_percent 3:idle_percent
+  //       4:io_wait_percent 5:irq_percent 6:soft_irq_percent
+  float* c = stmt_cpu->fvals;
+  c[0] = usr_percent;         c[1] = system_percent;
+  c[2] = nice_percent;        c[3] = idle_percent;
+  c[4] = io_wait_percent;     c[5] = irq_percent;
+  c[6] = soft_irq_percent;
+
+  // 同一条 MonitorInfo 的 4 表数据共享同一个幂等键
+  uint64_t seq = host_score.info.sequence();
+  stmt_perf->seq_val = seq;
+  stmt_cpu->seq_val = seq;
+  stmt_net->seq_val = seq;
+  stmt_disk->seq_val = seq;
 
   // ========== 事务开始 ==========
-  // 使用 mysql_query 发送事务控制语句（与 prepared statement 共用同一连接）
   if (mysql_query(stmt_perf->stmt->mysql, "START TRANSACTION") != 0) {
     std::cerr << "START TRANSACTION failed: "
               << mysql_error(stmt_perf->stmt->mysql) << std::endl;
     return false;
   }
 
-  // ========== 1. 写入主表 ==========
+  // ========== 1. 主表 ==========
   if (!stmt_perf->Execute()) {
     std::cerr << "perf insert: " << mysql_stmt_error(stmt_perf->stmt) << std::endl;
     mysql_query(stmt_perf->stmt->mysql, "ROLLBACK");
     return false;
   }
 
-  // ========== 2. 写入网络明细 ==========
+  // ========== 2. CPU 明细 ==========
+  if (!stmt_cpu->Execute()) {
+    std::cerr << "cpu insert: " << mysql_stmt_error(stmt_cpu->stmt) << std::endl;
+    mysql_query(stmt_cpu->stmt->mysql, "ROLLBACK");
+    return false;
+  }
+
+  // ========== 3. 网络明细 ==========
   for (int i = 0; i < info.net_info_size(); ++i) {
     const auto& net = info.net_info(i);
     const auto& name = net.name();
@@ -858,7 +963,7 @@ bool HostManager::WriteToMysql(
     }
   }
 
-  // ========== 3. 写入磁盘明细 ==========
+  // ========== 4. 磁盘明细 ==========
   for (int i = 0; i < info.disk_info_size(); ++i) {
     const auto& disk = info.disk_info(i);
     const auto& name = disk.name();
@@ -882,7 +987,6 @@ bool HostManager::WriteToMysql(
     }
   }
 
-  // ========== 事务提交 ==========
   if (mysql_query(stmt_perf->stmt->mysql, "COMMIT") != 0) {
     std::cerr << "COMMIT failed: "
               << mysql_error(stmt_perf->stmt->mysql) << std::endl;

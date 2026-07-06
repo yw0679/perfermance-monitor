@@ -25,6 +25,7 @@ class MetricCollector {
  private:
   std::vector<std::unique_ptr<MonitorInter>> monitors_;
   std::string hostname_;
+  uint64_t collect_seq_ = 0;
 };
 
 }  // namespace monitor

@@ -5,12 +5,14 @@
 
 #pragma once
 
+#include <cstddef>
 #include <cstdint>
 #include <string>
 #include <unordered_map>
 
 #include "monitor/monitor_inter.h"
 #include "monitor_info.pb.h"
+#include "shared/cpu_stat_shared.h"
 
 namespace monitor {
 class CpuStatMonitor : public MonitorInter {
@@ -30,16 +32,22 @@ class CpuStatMonitor : public MonitorInter {
 
  public:
   // 初始化 CPU 状态监控器。
-  CpuStatMonitor() {}
+  CpuStatMonitor();
+  ~CpuStatMonitor() override;
 
   // 采集一轮 CPU 状态并写入统一监控消息。
   void UpdateOnce(monitor::proto::MonitorInfo* monitor_info) override;
 
   // 停止监控器并释放相关资源。
-  void Stop() override {}
+  void Stop() override;
 
  private:
+  bool EnsureMapped();
+
   std::unordered_map<std::string, struct CpuStat> cpu_stat_map_;
+  int device_fd_ = -1;
+  const cpu_stat_shared_region* mapped_region_ = nullptr;
+  size_t mapped_size_ = 0;
 };
 
 }  // namespace monitor

@@ -6,6 +6,7 @@
 #include <sys/mman.h>
 #include <unistd.h>
 
+#include <iostream>
 #include <string_view>
 #include <string>
 #include <vector>
@@ -106,34 +107,6 @@ float SafePercent(uint64_t current_value, uint64_t previous_value,
       static_cast<double>(total_delta));
 }
 
-// 尝试打开内核模块导出的 CPU 状态设备。
-bool OpenCpuStatMonitorDevice(int* device_fd) {
-  if (!device_fd) {
-    return false;
-  }
-
-  *device_fd = open(kCpuStatMonitorDevicePath, O_RDONLY);
-  return *device_fd >= 0;
-}
-
-// 尝试将 CPU 状态设备映射到当前进程地址空间。
-bool MapCpuStatMonitorDevice(int device_fd, void** mapped_region) {
-  if (!mapped_region || device_fd < 0) {
-    return false;
-  }
-
-  void* region =
-      mmap(nullptr, GetCpuStatMonitorMapSize(), PROT_READ, MAP_SHARED, device_fd,
-           0);
-  if (region == MAP_FAILED) {
-    *mapped_region = nullptr;
-    return false;
-  }
-
-  *mapped_region = region;
-  return true;
-}
-
 // 校验共享内存区域头部，确保版本和 CPU 数量在预期范围内。
 bool IsSharedRegionValid(const cpu_stat_shared_region* region) {
   if (!region) {
@@ -206,32 +179,6 @@ bool CopyMappedCpuStats(const cpu_stat_shared_region* region,
   return false;
 }
 
-// 从内核模块共享内存中读取 CPU 原始累计值快照。
-bool ReadMappedCpuStats(std::vector<ProcCpuStat>* stats) {
-  if (!stats) {
-    return false;
-  }
-
-  int device_fd = -1;
-  if (!OpenCpuStatMonitorDevice(&device_fd)) {
-    return false;
-  }
-
-  void* mapped_region = nullptr;
-  if (!MapCpuStatMonitorDevice(device_fd, &mapped_region)) {
-    close(device_fd);
-    return false;
-  }
-
-  const auto* shared_region =
-      static_cast<const cpu_stat_shared_region*>(mapped_region);
-  const bool copied = CopyMappedCpuStats(shared_region, stats);
-
-  munmap(mapped_region, GetCpuStatMonitorMapSize());
-  close(device_fd);
-  return copied;
-}
-
 // 根据当前快照和上一轮快照，计算 CPU 及各细分状态的百分比。
 void FillCpuPercentages(const ProcCpuStat& current, const ProcCpuStat& previous,
                         monitor::proto::CpuStat* cpu_stat_msg) {
@@ -272,14 +219,68 @@ void FillCpuPercentages(const ProcCpuStat& current, const ProcCpuStat& previous,
 
 }  // namespace
 
+CpuStatMonitor::CpuStatMonitor() : mapped_size_(GetCpuStatMonitorMapSize()) {}
+
+CpuStatMonitor::~CpuStatMonitor() { Stop(); }
+
+bool CpuStatMonitor::EnsureMapped() {
+  if (mapped_region_ != nullptr && device_fd_ >= 0) {
+    return true;
+  }
+
+  if (device_fd_ >= 0) {
+    close(device_fd_);
+    device_fd_ = -1;
+  }
+  mapped_region_ = nullptr;
+
+  device_fd_ = open(kCpuStatMonitorDevicePath, O_RDONLY);
+  if (device_fd_ < 0) {
+    return false;
+  }
+
+  void* region =
+      mmap(nullptr, mapped_size_, PROT_READ, MAP_SHARED, device_fd_, 0);
+  if (region == MAP_FAILED) {
+    close(device_fd_);
+    device_fd_ = -1;
+    mapped_region_ = nullptr;
+    return false;
+  }
+
+  mapped_region_ = static_cast<const cpu_stat_shared_region*>(region);
+  return true;
+}
+
+void CpuStatMonitor::Stop() {
+  if (mapped_region_ != nullptr) {
+    munmap(const_cast<cpu_stat_shared_region*>(mapped_region_), mapped_size_);
+    mapped_region_ = nullptr;
+  }
+
+  if (device_fd_ >= 0) {
+    close(device_fd_);
+    device_fd_ = -1;
+  }
+}
+
 // 采集一轮 CPU 状态，并将结果填充到 MonitorInfo 中。
 void CpuStatMonitor::UpdateOnce(monitor::proto::MonitorInfo* monitor_info) {
   if (!monitor_info) {
     return;
   }
 
+  if (!EnsureMapped()) {
+    return;
+  }
+
   std::vector<ProcCpuStat> current_stats;
-  if (!ReadMappedCpuStats(&current_stats)) {
+  if (!CopyMappedCpuStats(mapped_region_, &current_stats)) {
+    if (!IsSharedRegionValid(mapped_region_)) {
+      std::cerr << "CpuStatMonitor: mapped shared region is invalid"
+                << std::endl;
+      Stop();
+    }
     return;
   }
 

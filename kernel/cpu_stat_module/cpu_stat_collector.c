@@ -157,8 +157,10 @@ static int __init cpu_stat_collector_init(void)
 	if (!g_shared_region)
 		return -ENOMEM;
 
-	memset(g_shared_region, 0, cpu_stat_region_size());
 
+	//初始化共享内存为零，确保初始状态一致。
+	memset(g_shared_region, 0, cpu_stat_region_size());
+	//注册字符设备
 	ret = misc_register(&cpu_stat_monitor_device);
 	if (ret) {
 		vfree(g_shared_region);
@@ -167,8 +169,9 @@ static int __init cpu_stat_collector_init(void)
 	}
 
 	collect_all_cpu_stats();
-
+	//初始化高精度定时器，每秒采集一次 CPU 统计数据。
 	hrtimer_init(&g_sample_timer, CLOCK_MONOTONIC, HRTIMER_MODE_REL);
+	//设置定时器回调函数，并启动定时器。
 	g_sample_timer.function = cpu_stat_timer_callback;
 	hrtimer_start(&g_sample_timer, ns_to_ktime(CPU_STAT_SAMPLE_INTERVAL_NS),
 		      HRTIMER_MODE_REL);

@@ -28,11 +28,8 @@ std::chrono::system_clock::time_point ParseMysqlTime(const char* str) {
 }
 
 const char kPerformanceSelectColumns[] =
-    "server_name, timestamp, cpu_percent, usr_percent, system_percent, "
-    "nice_percent, idle_percent, io_wait_percent, irq_percent, "
-    "soft_irq_percent, load_avg_1, load_avg_3, load_avg_15, "
-    "mem_used_percent, total, mem_free, avail, disk_util_percent, "
-    "send_rate, rcv_rate, send_packets_rate, rcv_packets_rate, score, "
+    "server_name, timestamp, cpu_percent, load_avg_1, load_avg_3, load_avg_15, "
+    "mem_used_percent, disk_util_percent, send_rate, rcv_rate, score, "
     "cpu_percent_rate, mem_used_percent_rate, disk_util_percent_rate, "
     "load_avg_1_rate, send_rate_rate, rcv_rate_rate";
 
@@ -44,25 +41,13 @@ PerformanceRecord ParsePerformanceRecordRow(MYSQL_ROW row) {
       row[i] ? ParseMysqlTime(row[i]) : std::chrono::system_clock::now();
   i++;
   rec.cpu_percent = row[i] ? std::atof(row[i]) : 0; i++;
-  rec.usr_percent = row[i] ? std::atof(row[i]) : 0; i++;
-  rec.system_percent = row[i] ? std::atof(row[i]) : 0; i++;
-  rec.nice_percent = row[i] ? std::atof(row[i]) : 0; i++;
-  rec.idle_percent = row[i] ? std::atof(row[i]) : 0; i++;
-  rec.io_wait_percent = row[i] ? std::atof(row[i]) : 0; i++;
-  rec.irq_percent = row[i] ? std::atof(row[i]) : 0; i++;
-  rec.soft_irq_percent = row[i] ? std::atof(row[i]) : 0; i++;
   rec.load_avg_1 = row[i] ? std::atof(row[i]) : 0; i++;
   rec.load_avg_3 = row[i] ? std::atof(row[i]) : 0; i++;
   rec.load_avg_15 = row[i] ? std::atof(row[i]) : 0; i++;
   rec.mem_used_percent = row[i] ? std::atof(row[i]) : 0; i++;
-  rec.mem_total = row[i] ? std::atof(row[i]) : 0; i++;
-  rec.mem_free = row[i] ? std::atof(row[i]) : 0; i++;
-  rec.mem_avail = row[i] ? std::atof(row[i]) : 0; i++;
   rec.disk_util_percent = row[i] ? std::atof(row[i]) : 0; i++;
   rec.send_rate = row[i] ? std::atof(row[i]) : 0; i++;
   rec.rcv_rate = row[i] ? std::atof(row[i]) : 0; i++;
-  rec.send_packets_rate = row[i] ? std::atof(row[i]) : 0; i++;
-  rec.rcv_packets_rate = row[i] ? std::atof(row[i]) : 0; i++;
   rec.score = row[i] ? std::atof(row[i]) : 0; i++;
   rec.cpu_percent_rate = row[i] ? std::atof(row[i]) : 0; i++;
   rec.mem_used_percent_rate = row[i] ? std::atof(row[i]) : 0; i++;
@@ -353,6 +338,77 @@ std::vector<DiskDetailRecord> QueryManager::QueryDiskDetail(
     rec.avg_read_latency_ms = row[i] ? std::atof(row[i]) : 0; i++;
     rec.avg_write_latency_ms = row[i] ? std::atof(row[i]) : 0; i++;
     rec.util_percent = row[i] ? std::atof(row[i]) : 0;
+    records.push_back(rec);
+  }
+  mysql_free_result(result);
+
+  if (total_count) {
+    *total_count = FetchFoundRows(conn_);
+  }
+
+  return records;
+}
+
+std::vector<CpuDetailRecord> QueryManager::QueryCpuDetail(
+    const std::string& server_name, const TimeRange& time_range, int page,
+    int page_size, int* total_count) {
+  std::vector<CpuDetailRecord> records;
+
+  std::lock_guard<std::mutex> lock(mtx_);
+  if (!initialized_ || !conn_) {
+    return records;
+  }
+  if (!ValidateTimeRange(time_range)) {
+    return records;
+  }
+  if (page < 1) page = 1;
+  if (page_size < 1) page_size = 100;
+
+  const std::string start_time = FormatTime(time_range.start_time);
+  const std::string end_time = FormatTime(time_range.end_time);
+  const std::string escaped_name = EscapeString(conn_, server_name);
+  const std::string escaped_start = EscapeString(conn_, start_time);
+  const std::string escaped_end = EscapeString(conn_, end_time);
+
+  const int offset = (page - 1) * page_size;
+
+  std::ostringstream sql;
+  sql << "SELECT SQL_CALC_FOUND_ROWS "
+         "server_name, timestamp, usr_percent, system_percent, "
+         "nice_percent, idle_percent, io_wait_percent, irq_percent, "
+         "soft_irq_percent "
+         "FROM server_cpu_detail WHERE server_name='"
+      << escaped_name << "' AND timestamp BETWEEN '" << escaped_start
+      << "' AND '" << escaped_end
+      << "' ORDER BY timestamp DESC LIMIT " << page_size
+      << " OFFSET " << offset;
+
+  if (mysql_query(conn_, sql.str().c_str()) != 0) {
+    std::cerr << "QueryManager: cpu detail query failed: "
+              << mysql_error(conn_) << std::endl;
+    return records;
+  }
+
+  MYSQL_RES* result = mysql_store_result(conn_);
+  if (!result) {
+    return records;
+  }
+
+  MYSQL_ROW row;
+  while ((row = mysql_fetch_row(result))) {
+    CpuDetailRecord rec;
+    int i = 0;
+    rec.server_name = row[i++] ? row[i - 1] : "";
+    rec.timestamp =
+        row[i] ? ParseTime(row[i]) : std::chrono::system_clock::now();
+    i++;
+    rec.usr_percent = row[i] ? std::atof(row[i]) : 0; i++;
+    rec.system_percent = row[i] ? std::atof(row[i]) : 0; i++;
+    rec.nice_percent = row[i] ? std::atof(row[i]) : 0; i++;
+    rec.idle_percent = row[i] ? std::atof(row[i]) : 0; i++;
+    rec.io_wait_percent = row[i] ? std::atof(row[i]) : 0; i++;
+    rec.irq_percent = row[i] ? std::atof(row[i]) : 0; i++;
+    rec.soft_irq_percent = row[i] ? std::atof(row[i]) : 0;
     records.push_back(rec);
   }
   mysql_free_result(result);

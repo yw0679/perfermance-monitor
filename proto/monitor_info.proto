@@ -20,6 +20,7 @@ message HostInfo {
 message MonitorInfo{
   string name = 1;           // 主机名（保留兼容）
   HostInfo host_info = 2;    // 主机标识信息
+  uint64 sequence = 3;       // 幂等键：worker 端单调递增，用于服务端去重
   CpuLoad cpu_load = 5;
   repeated CpuStat cpu_stat = 6;
   MemInfo mem_info = 7;

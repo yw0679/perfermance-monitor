@@ -7,6 +7,7 @@
 
 #include <unistd.h>
 
+#include <cstdint>
 #include <memory>
 
 #include "monitor/cpu_load_monitor.h"
@@ -48,10 +49,9 @@ void MetricCollector::CollectAll(monitor::proto::MonitorInfo* monitor_info) {
     return;
   }
 
-  // 设置主机名
   monitor_info->set_name(hostname_);
+  monitor_info->set_sequence(++collect_seq_);
 
-  // 调用每个监控器的 UpdateOnce 方法
   for (auto& monitor : monitors_) {
     monitor->UpdateOnce(monitor_info);
   }

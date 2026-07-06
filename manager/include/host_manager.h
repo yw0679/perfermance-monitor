@@ -5,7 +5,7 @@
  * MySQL 写入架构：
  *   - gRPC 接收线程：OnDataReceived() 做评分 + 变化率计算 + 内存态更新后立即返回
  *   - 后台写线程：MysqlWriteLoop() 复用连接 + prepared statement，异步消费写入队列
- *   - 3 表 INSERT 用事务包裹，保证同一采样快照的原子性
+ *   - 4 表 INSERT 用事务包裹，保证同一采样快照的原子性
  */
 
 #pragma once
@@ -27,6 +27,7 @@ namespace monitor {
 
 // 前向声明 prepared statement 上下文（定义在 host_manager.cpp 中）
 struct StmtPerfCtx;
+struct StmtCpuCtx;
 struct StmtNetCtx;
 struct StmtDiskCtx;
 
@@ -47,6 +48,7 @@ struct ScheduleState {
 struct MysqlWriteTask {
   std::string host_name;
   HostScore host_score;
+  uint64_t sequence = 0;       // 幂等键，用于 MySQL INSERT IGNORE 防重
   float cpu_percent_rate = 0;
   float load_avg_1_rate = 0;
   float mem_used_percent_rate = 0;
@@ -100,9 +102,10 @@ class HostManager {
   // 预留给 GetBestHost() 的兜底选择逻辑；当前版本没有实际走到这里。
   std::string SelectHighestScoreHostLocked() const;
   // 使用预编译语句 + 事务完成一次完整落库。
-  // 返回 true 表示 3 表写入+COMMIT 都成功；任意失败则 ROLLBACK 并返回 false。
+  // 返回 true 表示 4 表写入+COMMIT 都成功；任意失败则 ROLLBACK 并返回 false。
   bool WriteToMysql(
-      StmtPerfCtx* stmt_perf, StmtNetCtx* stmt_net, StmtDiskCtx* stmt_disk,
+      StmtPerfCtx* stmt_perf, StmtCpuCtx* stmt_cpu,
+      StmtNetCtx* stmt_net, StmtDiskCtx* stmt_disk,
       const std::string& host_name, const HostScore& host_score,
       float cpu_percent_rate, float load_avg_1_rate,
       float mem_used_percent_rate, float disk_util_percent_rate,
@@ -112,6 +115,10 @@ class HostManager {
   std::unordered_map<std::string, HostScore> host_scores_;
   // 当前在用：保存平滑加权轮询所需的调度状态。
   std::unordered_map<std::string, ScheduleState> schedule_states_;
+  // 幂等去重：per-host 最近接收的 sequence，用于拦截 gRPC 重试导致的重复上报。
+  // key 是 host_name，value 是该 host 最近一次成功处理的 sequence。
+  // 收到 sequence <= last_sequences_[host] 的数据时直接跳过并返回 OK。
+  std::unordered_map<std::string, uint64_t> last_sequences_;
   std::mutex mtx_;
   // 保护 MySQL 写队列及其条件变量配套状态。
   std::mutex mysql_queue_mtx_;
