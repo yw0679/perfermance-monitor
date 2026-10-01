@@ -1,0 +1,24 @@
+# clangd 配置 —— 只作用于 kernel/ 目录下的文件,只影响 clangd 的解析,
+# 完全不影响真正的 gcc 构建(kbuild 照旧用原来的参数)。
+#
+# 背景:compile_commands.json 是从 kbuild 的 .cmd 文件生成的,里面原样保留了
+# GCC 的一批专有 driver 参数。clang 不认识这些开关,会把它们当成语法错误一样
+# 报出来(unknown argument),在编辑器里显示成一堆假红线。这里逐个摘掉。
+#
+# 注意:这些参数只在 clangd 解析时被移除,真正的 .ko 编译仍由 kbuild + gcc 负责,
+# 所以内核代码该有的加固特性一项没少。
+CompileFlags:
+  Remove:
+    # 栈对齐/GCC 专有加固,clang 无对应开关
+    - -mpreferred-stack-boundary=*
+    - -fno-allow-store-data-races
+    - -fconserve-stack
+    # Spectre 缓解相关的 GCC 参数(clang 用 -mretpoline 等另一套表达)
+    - -mindirect-branch=*
+    - -mindirect-branch-register
+    - -mindirect-branch-cs-prefix
+    # clang 认为该选项对 x86_64-pc-linux-gnu 目标不支持
+    - -mrecord-mcount
+
+# 内核模块里引用的头文件靠上面 CompileFlags 的 -include / -I 解析,
+# 这里不需要额外补 -D__KERNEL__ 之类的宏 —— 它们已经在 kbuild 的真实命令里了。

@@ -36,11 +36,8 @@ static unsigned long cpu_stat_region_size(void)
 // 将内核 cpustat 的时间单位统一转换为微秒。
 static u64 cpu_time_units_to_us(u64 value)
 {
-#ifdef CONFIG_VIRT_CPU_ACCOUNTING_GEN
+	/* Linux 5.15 cpustat values are nanoseconds with either accounting mode. */
 	return div_u64(value, NSEC_PER_USEC);
-#else
-	return jiffies_to_usecs(value);
-#endif
 }
 
 // 读取单个 CPU 的传统累计时间字段，并统一转换为微秒。

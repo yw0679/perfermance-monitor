@@ -1,6 +1,10 @@
 # Build directory
 build/
 cmake/
+# clangd 用的编译数据库:根目录下是指向 build/compile_commands.json 的软链
+compile_commands.json
+# clangd 后台索引缓存(--background-index 生成,删了会自动重建)
+.cache/
 
 # Kernel module build artifacts
 *.o

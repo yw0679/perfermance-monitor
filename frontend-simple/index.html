@@ -249,7 +249,7 @@
     </div>
 
     <script>
-        const API_URL = 'http://localhost:8000';
+        const API_URL = `http://${window.location.hostname}:8000`;
         const MAX_DATA_POINTS = 60; // 显示最近60个数据点（60秒）
 
         let currentServer = null;

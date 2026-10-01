@@ -1,0 +1,19 @@
+# clangd 配置 —— 只影响 clangd 的解析,不影响真实构建
+#
+# 为什么需要显式指定 -std:
+#   本项目 CMakeLists 写了 set(CMAKE_CXX_STANDARD 17),但 g++ 11 的默认标准
+#   本来就是 gnu++17,CMake 发现"要求的和编译器默认的一样",就干脆不往编译
+#   命令里加 -std= 参数 —— 所以生成的 compile_commands.json 里一条 -std 都没有。
+#   g++ 编译因此完全正常,但 clangd 内部用的是 clang,而 clang 15 的默认标准是
+#   gnu++14,两者不一致,std::string_view / std::optional 这类 C++17 设施会被
+#   误报成 "no type named 'xxx' in namespace 'std'"。
+#   这里显式补上,让 clangd 的解析标准和真实的 g++ 构建对齐。
+#
+# 注意下面用 If/PathMatch 限制了只对 C++ 文件生效:
+#   kernel/ 下的内核模块是 C 代码且用 -std=gnu89,worker/src/ebpf/ 下的 eBPF
+#   程序是 -target bpf 的 C 代码 —— 如果无差别地追加 -std=gnu++17,clang 会
+#   直接报 "invalid argument '-std=gnu++17' not allowed with 'C'"。
+If:
+  PathMatch: .*\.(cc|cpp|cxx|hpp|hh)$
+CompileFlags:
+  Add: [-std=gnu++17]
