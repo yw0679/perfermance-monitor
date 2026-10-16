@@ -138,6 +138,101 @@
             max-height: 160px;
         }
 
+        .process-panel {
+            background: #161b22;
+            padding: 8px 10px;
+            border-radius: 6px;
+            border: 1px solid #30363d;
+            margin-top: 8px;
+        }
+
+        .process-title {
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .process-hint {
+            font-size: 10px;
+            color: #8b949e;
+            font-weight: 400;
+        }
+
+        .process-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+            table-layout: fixed;
+        }
+
+        .process-table th {
+            text-align: left;
+            color: #8b949e;
+            font-weight: 500;
+            font-size: 11px;
+            padding: 3px 6px;
+            border-bottom: 1px solid #30363d;
+        }
+
+        .process-table td {
+            padding: 3px 6px;
+            border-bottom: 1px solid #21262d;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .process-name {
+            color: #e6edf3;
+            font-weight: 500;
+        }
+
+        .process-pid {
+            color: #8b949e;
+            font-size: 11px;
+        }
+
+        .process-num {
+            color: #58a6ff;
+            text-align: right;
+        }
+
+        .share-bar {
+            position: relative;
+            background: #21262d;
+            border-radius: 3px;
+            height: 14px;
+        }
+
+        .share-bar-fill {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            background: #1f6feb;
+            border-radius: 3px;
+        }
+
+        .share-bar-text {
+            position: relative;
+            font-size: 10px;
+            line-height: 14px;
+            padding-left: 5px;
+            color: #e6edf3;
+        }
+
+        .process-empty {
+            color: #8b949e;
+            font-size: 11px;
+            padding: 8px;
+            text-align: center;
+        }
+
         .error {
             background: #da3633;
             color: white;
@@ -245,6 +340,31 @@
                 </div>
                 <canvas id="loadChart"></canvas>
             </div>
+        </div>
+
+        <!-- 进程级网络占用：eBPF socket 层归因，/proc 无法提供的维度 -->
+        <div class="process-panel">
+            <div class="process-title">
+                <span>进程级网络占用 Top 10</span>
+                <span class="process-hint">
+                    来源：eBPF kprobe/tcp_sendmsg + kretprobe/tcp_recvmsg
+                </span>
+            </div>
+            <table class="process-table">
+                <thead>
+                    <tr>
+                        <th style="width: 26%;">进程</th>
+                        <th style="width: 8%;">PID</th>
+                        <th style="width: 14%; text-align: right;">发送</th>
+                        <th style="width: 14%; text-align: right;">接收</th>
+                        <th style="width: 14%; text-align: right;">合计</th>
+                        <th style="width: 24%;">占 TCP 进程流量</th>
+                    </tr>
+                </thead>
+                <tbody id="processTableBody">
+                    <tr><td colspan="6" class="process-empty">等待数据...</td></tr>
+                </tbody>
+            </table>
         </div>
     </div>
 
@@ -483,6 +603,11 @@
                 score: []
             };
             updateCharts();
+
+            // 进程表也切到新主机，避免短暂显示上一台主机的数据
+            document.getElementById('processTableBody').innerHTML =
+                '<tr><td colspan="6" class="process-empty">等待数据...</td></tr>';
+            fetchProcessNet();
         }
 
         // 获取实时数据
@@ -584,6 +709,54 @@
             document.getElementById('dashboard').style.display = 'block';
         }
 
+        // 进程级网络占用：数据来自 worker 侧 eBPF 在 socket 层的归因
+        async function fetchProcessNet() {
+            if (!currentServer) return;
+
+            const tbody = document.getElementById('processTableBody');
+            try {
+                const url = `${API_URL}/api/server/${encodeURIComponent(currentServer)}/net-process`;
+                const response = await fetch(url);
+                if (!response.ok) throw new Error('API 连接失败');
+
+                const data = await response.json();
+                const processes = data.processes || [];
+
+                if (processes.length === 0) {
+                    tbody.innerHTML =
+                        '<tr><td colspan="6" class="process-empty">暂无数据（进程速率需要两个采样周期）</td></tr>';
+                    return;
+                }
+
+                tbody.innerHTML = processes.map(p => {
+                    const share = p.share_percent || 0;
+                    return `<tr>
+                        <td class="process-name">${escapeHtml(p.proc_name)}</td>
+                        <td class="process-pid">${p.pid}</td>
+                        <td class="process-num">${formatRate(p.snd_bytes_rate)}</td>
+                        <td class="process-num">${formatRate(p.rcv_bytes_rate)}</td>
+                        <td class="process-num">${formatRate(p.total_bytes_rate)}</td>
+                        <td>
+                            <div class="share-bar">
+                                <div class="share-bar-fill" style="width: ${Math.min(share, 100).toFixed(1)}%;"></div>
+                                <span class="share-bar-text">${share.toFixed(1)}%</span>
+                            </div>
+                        </td>
+                    </tr>`;
+                }).join('');
+            } catch (error) {
+                console.error('获取进程网络占用失败:', error);
+                tbody.innerHTML =
+                    '<tr><td colspan="6" class="process-empty">获取失败</td></tr>';
+            }
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text || '';
+            return div.innerHTML;
+        }
+
         function formatRate(rate) {
             if (!rate) return '0 KB/s';
             if (rate > 1024) return (rate / 1024).toFixed(2) + ' MB/s';
@@ -607,6 +780,9 @@
 
             // 每1秒更新一次数据
             setInterval(fetchRealtimeData, 1000);
+
+            // 进程级网络占用刷新频率低一些：它本身是两个采样周期的差值
+            setInterval(fetchProcessNet, 2000);
 
             // 每10秒刷新服务器列表
             setInterval(fetchServerList, 10000);

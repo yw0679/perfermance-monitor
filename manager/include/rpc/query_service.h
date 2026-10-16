@@ -40,6 +40,11 @@ class QueryServiceImpl : public monitor::proto::QueryService::Service {
       const ::monitor::proto::QueryDetailRequest* request,
       ::monitor::proto::QueryNetDetailResponse* response) override;
 
+  ::grpc::Status QueryNetProcessDetail(
+      ::grpc::ServerContext* context,
+      const ::monitor::proto::QueryDetailRequest* request,
+      ::monitor::proto::QueryNetProcessDetailResponse* response) override;
+
   ::grpc::Status QueryDiskDetail(
       ::grpc::ServerContext* context,
       const ::monitor::proto::QueryDetailRequest* request,

@@ -25,6 +25,8 @@ class MetricCollector {
  private:
   std::vector<std::unique_ptr<MonitorInter>> monitors_;
   std::string hostname_;
+  // 采样序号，作为 manager/MySQL 侧的幂等键。
+  // 构造时用 epoch 毫秒播种，保证 worker 重启后依然单调、不会撞上历史数据。
   uint64_t collect_seq_ = 0;
 };
 

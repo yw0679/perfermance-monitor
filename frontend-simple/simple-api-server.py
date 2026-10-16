@@ -140,6 +140,62 @@ def get_server_history(server_name):
         cursor.close()
         conn.close()
 
+@app.route('/api/server/<server_name>/net-process')
+def get_server_net_process(server_name):
+    """获取单台服务器最新一次采样的进程级网络占用 Top N
+
+    数据来源是 worker 侧 eBPF 在 socket 层的归因（kprobe/tcp_sendmsg +
+    kretprobe/tcp_recvmsg），属于 /proc 无法提供的维度：
+    /proc/net/dev 只有设备级总量，/proc/<pid>/net/dev 又是 per-netns 而非 per-process。
+    同一采样点内所有 Top N 行共享同一个 timestamp，用它定位采样点后一次取回。
+    这里不能用 MAX(sequence) 定位：sequence 是 worker 进程内单调递增的，
+    worker 重启后会从 1 重新开始，MAX(sequence) 会一直指向重启前那批数据。
+    """
+    conn = get_db_connection()
+    if not conn:
+        return jsonify({'error': '数据库连接失败'}), 500
+
+    try:
+        cursor = conn.cursor(dictionary=True)
+
+        query = """
+        SELECT pid, proc_name, snd_bytes_rate, rcv_bytes_rate,
+               total_bytes_rate, share_percent, timestamp
+        FROM server_net_process_detail
+        WHERE server_name = %s
+          AND timestamp = (
+              SELECT MAX(timestamp) FROM server_net_process_detail
+              WHERE server_name = %s
+          )
+        ORDER BY total_bytes_rate DESC
+        """
+
+        cursor.execute(query, (server_name, server_name))
+        records = cursor.fetchall()
+
+        timestamp = None
+        total_rate = 0
+        for record in records:
+            if record['timestamp']:
+                timestamp = record['timestamp'].isoformat()
+                record['timestamp'] = timestamp
+            total_rate += record['total_bytes_rate'] or 0
+
+        return jsonify({
+            'server_name': server_name,
+            'timestamp': timestamp,
+            'total_rate': total_rate,
+            'processes': records
+        })
+
+    except Exception as e:
+        print(f"查询失败: {e}")
+        return jsonify({'error': str(e)}), 500
+
+    finally:
+        cursor.close()
+        conn.close()
+
 @app.route('/api/health')
 def health():
     """健康检查"""

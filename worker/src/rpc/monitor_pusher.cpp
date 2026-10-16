@@ -39,6 +39,13 @@ void PrintCollectSummary(const monitor::proto::MonitorInfo& info) {
     std::cout << " disk_count=" << info.disk_info_size();
   }
 
+  // 进程级归因结果（eBPF socket 层采集，/proc 无法提供这一维度）
+  if (info.process_net_info_size() > 0) {
+    const auto& top = info.process_net_info(0);
+    std::cout << " top_proc=" << top.name() << "(" << top.pid() << ")"
+              << " " << top.total_rate() << "KB/s";
+  }
+
   std::cout << std::endl;
 }
 

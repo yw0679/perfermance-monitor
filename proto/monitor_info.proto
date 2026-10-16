@@ -26,6 +26,8 @@ message MonitorInfo{
   MemInfo mem_info = 7;
   repeated NetInfo net_info = 8;
   repeated DiskInfo disk_info = 9;
+  // 进程级网络流量 Top N（eBPF socket 层归因），与 net_info 的网卡维度互补
+  repeated ProcessNetInfo process_net_info = 10;
 }
 
 service GrpcManager {

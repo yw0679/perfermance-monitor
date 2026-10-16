@@ -118,6 +118,19 @@ message NetDetailRecord {
     float snd_packets_rate = 23;
 }
 
+// 进程级网络明细记录（eBPF socket 层归因结果）
+// 与 NetDetailRecord 的区别：NetDetailRecord 是网卡维度，本消息是进程维度。
+message NetProcessDetailRecord {
+    string server_name = 1;
+    uint32 pid = 2;
+    string proc_name = 3;
+    google.protobuf.Timestamp timestamp = 4;
+    float snd_bytes_rate = 20;
+    float rcv_bytes_rate = 21;
+    float total_bytes_rate = 22;
+    float share_percent = 23;
+}
+
 message DiskDetailRecord {
     string server_name = 1;
     string disk_name = 2;
@@ -162,6 +175,13 @@ message QueryDiskDetailResponse {
     int32 page_size = 4;
 }
 
+message QueryNetProcessDetailResponse {
+    repeated NetProcessDetailRecord records = 1;
+    int32 total_count = 2;
+    int32 page = 3;
+    int32 page_size = 4;
+}
+
 service QueryService {
     // 返回当前集群中最适合作为调度目标的主机。
     // 优先选择最近 60 秒内仍在线、且最新评分最高的主机。
@@ -176,6 +196,9 @@ service QueryService {
     // 查询单台主机的网络明细历史。
     rpc QueryNetDetail(QueryDetailRequest)
         returns (QueryNetDetailResponse);
+    // 查询单台主机的进程级网络明细历史（eBPF 归因出的 Top N 进程）。
+    rpc QueryNetProcessDetail(QueryDetailRequest)
+        returns (QueryNetProcessDetailResponse);
     // 查询单台主机的磁盘明细历史。
     rpc QueryDiskDetail(QueryDetailRequest)
         returns (QueryDiskDetailResponse);

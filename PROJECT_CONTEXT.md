@@ -67,7 +67,8 @@ Main runtime flow:
 - Serialization: Protobuf
 - Database: MySQL
 - Build: CMake
-- Linux metrics: `/proc`, Linux kernel module, `mmap`, eBPF TC hook
+- Linux metrics: `/proc`, Linux kernel module, `mmap`, eBPF TC hook, eBPF
+  socket-layer kprobe (`tcp_sendmsg` / `tcp_recvmsg`)
 - Frontend demo: Python Flask, plain HTML, JavaScript, Chart.js
 
 ## Implemented metric collection
@@ -106,7 +107,7 @@ Disk:
 - Calculates read/write throughput, IOPS, average read/write latency, and disk
   utilization by comparing two samples.
 
-Network:
+Network (interface level):
 
 - Uses eBPF with TC ingress/egress hooks.
 - Tracks per-interface receive/send bytes and packets in a BPF hash map keyed
@@ -114,6 +115,26 @@ Network:
 - User space reads the BPF map through libbpf and calculates rates.
 - The implementation filters to physical interfaces and ignores loopback and
   common virtual interfaces.
+
+Network (process level):
+
+- Uses eBPF `kprobe/tcp_sendmsg` and `kretprobe/tcp_recvmsg` to attribute
+  traffic to the process that produced it.
+- `tcp_sendmsg` is hooked at entry (the `size` argument is how many bytes the
+  application handed to TCP); `tcp_recvmsg` must be hooked on return, because
+  the received byte count is the function's return value.
+- Events are aggregated by tgid, so a multi-threaded process counts as one
+  entry, not one per thread.
+- Counters live in a `BPF_MAP_TYPE_PERCPU_HASH` keyed by tgid. A per-CPU map
+  lets the hot path do a plain add instead of an atomic add on a shared
+  cacheline; user space merges the per-CPU copies on read.
+- User space sorts by total rate and reports the top 10 processes, each with
+  send/receive rate and its share of the sampled process traffic.
+- Entries for processes that have exited are deleted from the map, so the map
+  does not grow monotonically with host uptime.
+- This dimension cannot be obtained from `/proc` at all, which is the reason
+  the eBPF attribution exists in addition to the TC hook (see the interview
+  talking points below).
 
 Host identity:
 
@@ -155,8 +176,8 @@ Database writing:
   task.
 - A background MySQL thread consumes the queue.
 - It reuses a MySQL connection and prepared statements.
-- It uses transactions so one sample's main, CPU, network, and disk rows are
-  committed together.
+- It uses transactions so one sample's main, CPU, network, disk, and
+  per-process network rows are committed together.
 - It uses `INSERT IGNORE` with `(server_name, sequence)` style unique keys to
   reduce duplicate writes.
 
@@ -166,6 +187,7 @@ Query APIs:
 - `QueryClusterOverview`: returns latest server snapshots and cluster summary.
 - `QueryPerformance`: queries historical performance records from MySQL.
 - `QueryNetDetail`: queries historical network detail.
+- `QueryNetProcessDetail`: queries historical per-process network detail.
 - `QueryDiskDetail`: queries historical disk detail.
 
 ## Worker reliability details
@@ -176,6 +198,14 @@ Query APIs:
 - When the manager becomes reachable again, buffered samples are replayed.
 - Each worker sample has an increasing `sequence` value.
 - Manager uses `sequence` for per-host duplicate detection.
+- `sequence` is seeded from epoch milliseconds instead of starting at 1, so it
+  stays monotonic across worker restarts. Without that, a restarted worker
+  would reuse sequence numbers that are already in MySQL, and `INSERT IGNORE`
+  against the `(server_name, sequence)` unique key would silently drop every
+  sample until the new counter passed the previous run's maximum (at a 1-second
+  interval, roughly five minutes of lost history per restart).
+- Duplicate detection compares for equality, not ordering, so the restart case
+  is not mistaken for a replay.
 
 These are good resume/interview points because they show attention to failure
 handling, not just the happy path.
@@ -192,6 +222,8 @@ Tables:
   change rates, sequence, and timestamp.
 - `server_cpu_detail`: CPU state percentages.
 - `server_net_detail`: per-network-interface rates.
+- `server_net_process_detail`: per-process network rates from the eBPF socket
+  layer attribution (top N per sample, keyed by server, sequence, and pid).
 - `server_disk_detail`: per-disk throughput, IOPS, latency, and utilization.
 
 Schema notes:
@@ -206,8 +238,10 @@ Schema notes:
 The frontend is intentionally simple:
 
 - `frontend-simple/simple-api-server.py`: Flask API that reads MySQL with a
-  connection pool.
-- `frontend-simple/index.html`: static dashboard using Chart.js.
+  connection pool. `/api/server/<name>/net-process` returns the top processes
+  from the newest sample.
+- `frontend-simple/index.html`: static dashboard using Chart.js, plus a
+  process-level network table fed by the eBPF attribution.
 - `frontend-simple/manage.sh`: starts/stops both API and static web server.
 
 Use this as a demo/visualization layer, not the main technical selling point.
@@ -265,6 +299,9 @@ iperf3 -c <peer_ip> -t 60 -P 4 -R
   `mmap`.
 - Implemented eBPF TC ingress/egress network monitoring with a BPF hash map to
   calculate per-interface throughput and packet rates.
+- Added per-process network attribution with eBPF socket-layer kprobes
+  (`tcp_sendmsg` / `tcp_recvmsg`) and a per-CPU hash map, exposing which process
+  consumes the bandwidth — a dimension `/proc` cannot provide.
 - Designed asynchronous MySQL persistence with prepared statements,
   transaction-based multi-table writes, and sequence-based duplicate handling.
 - Calculated host health scores from CPU, memory, load, disk, and network
@@ -282,6 +319,20 @@ Why not only use `/proc` for everything?
   kernel/user-space interaction and reduce repeated text parsing.
 - Network traffic is high-frequency and naturally sits on the packet path, so
   eBPF TC hooks are a better fit.
+- The stronger argument is per-process traffic attribution. `/proc` has no
+  interface for it: `/proc/net/dev` only exposes device-level totals, so all
+  traffic (SSH, NFS, backups, the business traffic) is merged together, and
+  `/proc/<pid>/net/dev` is per-network-namespace, not per-process, so every
+  process in the same netns reads the same numbers. Attributing bytes to a
+  process requires an in-kernel observation point, which is what the socket
+  layer kprobes provide.
+- The same collection also makes the monitoring system's own overhead
+  measurable: on a host under no other load, the worker's gRPC push thread is
+  the top entry in the process table.
+- Note the accounting semantics: a loopback transfer between two local
+  processes is counted once as send for the client and once as receive for the
+  server, because both processes really did move that many bytes. Across two
+  hosts, each side is only counted on its own host.
 
 Why gRPC?
 

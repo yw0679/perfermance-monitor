@@ -386,6 +386,53 @@ void QueryServiceImpl::SetTimestamp(
   return grpc::Status::OK;
 }
 
+::grpc::Status QueryServiceImpl::QueryNetProcessDetail(
+    ::grpc::ServerContext* context,
+    const ::monitor::proto::QueryDetailRequest* request,
+    ::monitor::proto::QueryNetProcessDetailResponse* response) {
+  (void)context;
+
+  const auto backend_status = ValidateHistoricalQueryBackend(query_manager_);
+  if (!backend_status.ok()) {
+    return backend_status;
+  }
+  if (request->server_name().empty()) {
+    return grpc::Status(grpc::StatusCode::INVALID_ARGUMENT,
+                        "Missing server_name");
+  }
+
+  TimeRange time_range = ConvertTimeRange(request->time_range());
+  if (!query_manager_->ValidateTimeRange(time_range)) {
+    return grpc::Status(grpc::StatusCode::INVALID_ARGUMENT,
+                        "Invalid time range: start_time > end_time");
+  }
+
+  int page = request->pagination().page();
+  int page_size = request->pagination().page_size();
+  if (page < 1) page = 1;
+  if (page_size < 1) page_size = 100;
+
+  int total_count = 0;
+  auto records = query_manager_->QueryNetProcessDetail(
+      request->server_name(), time_range, page, page_size, &total_count);
+  for (const auto& rec : records) {
+    auto* proto_rec = response->add_records();
+    proto_rec->set_server_name(rec.server_name);
+    proto_rec->set_pid(rec.pid);
+    proto_rec->set_proc_name(rec.proc_name);
+    SetTimestamp(proto_rec->mutable_timestamp(), rec.timestamp);
+    proto_rec->set_snd_bytes_rate(rec.snd_bytes_rate);
+    proto_rec->set_rcv_bytes_rate(rec.rcv_bytes_rate);
+    proto_rec->set_total_bytes_rate(rec.total_bytes_rate);
+    proto_rec->set_share_percent(rec.share_percent);
+  }
+
+  response->set_total_count(total_count);
+  response->set_page(page);
+  response->set_page_size(page_size);
+  return grpc::Status::OK;
+}
+
 ::grpc::Status QueryServiceImpl::QueryDiskDetail(
     ::grpc::ServerContext* context,
     const ::monitor::proto::QueryDetailRequest* request,

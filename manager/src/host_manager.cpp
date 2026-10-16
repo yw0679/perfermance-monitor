@@ -4,7 +4,7 @@
  *
  * MySQL 写入优化要点：
  *   - prepared statement 参数化查询，杜绝 SQL 注入
- *   - START TRANSACTION / COMMIT 包裹 3 表 INSERT，保证同一采样快照的原子性
+ *   - START TRANSACTION / COMMIT 包裹 5 表 INSERT，保证同一采样快照的原子性
  *   - 后台写线程复用预编译语句和 bind buffer，避免每次重新分配
  */
 
@@ -321,6 +321,84 @@ struct StmtDiskCtx {
   }
 };
 
+// 进程级网络明细：每次采样写入 Top N 行，数据来自 worker 侧 eBPF socket 层归因。
+// 和 server_net_detail 共用同一个 sequence 幂等键，重复上报会被 INSERT IGNORE 拦掉。
+struct StmtProcNetCtx {
+  MYSQL_STMT* stmt = nullptr;
+  static constexpr int kNumParams = 9;
+
+  char  srv_name[256] = {};
+  unsigned long srv_name_len = 0;
+  unsigned int pid_val = 0;
+  char  proc_name[64] = {};
+  unsigned long proc_name_len = 0;
+  float fvals[4] = {};
+  unsigned long long seq_val = 0;
+  char  ts_buf[32] = {};
+  unsigned long ts_len = 0;
+
+  MYSQL_BIND bind[kNumParams] = {};
+
+  bool Prepare(MYSQL* conn) {
+    stmt = mysql_stmt_init(conn);
+    if (!stmt) return false;
+
+    const char* sql =
+        "INSERT IGNORE INTO server_net_process_detail "
+        "(server_name, pid, proc_name, snd_bytes_rate, rcv_bytes_rate, "
+        "total_bytes_rate, share_percent, sequence, timestamp) "
+        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+    if (mysql_stmt_prepare(stmt, sql, std::strlen(sql)) != 0) {
+      std::cerr << "proc net stmt prepare: " << mysql_stmt_error(stmt)
+                << std::endl;
+      return false;
+    }
+
+    std::memset(bind, 0, sizeof(bind));
+    bind[0].buffer_type   = MYSQL_TYPE_STRING;
+    bind[0].buffer        = srv_name;
+    bind[0].buffer_length = sizeof(srv_name);
+    bind[0].length        = &srv_name_len;
+
+    bind[1].buffer_type   = MYSQL_TYPE_LONG;
+    bind[1].buffer        = &pid_val;
+    bind[1].is_unsigned   = 1;
+
+    bind[2].buffer_type   = MYSQL_TYPE_STRING;
+    bind[2].buffer        = proc_name;
+    bind[2].buffer_length = sizeof(proc_name);
+    bind[2].length        = &proc_name_len;
+
+    for (int i = 0; i < 4; ++i) {
+      bind[3 + i].buffer_type = MYSQL_TYPE_FLOAT;
+      bind[3 + i].buffer      = &fvals[i];
+    }
+
+    bind[7].buffer_type   = MYSQL_TYPE_LONGLONG;
+    bind[7].buffer        = &seq_val;
+    bind[7].is_unsigned   = 1;
+
+    bind[8].buffer_type   = MYSQL_TYPE_STRING;
+    bind[8].buffer        = ts_buf;
+    bind[8].buffer_length = sizeof(ts_buf);
+    bind[8].length        = &ts_len;
+
+    if (mysql_stmt_bind_param(stmt, bind) != 0) {
+      std::cerr << "proc net stmt bind: " << mysql_stmt_error(stmt)
+                << std::endl;
+      return false;
+    }
+    return true;
+  }
+
+  bool Execute() { return mysql_stmt_execute(stmt) == 0; }
+
+  void Close() {
+    if (stmt) { mysql_stmt_close(stmt); stmt = nullptr; }
+  }
+};
+
 static void FormatTimestamp(
     const std::chrono::system_clock::time_point& tp,
     char* buf, size_t buf_size, unsigned long* out_len) {
@@ -390,13 +468,14 @@ void HostManager::ProcessLoop() {
 }
 
 // MySQL 写线程主循环。
-// 连接存续期间复用 3 个 prepared statement；连接断开后全部重建。
+// 连接存续期间复用 5 个 prepared statement；连接断开后全部重建。
 void HostManager::MysqlWriteLoop() {
   MYSQL* conn = nullptr;
-  StmtPerfCtx stmt_perf;
-  StmtCpuCtx  stmt_cpu;
-  StmtNetCtx  stmt_net;
-  StmtDiskCtx stmt_disk;
+  StmtPerfCtx    stmt_perf;
+  StmtCpuCtx     stmt_cpu;
+  StmtNetCtx     stmt_net;
+  StmtDiskCtx    stmt_disk;
+  StmtProcNetCtx stmt_proc_net;
 
   auto connect_and_prepare = [&]() -> bool {
     if (conn) {
@@ -404,6 +483,7 @@ void HostManager::MysqlWriteLoop() {
       stmt_cpu.Close();
       stmt_net.Close();
       stmt_disk.Close();
+      stmt_proc_net.Close();
       mysql_close(conn);
       conn = nullptr;
     }
@@ -428,11 +508,13 @@ void HostManager::MysqlWriteLoop() {
     if (!stmt_perf.Prepare(conn) ||
         !stmt_cpu.Prepare(conn) ||
         !stmt_net.Prepare(conn) ||
-        !stmt_disk.Prepare(conn)) {
+        !stmt_disk.Prepare(conn) ||
+        !stmt_proc_net.Prepare(conn)) {
       stmt_perf.Close();
       stmt_cpu.Close();
       stmt_net.Close();
       stmt_disk.Close();
+      stmt_proc_net.Close();
       mysql_close(conn);
       conn = nullptr;
       return false;
@@ -464,7 +546,7 @@ void HostManager::MysqlWriteLoop() {
     }
 
     const bool write_ok = WriteToMysql(
-        &stmt_perf, &stmt_cpu, &stmt_net, &stmt_disk,
+        &stmt_perf, &stmt_cpu, &stmt_net, &stmt_disk, &stmt_proc_net,
         task.host_name, task.host_score,
         task.cpu_percent_rate, task.load_avg_1_rate,
         task.mem_used_percent_rate, task.disk_util_percent_rate,
@@ -477,6 +559,7 @@ void HostManager::MysqlWriteLoop() {
       stmt_cpu.Close();
       stmt_net.Close();
       stmt_disk.Close();
+      stmt_proc_net.Close();
       mysql_close(conn);
       conn = nullptr;
     }
@@ -487,6 +570,7 @@ void HostManager::MysqlWriteLoop() {
     stmt_cpu.Close();
     stmt_net.Close();
     stmt_disk.Close();
+    stmt_proc_net.Close();
     mysql_close(conn);
   }
 }
@@ -810,10 +894,11 @@ double HostManager::CalcScore(const monitor::proto::MonitorInfo& info) {
 }
 
 // 使用预编译语句 + 事务完成一次完整落库。
-// 同一采样快照的 4 表数据要么全部写入，要么全部回滚。
+// 同一采样快照的 5 表数据要么全部写入，要么全部回滚。
 bool HostManager::WriteToMysql(
     StmtPerfCtx* stmt_perf, StmtCpuCtx* stmt_cpu,
     StmtNetCtx* stmt_net, StmtDiskCtx* stmt_disk,
+    StmtProcNetCtx* stmt_proc_net,
     const std::string& host_name, const HostScore& host_score,
     float cpu_percent_rate, float load_avg_1_rate,
     float mem_used_percent_rate, float disk_util_percent_rate,
@@ -822,7 +907,8 @@ bool HostManager::WriteToMysql(
   if (!stmt_perf || !stmt_perf->stmt ||
       !stmt_cpu  || !stmt_cpu->stmt ||
       !stmt_net  || !stmt_net->stmt ||
-      !stmt_disk || !stmt_disk->stmt) {
+      !stmt_disk || !stmt_disk->stmt ||
+      !stmt_proc_net || !stmt_proc_net->stmt) {
     return false;
   }
 
@@ -842,6 +928,7 @@ bool HostManager::WriteToMysql(
   set_server_name(stmt_cpu->srv_name, &stmt_cpu->srv_name_len);
   set_server_name(stmt_net->srv_name, &stmt_net->srv_name_len);
   set_server_name(stmt_disk->srv_name, &stmt_disk->srv_name_len);
+  set_server_name(stmt_proc_net->srv_name, &stmt_proc_net->srv_name_len);
 
   std::memcpy(stmt_perf->ts_buf, time_buf, time_len);
   stmt_perf->ts_len = time_len;
@@ -851,6 +938,8 @@ bool HostManager::WriteToMysql(
   stmt_net->ts_len = time_len;
   std::memcpy(stmt_disk->ts_buf, time_buf, time_len);
   stmt_disk->ts_len = time_len;
+  std::memcpy(stmt_proc_net->ts_buf, time_buf, time_len);
+  stmt_proc_net->ts_len = time_len;
 
   // ========== 提取字段 ==========
   float cpu_percent = 0, usr_percent = 0, system_percent = 0;
@@ -914,12 +1003,13 @@ bool HostManager::WriteToMysql(
   c[4] = io_wait_percent;     c[5] = irq_percent;
   c[6] = soft_irq_percent;
 
-  // 同一条 MonitorInfo 的 4 表数据共享同一个幂等键
+  // 同一条 MonitorInfo 的 5 表数据共享同一个幂等键
   uint64_t seq = host_score.info.sequence();
   stmt_perf->seq_val = seq;
   stmt_cpu->seq_val = seq;
   stmt_net->seq_val = seq;
   stmt_disk->seq_val = seq;
+  stmt_proc_net->seq_val = seq;
 
   // ========== 事务开始 ==========
   if (mysql_query(stmt_perf->stmt->mysql, "START TRANSACTION") != 0) {
@@ -983,6 +1073,29 @@ bool HostManager::WriteToMysql(
     if (!stmt_disk->Execute()) {
       std::cerr << "disk insert: " << mysql_stmt_error(stmt_disk->stmt) << std::endl;
       mysql_query(stmt_disk->stmt->mysql, "ROLLBACK");
+      return false;
+    }
+  }
+
+  // ========== 5. 进程级网络明细（Top N） ==========
+  for (int i = 0; i < info.process_net_info_size(); ++i) {
+    const auto& proc = info.process_net_info(i);
+    const auto& name = proc.name();
+    std::memcpy(stmt_proc_net->proc_name, name.c_str(),
+                std::min(name.size(), (size_t)63));
+    stmt_proc_net->proc_name_len = static_cast<unsigned long>(
+        std::min(name.size(), (size_t)63));
+
+    stmt_proc_net->pid_val = proc.pid();
+    stmt_proc_net->fvals[0] = proc.send_rate();
+    stmt_proc_net->fvals[1] = proc.rcv_rate();
+    stmt_proc_net->fvals[2] = proc.total_rate();
+    stmt_proc_net->fvals[3] = proc.share_percent();
+
+    if (!stmt_proc_net->Execute()) {
+      std::cerr << "proc net insert: " << mysql_stmt_error(stmt_proc_net->stmt)
+                << std::endl;
+      mysql_query(stmt_proc_net->stmt->mysql, "ROLLBACK");
       return false;
     }
   }

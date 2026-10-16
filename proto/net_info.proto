@@ -11,5 +11,23 @@ message NetInfo {
     float send_packets_rate = 4;   // 发送包数速率，单位：个/s
     float rcv_packets_rate = 5;    // 接收包数速率，单位：个/s
 }
+
+// 进程级网络流量归因（来自 eBPF socket 层 kprobe/kretprobe）
+//
+// 这一维度是 /proc 完全无法提供的：
+//   - /proc/net/dev 只有设备级收发总量，无法归因到进程；
+//   - /proc/<pid>/net/dev 是 per-network-namespace 而不是 per-process，
+//     同一 netns 下所有进程读到的都是同一份数据。
+// 所以进程维度的数据必须从内核的可观测点（socket 层 kprobe）采集。
+//
+// 每条记录是一个进程在本次采样周期内的实时速率，只上报流量最大的 Top N。
+message ProcessNetInfo {
+    uint32 pid = 1;             // 进程 ID (tgid)，多线程进程按 tgid 聚合
+    string name = 2;            // 进程名 (task comm)
+    float send_rate = 3;        // 发送速率，单位：kB/s
+    float rcv_rate = 4;         // 接收速率，单位：kB/s
+    float total_rate = 5;       // 收发合计速率，单位：kB/s
+    float share_percent = 6;    // 占本次采样全部进程 TCP 流量的比例，单位：%
+}
 // 文件归类：当前版本使用文件（简化版主线）
 // 说明：当前默认协议生成流程会直接使用该文件。

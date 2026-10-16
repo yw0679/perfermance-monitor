@@ -22,6 +22,7 @@ DROP TABLE IF EXISTS server_softirq_detail;
 DROP TABLE IF EXISTS server_mem_detail;
 DROP TABLE IF EXISTS server_cpu_detail;
 DROP TABLE IF EXISTS server_net_detail;
+DROP TABLE IF EXISTS server_net_process_detail;
 DROP TABLE IF EXISTS server_disk_detail;
 DROP TABLE IF EXISTS server_performance;
 
@@ -107,6 +108,33 @@ CREATE TABLE server_net_detail (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ============================================================
+-- 3.1 进程级网络明细表
+-- ============================================================
+-- 数据来源：worker 侧 eBPF socket 层 kprobe/kretprobe 归因后的 Top N 进程。
+-- 与 server_net_detail 的区别：server_net_detail 是"网卡维度"，回答哪块网卡忙碌；
+-- 本表是"进程维度"，回答流量是谁产生的。后者 /proc 无法提供，
+-- 因为 /proc/net/dev 只有设备级总量，/proc/<pid>/net/dev 是 per-netns 而非 per-process。
+-- 查询模式：WHERE server_name = ? AND timestamp BETWEEN ? AND ? ORDER BY total_bytes_rate DESC
+-- ============================================================
+CREATE TABLE server_net_process_detail (
+    id               INT UNSIGNED AUTO_INCREMENT,
+    server_name      VARCHAR(255)     NOT NULL,
+    pid              INT UNSIGNED     NOT NULL,
+    proc_name        VARCHAR(64)      NOT NULL,
+    snd_bytes_rate   FLOAT            DEFAULT 0,
+    rcv_bytes_rate   FLOAT            DEFAULT 0,
+    total_bytes_rate FLOAT            DEFAULT 0,
+    share_percent    FLOAT            DEFAULT 0,
+    sequence         BIGINT UNSIGNED  DEFAULT 0,
+    timestamp        DATETIME(3)      NOT NULL,
+
+    PRIMARY KEY (id),
+    UNIQUE KEY uk_proc_host_seq (server_name, sequence, pid),
+    INDEX idx_proc_server_time (server_name, timestamp),
+    INDEX idx_proc_timestamp (timestamp)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ============================================================
 -- 4. 磁盘明细表
 -- ============================================================
 CREATE TABLE server_disk_detail (
@@ -174,6 +202,14 @@ BEGIN
         WHERE timestamp < DATE_SUB(NOW(), INTERVAL 7 DAY)
         LIMIT 1000;
         IF ROW_COUNT() = 0 THEN LEAVE cleanup_disk; END IF;
+        DO SLEEP(0.1);
+    END LOOP;
+
+    cleanup_proc: LOOP
+        DELETE FROM server_net_process_detail
+        WHERE timestamp < DATE_SUB(NOW(), INTERVAL 7 DAY)
+        LIMIT 1000;
+        IF ROW_COUNT() = 0 THEN LEAVE cleanup_proc; END IF;
         DO SLEEP(0.1);
     END LOOP;
 END$$

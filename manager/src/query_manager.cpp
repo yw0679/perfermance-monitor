@@ -277,6 +277,77 @@ std::vector<NetDetailRecord> QueryManager::QueryNetDetail(
   return records;
 }
 
+std::vector<NetProcessDetailRecord> QueryManager::QueryNetProcessDetail(
+    const std::string& server_name, const TimeRange& time_range, int page,
+    int page_size, int* total_count) {
+  std::vector<NetProcessDetailRecord> records;
+
+  std::lock_guard<std::mutex> lock(mtx_);
+  if (!initialized_ || !conn_) {
+    return records;
+  }
+  if (!ValidateTimeRange(time_range)) {
+    return records;
+  }
+  if (page < 1) page = 1;
+  if (page_size < 1) page_size = 100;
+
+  const std::string start_time = FormatTime(time_range.start_time);
+  const std::string end_time = FormatTime(time_range.end_time);
+  const std::string escaped_name = EscapeString(conn_, server_name);
+  const std::string escaped_start = EscapeString(conn_, start_time);
+  const std::string escaped_end = EscapeString(conn_, end_time);
+
+  const int offset = (page - 1) * page_size;
+
+  std::ostringstream sql;
+  sql << "SELECT SQL_CALC_FOUND_ROWS "
+         "server_name, pid, proc_name, timestamp, snd_bytes_rate, "
+         "rcv_bytes_rate, total_bytes_rate, share_percent "
+         "FROM server_net_process_detail WHERE server_name='"
+      << escaped_name << "' AND timestamp BETWEEN '" << escaped_start
+      << "' AND '" << escaped_end
+      << "' ORDER BY timestamp DESC, total_bytes_rate DESC LIMIT " << page_size
+      << " OFFSET " << offset;
+
+  if (mysql_query(conn_, sql.str().c_str()) != 0) {
+    std::cerr << "QueryManager: net process detail query failed: "
+              << mysql_error(conn_) << std::endl;
+    return records;
+  }
+
+  MYSQL_RES* result = mysql_store_result(conn_);
+  if (!result) {
+    return records;
+  }
+
+  MYSQL_ROW row;
+  while ((row = mysql_fetch_row(result))) {
+    NetProcessDetailRecord rec;
+    int i = 0;
+    rec.server_name = row[i] ? row[i] : ""; i++;
+    rec.pid = row[i] ? static_cast<uint32_t>(std::strtoul(row[i], nullptr, 10))
+                     : 0;
+    i++;
+    rec.proc_name = row[i] ? row[i] : ""; i++;
+    rec.timestamp =
+        row[i] ? ParseTime(row[i]) : std::chrono::system_clock::now();
+    i++;
+    rec.snd_bytes_rate = row[i] ? std::atof(row[i]) : 0; i++;
+    rec.rcv_bytes_rate = row[i] ? std::atof(row[i]) : 0; i++;
+    rec.total_bytes_rate = row[i] ? std::atof(row[i]) : 0; i++;
+    rec.share_percent = row[i] ? std::atof(row[i]) : 0;
+    records.push_back(rec);
+  }
+  mysql_free_result(result);
+
+  if (total_count) {
+    *total_count = FetchFoundRows(conn_);
+  }
+
+  return records;
+}
+
 std::vector<DiskDetailRecord> QueryManager::QueryDiskDetail(
     const std::string& server_name, const TimeRange& time_range, int page,
     int page_size, int* total_count) {

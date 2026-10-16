@@ -77,6 +77,17 @@ struct NetDetailRecord {
   float snd_packets_rate = 0;
 };
 
+struct NetProcessDetailRecord {
+  std::string server_name;
+  uint32_t pid = 0;
+  std::string proc_name;
+  std::chrono::system_clock::time_point timestamp;
+  float snd_bytes_rate = 0;
+  float rcv_bytes_rate = 0;
+  float total_bytes_rate = 0;
+  float share_percent = 0;
+};
+
 struct DiskDetailRecord {
   std::string server_name;
   std::string disk_name;
@@ -122,6 +133,9 @@ class QueryManager {
                                               const TimeRange& time_range,
                                               int page, int page_size,
                                               int* total_count);
+  std::vector<NetProcessDetailRecord> QueryNetProcessDetail(
+      const std::string& server_name, const TimeRange& time_range, int page,
+      int page_size, int* total_count);
   std::vector<DiskDetailRecord> QueryDiskDetail(const std::string& server_name,
                                                 const TimeRange& time_range,
                                                 int page, int page_size,

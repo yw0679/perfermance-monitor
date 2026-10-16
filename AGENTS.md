@@ -20,16 +20,17 @@ Main resume focus:
 
 - C++17 worker/manager architecture
 - gRPC and Protobuf service communication
-- Linux metric collection through `/proc`, eBPF TC hooks, and kernel-module
-  `mmap`
+- Linux metric collection through `/proc`, eBPF TC hooks, eBPF socket-layer
+  kprobes for per-process network attribution, and kernel-module `mmap`
 - Async MySQL persistence with transactions and prepared statements
 - Sequence-based duplicate handling and worker-side ring-buffer replay
 - Health scoring and smooth weighted round-robin scheduling
 
 Use strong, production-oriented wording around the implemented engineering
-ideas: low-overhead Linux metric collection, typed service communication,
-async persistence, duplicate handling, replay after temporary manager failure,
-scoring, and scheduling. Do not claim facts that are not implemented, such as
+ideas: low-overhead Linux metric collection, per-process network attribution
+that `/proc` cannot provide, typed service communication, async persistence,
+duplicate handling, replay after temporary manager failure, scoring, and
+scheduling. Do not claim facts that are not implemented, such as
 Kubernetes integration, Prometheus compatibility, alerting, multi-replica high
 availability, real online traffic, or a deployed load-balancer plugin.
 
