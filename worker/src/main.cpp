@@ -8,6 +8,7 @@
 #include <thread>
 #include <chrono>
 #include <csignal>
+#include <stdexcept>
 
 #include "rpc/monitor_pusher.h"
 
@@ -43,11 +44,22 @@ int main(int argc, char* argv[]) {
     manager_address = argv[1];
   }
   if (argc > 2) {
-    interval_seconds = std::stoi(argv[2]);
-    if (interval_seconds <= 0) {
-      interval_seconds = kDefaultPushInterval;
+    try {
+        interval_seconds = std::stoi(argv[2]);
+    } catch (const std::invalid_argument&) {
+        std::cerr << "Invalid interval: expected an integer"
+                  << std::endl;
+        return 1;
+    } catch (const std::out_of_range&) {
+        std::cerr << "Invalid interval: integer out of range"
+                  << std::endl;
+        return 1;
     }
-  }
+
+    if (interval_seconds <= 0) {
+        interval_seconds = kDefaultPushInterval;
+    }
+}
   
   //打印启动日志
   PrintUsage(manager_address,interval_seconds);
