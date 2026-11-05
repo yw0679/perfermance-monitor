@@ -1,0 +1,2055 @@
+Listening on: 127.0.0.1:50061
+QueryManager: MySQL connection initialized
+Historical query backend initialized successfully
+Received monitor data from: ubuntu24
+
+================== Received Data ==================
+Server: ubuntu24_192.168.63.133, Score: 83.7736
+
+--- CPU ---
+  Usage: 17.791%, User: 8.49177%, System: 9.03878%
+  Nice: 0%, Idle: 81.8356%, IOWait: 0.373403%
+  IRQ: 0%, SoftIRQ: 0.260484%
+  Load: 0.13/0.08/0.02
+
+--- Memory ---
+  Used: 32.7979%, Total: 8.08293 GB
+  Free: 2.89438 GB, Avail: 5.4319 GB
+
+--- Network ---
+  In: 0.918992 KB/s, Out: 0.899522 KB/s
+  [ens33] Recv: 0.918992 KB/s, Send: 0.899522 KB/s
+
+--- Disk ---
+  [sda] Read: 48 KB/s, Write: 0 KB/s, Util: 1%
+  [sda1] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda2] Read: 48 KB/s, Write: 0 KB/s, Util: 1%
+
+--- Change Rates ---
+  CPU: 0%, Mem: 0%, Load: 0%
+  Disk: 0%, NetIn: 0%, NetOut: 0%
+
+--- Database ---
+  MySQL write: queued for async flush
+
+--- Host Scores ---
+  Best host: ubuntu24_192.168.63.133
+  ubuntu24_192.168.63.133 => 83.7736
+====================================================
+
+Received monitor data from: ubuntu24
+
+================== Received Data ==================
+Server: ubuntu24_192.168.63.133, Score: 88.0654
+
+--- CPU ---
+  Usage: 3.54492%, User: 1.8889%, System: 1.5784%
+  Nice: 0%, Idle: 96.4551%, IOWait: 0%
+  IRQ: 0%, SoftIRQ: 0.077626%
+  Load: 0.12/0.08/0.02
+
+--- Memory ---
+  Used: 32.365%, Total: 8.08293 GB
+  Free: 2.92895 GB, Avail: 5.46689 GB
+
+--- Network ---
+  In: 1.03149 KB/s, Out: 1.18729 KB/s
+  [ens33] Recv: 1.03149 KB/s, Send: 1.18729 KB/s
+
+--- Disk ---
+  [sda] Read: 20 KB/s, Write: 4108 KB/s, Util: 6.2%
+  [sda1] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda2] Read: 20 KB/s, Write: 4108 KB/s, Util: 6.5%
+
+--- Change Rates ---
+  CPU: -80.0747%, Mem: -1.31965%, Load: -7.69231%
+  Disk: 550%, NetIn: 12.2412%, NetOut: 31.9915%
+
+--- Database ---
+  MySQL write: queued for async flush
+
+--- Host Scores ---
+  Best host: ubuntu24_192.168.63.133
+  ubuntu24_192.168.63.133 => 88.0654
+====================================================
+
+Received monitor data from: ubuntu24
+
+================== Received Data ==================
+Server: ubuntu24_192.168.63.133, Score: 85.5736
+
+--- CPU ---
+  Usage: 13.1949%, User: 9.12668%, System: 3.77379%
+  Nice: 0%, Idle: 85.7727%, IOWait: 1.03238%
+  IRQ: 0%, SoftIRQ: 0.294409%
+  Load: 0.12/0.08/0.02
+
+--- Memory ---
+  Used: 32.0127%, Total: 8.08293 GB
+  Free: 2.9572 GB, Avail: 5.49537 GB
+
+--- Network ---
+  In: 0.732612 KB/s, Out: 0.824189 KB/s
+  [ens33] Recv: 0.732612 KB/s, Send: 0.824189 KB/s
+
+--- Disk ---
+  [sda] Read: 0 KB/s, Write: 568 KB/s, Util: 1.2%
+  [sda1] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda2] Read: 0 KB/s, Write: 568 KB/s, Util: 1.3%
+
+--- Change Rates ---
+  CPU: 272.219%, Mem: -1.08866%, Load: 0%
+  Disk: -80%, NetIn: -28.9751%, NetOut: -30.5825%
+
+--- Database ---
+  MySQL write: queued for async flush
+
+--- Host Scores ---
+  Best host: ubuntu24_192.168.63.133
+  ubuntu24_192.168.63.133 => 85.5736
+====================================================
+
+Received monitor data from: ubuntu24
+
+================== Received Data ==================
+Server: ubuntu24_192.168.63.133, Score: 84.9346
+
+--- CPU ---
+  Usage: 19.2562%, User: 16.0164%, System: 3.1876%
+  Nice: 0%, Idle: 80.6079%, IOWait: 0.135813%
+  IRQ: 0%, SoftIRQ: 0.0522557%
+  Load: 0.12/0.08/0.02
+
+--- Memory ---
+  Used: 27.5711%, Total: 8.08293 GB
+  Free: 3.32917 GB, Avail: 5.85438 GB
+
+--- Network ---
+  In: 0.576601 KB/s, Out: 0.931133 KB/s
+  [ens33] Recv: 0.576601 KB/s, Send: 0.931133 KB/s
+
+--- Disk ---
+  [sda] Read: 0 KB/s, Write: 208 KB/s, Util: 0.2%
+  [sda1] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda2] Read: 0 KB/s, Write: 208 KB/s, Util: 0.3%
+
+--- Change Rates ---
+  CPU: 45.9373%, Mem: -13.8744%, Load: 0%
+  Disk: -76.9231%, NetIn: -21.2952%, NetOut: 12.9757%
+
+--- Database ---
+  MySQL write: queued for async flush
+
+--- Host Scores ---
+  Best host: ubuntu24_192.168.63.133
+  ubuntu24_192.168.63.133 => 84.9346
+====================================================
+
+Received monitor data from: ubuntu24
+
+================== Received Data ==================
+Server: ubuntu24_192.168.63.133, Score: 85.8502
+
+--- CPU ---
+  Usage: 16.7695%, User: 11.6077%, System: 5.05909%
+  Nice: 0%, Idle: 83.2254%, IOWait: 0.00508477%
+  IRQ: 0%, SoftIRQ: 0.102723%
+  Load: 0.12/0.08/0.02
+
+--- Memory ---
+  Used: 27.5705%, Total: 8.08293 GB
+  Free: 3.32922 GB, Avail: 5.85443 GB
+
+--- Network ---
+  In: 0.525677 KB/s, Out: 0.490632 KB/s
+  [ens33] Recv: 0.525677 KB/s, Send: 0.490632 KB/s
+
+--- Disk ---
+  [sda] Read: 0 KB/s, Write: 4 KB/s, Util: 0%
+  [sda1] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda2] Read: 0 KB/s, Write: 4 KB/s, Util: 0%
+
+--- Change Rates ---
+  CPU: -12.9141%, Mem: -0.00233826%, Load: 0%
+  Disk: -100%, NetIn: -8.83186%, NetOut: -47.3081%
+
+--- Database ---
+  MySQL write: queued for async flush
+
+--- Host Scores ---
+  Best host: ubuntu24_192.168.63.133
+  ubuntu24_192.168.63.133 => 85.8502
+====================================================
+
+Received monitor data from: ubuntu24
+
+================== Received Data ==================
+Server: ubuntu24_192.168.63.133, Score: 91.6426
+
+--- CPU ---
+  Usage: 0.20274%, User: 0.050685%, System: 0.126712%
+  Nice: 0%, Idle: 99.7973%, IOWait: 0%
+  IRQ: 0%, SoftIRQ: 0.0253425%
+  Load: 0.12/0.08/0.02
+
+--- Memory ---
+  Used: 27.5902%, Total: 8.08293 GB
+  Free: 3.32763 GB, Avail: 5.85284 GB
+
+--- Network ---
+  In: 0.961106 KB/s, Out: 0.816842 KB/s
+  [ens33] Recv: 0.961106 KB/s, Send: 0.816842 KB/s
+
+--- Disk ---
+  [sda] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda1] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda2] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+
+--- Change Rates ---
+  CPU: -98.791%, Mem: 0.071443%, Load: 0%
+  Disk: 0%, NetIn: 82.832%, NetOut: 66.4879%
+
+--- Database ---
+  MySQL write: queued for async flush
+
+--- Host Scores ---
+  Best host: ubuntu24_192.168.63.133
+  ubuntu24_192.168.63.133 => 91.6426
+====================================================
+
+Received monitor data from: ubuntu24
+
+================== Received Data ==================
+Server: ubuntu24_192.168.63.133, Score: 90.9359
+
+--- CPU ---
+  Usage: 2.22515%, User: 0.639412%, System: 1.50901%
+  Nice: 0%, Idle: 97.7599%, IOWait: 0.0149878%
+  IRQ: 0%, SoftIRQ: 0.0767295%
+  Load: 0.11/0.07/0.02
+
+--- Memory ---
+  Used: 27.5891%, Total: 8.08293 GB
+  Free: 3.32771 GB, Avail: 5.85292 GB
+
+--- Network ---
+  In: 1.32782 KB/s, Out: 1.11755 KB/s
+  [ens33] Recv: 1.32782 KB/s, Send: 1.11755 KB/s
+
+--- Disk ---
+  [sda] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda1] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda2] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+
+--- Change Rates ---
+  CPU: 997.542%, Mem: -0.00376766%, Load: -8.33333%
+  Disk: 0%, NetIn: 38.1552%, NetOut: 36.8131%
+
+--- Database ---
+  MySQL write: queued for async flush
+
+--- Host Scores ---
+  Best host: ubuntu24_192.168.63.133
+  ubuntu24_192.168.63.133 => 90.9359
+====================================================
+
+Received monitor data from: ubuntu24
+
+================== Received Data ==================
+Server: ubuntu24_192.168.63.133, Score: 91.2882
+
+--- CPU ---
+  Usage: 1.04711%, User: 0.306472%, System: 0.689563%
+  Nice: 0%, Idle: 98.9168%, IOWait: 0.0361127%
+  IRQ: 0%, SoftIRQ: 0.0510787%
+  Load: 0.11/0.07/0.02
+
+--- Memory ---
+  Used: 27.5891%, Total: 8.08293 GB
+  Free: 3.32771 GB, Avail: 5.85292 GB
+
+--- Network ---
+  In: 1.05582 KB/s, Out: 0.898033 KB/s
+  [ens33] Recv: 1.05582 KB/s, Send: 0.898033 KB/s
+
+--- Disk ---
+  [sda] Read: 0 KB/s, Write: 228 KB/s, Util: 0.4%
+  [sda1] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda2] Read: 0 KB/s, Write: 228 KB/s, Util: 0.4%
+
+--- Change Rates ---
+  CPU: -52.942%, Mem: 0%, Load: 0%
+  Disk: 0%, NetIn: -20.4844%, NetOut: -19.6425%
+
+--- Database ---
+  MySQL write: queued for async flush
+
+--- Host Scores ---
+  Best host: ubuntu24_192.168.63.133
+  ubuntu24_192.168.63.133 => 91.2882
+====================================================
+
+Received monitor data from: ubuntu24
+
+================== Received Data ==================
+Server: ubuntu24_192.168.63.133, Score: 91.48
+
+--- CPU ---
+  Usage: 0.584698%, User: 0.381325%, System: 0.177952%
+  Nice: 0%, Idle: 99.3976%, IOWait: 0.0177443%
+  IRQ: 0%, SoftIRQ: 0.0254217%
+  Load: 0.11/0.07/0.02
+
+--- Memory ---
+  Used: 27.5891%, Total: 8.08293 GB
+  Free: 3.32771 GB, Avail: 5.85292 GB
+
+--- Network ---
+  In: 10.2275 KB/s, Out: 36.0385 KB/s
+  [ens33] Recv: 10.2275 KB/s, Send: 36.0385 KB/s
+
+--- Disk ---
+  [sda] Read: 0 KB/s, Write: 80 KB/s, Util: 0.2%
+  [sda1] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda2] Read: 0 KB/s, Write: 80 KB/s, Util: 0.2%
+
+--- Change Rates ---
+  CPU: -44.161%, Mem: 0%, Load: 0%
+  Disk: -50%, NetIn: 868.673%, NetOut: 3913.05%
+
+--- Database ---
+  MySQL write: queued for async flush
+
+--- Host Scores ---
+  Best host: ubuntu24_192.168.63.133
+  ubuntu24_192.168.63.133 => 91.48
+====================================================
+
+Received monitor data from: ubuntu24
+
+================== Received Data ==================
+Server: ubuntu24_192.168.63.133, Score: 91.4108
+
+--- CPU ---
+  Usage: 0.868099%, User: 0.459582%, System: 0.357453%
+  Nice: 0%, Idle: 99.101%, IOWait: 0.0308686%
+  IRQ: 0%, SoftIRQ: 0.0510647%
+  Load: 0.11/0.07/0.02
+
+--- Memory ---
+  Used: 27.5891%, Total: 8.08293 GB
+  Free: 3.32771 GB, Avail: 5.85292 GB
+
+--- Network ---
+  In: 1.23115 KB/s, Out: 1.0211 KB/s
+  [ens33] Recv: 1.23115 KB/s, Send: 1.0211 KB/s
+
+--- Disk ---
+  [sda] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda1] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda2] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+
+--- Change Rates ---
+  CPU: 48.4696%, Mem: 0%, Load: 0%
+  Disk: -100%, NetIn: -87.9623%, NetOut: -97.1666%
+
+--- Database ---
+  MySQL write: queued for async flush
+
+--- Host Scores ---
+  Best host: ubuntu24_192.168.63.133
+  ubuntu24_192.168.63.133 => 91.4108
+====================================================
+
+Received monitor data from: ubuntu24
+
+================== Received Data ==================
+Server: ubuntu24_192.168.63.133, Score: 91.5449
+
+--- CPU ---
+  Usage: 0.482505%, User: 0.279345%, System: 0.15237%
+  Nice: 0%, Idle: 99.5102%, IOWait: 0.00731377%
+  IRQ: 0%, SoftIRQ: 0.05079%
+  Load: 0.11/0.07/0.02
+
+--- Memory ---
+  Used: 27.5923%, Total: 8.08293 GB
+  Free: 3.32746 GB, Avail: 5.85267 GB
+
+--- Network ---
+  In: 0.68074 KB/s, Out: 0.71186 KB/s
+  [ens33] Recv: 0.68074 KB/s, Send: 0.71186 KB/s
+
+--- Disk ---
+  [sda] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda1] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda2] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+
+--- Change Rates ---
+  CPU: -44.4182%, Mem: 0.0112965%, Load: 0%
+  Disk: 0%, NetIn: -44.7072%, NetOut: -30.285%
+
+--- Database ---
+  MySQL write: queued for async flush
+
+--- Host Scores ---
+  Best host: ubuntu24_192.168.63.133
+  ubuntu24_192.168.63.133 => 91.5449
+====================================================
+
+Received monitor data from: ubuntu24
+
+================== Received Data ==================
+Server: ubuntu24_192.168.63.133, Score: 90.9414
+
+--- CPU ---
+  Usage: 2.22327%, User: 0.638871%, System: 1.5844%
+  Nice: 0%, Idle: 97.7767%, IOWait: 0%
+  IRQ: 0%, SoftIRQ: 0%
+  Load: 0.1/0.07/0.02
+
+--- Memory ---
+  Used: 27.5754%, Total: 8.08293 GB
+  Free: 3.3288 GB, Avail: 5.85403 GB
+
+--- Network ---
+  In: 0.585801 KB/s, Out: 0.609156 KB/s
+  [ens33] Recv: 0.585801 KB/s, Send: 0.609156 KB/s
+
+--- Disk ---
+  [sda] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda1] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda2] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+
+--- Change Rates ---
+  CPU: 360.777%, Mem: -0.061156%, Load: -9.09091%
+  Disk: 0%, NetIn: -13.9464%, NetOut: -14.4276%
+
+--- Database ---
+  MySQL write: queued for async flush
+
+--- Host Scores ---
+  Best host: ubuntu24_192.168.63.133
+  ubuntu24_192.168.63.133 => 90.9414
+====================================================
+
+Received monitor data from: ubuntu24
+
+================== Received Data ==================
+Server: ubuntu24_192.168.63.133, Score: 91.4429
+
+--- CPU ---
+  Usage: 0.790381%, User: 0.254962%, System: 0.509923%
+  Nice: 0%, Idle: 99.1837%, IOWait: 0.0258786%
+  IRQ: 0%, SoftIRQ: 0.0254962%
+  Load: 0.1/0.07/0.02
+
+--- Memory ---
+  Used: 27.5754%, Total: 8.08293 GB
+  Free: 3.3288 GB, Avail: 5.85403 GB
+
+--- Network ---
+  In: 1.70985 KB/s, Out: 1.48032 KB/s
+  [ens33] Recv: 1.70985 KB/s, Send: 1.48032 KB/s
+
+--- Disk ---
+  [sda] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda1] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda2] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+
+--- Change Rates ---
+  CPU: -64.4497%, Mem: 0%, Load: 0%
+  Disk: 0%, NetIn: 191.883%, NetOut: 143.011%
+
+--- Database ---
+  MySQL write: queued for async flush
+
+--- Host Scores ---
+  Best host: ubuntu24_192.168.63.133
+  ubuntu24_192.168.63.133 => 91.4429
+====================================================
+
+Received monitor data from: ubuntu24
+
+================== Received Data ==================
+Server: ubuntu24_192.168.63.133, Score: 91.5622
+
+--- CPU ---
+  Usage: 0.406905%, User: 0.228884%, System: 0.101726%
+  Nice: 0%, Idle: 99.5931%, IOWait: 0%
+  IRQ: 0%, SoftIRQ: 0.0762946%
+  Load: 0.1/0.07/0.02
+
+--- Memory ---
+  Used: 27.5754%, Total: 8.08293 GB
+  Free: 3.3288 GB, Avail: 5.85403 GB
+
+--- Network ---
+  In: 1.05516 KB/s, Out: 1.00649 KB/s
+  [ens33] Recv: 1.05516 KB/s, Send: 1.00649 KB/s
+
+--- Disk ---
+  [sda] Read: 0 KB/s, Write: 24 KB/s, Util: 0.1%
+  [sda1] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda2] Read: 0 KB/s, Write: 24 KB/s, Util: 0.1%
+
+--- Change Rates ---
+  CPU: -48.5179%, Mem: 0%, Load: 0%
+  Disk: 0%, NetIn: -38.2894%, NetOut: -32.0084%
+
+--- Database ---
+  MySQL write: queued for async flush
+
+--- Host Scores ---
+  Best host: ubuntu24_192.168.63.133
+  ubuntu24_192.168.63.133 => 91.5622
+====================================================
+
+Received monitor data from: ubuntu24
+
+================== Received Data ==================
+Server: ubuntu24_192.168.63.133, Score: 91.6396
+
+--- CPU ---
+  Usage: 0.228523%, User: 0.0507829%, System: 0.126957%
+  Nice: 0%, Idle: 99.7508%, IOWait: 0.0206686%
+  IRQ: 0%, SoftIRQ: 0.0507829%
+  Load: 0.1/0.07/0.02
+
+--- Memory ---
+  Used: 27.5753%, Total: 8.08293 GB
+  Free: 3.3288 GB, Avail: 5.85404 GB
+
+--- Network ---
+  In: 0.893296 KB/s, Out: 0.807664 KB/s
+  [ens33] Recv: 0.893296 KB/s, Send: 0.807664 KB/s
+
+--- Disk ---
+  [sda] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda1] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda2] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+
+--- Change Rates ---
+  CPU: -43.8386%, Mem: -0.000179838%, Load: 0%
+  Disk: -100%, NetIn: -15.3403%, NetOut: -19.7544%
+
+--- Database ---
+  MySQL write: queued for async flush
+
+--- Host Scores ---
+  Best host: ubuntu24_192.168.63.133
+  ubuntu24_192.168.63.133 => 91.6396
+====================================================
+
+Received monitor data from: ubuntu24
+
+================== Received Data ==================
+Server: ubuntu24_192.168.63.133, Score: 91.5839
+
+--- CPU ---
+  Usage: 0.355773%, User: 0.152474%, System: 0.152474%
+  Nice: 0%, Idle: 99.6442%, IOWait: 0%
+  IRQ: 0%, SoftIRQ: 0.0508247%
+  Load: 0.1/0.07/0.02
+
+--- Memory ---
+  Used: 27.6127%, Total: 8.08293 GB
+  Free: 3.32579 GB, Avail: 5.85102 GB
+
+--- Network ---
+  In: 1.18004 KB/s, Out: 1.03618 KB/s
+  [ens33] Recv: 1.18004 KB/s, Send: 1.03618 KB/s
+
+--- Disk ---
+  [sda] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda1] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda2] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+
+--- Change Rates ---
+  CPU: 55.6834%, Mem: 0.135315%, Load: 0%
+  Disk: 0%, NetIn: 32.0997%, NetOut: 28.2936%
+
+--- Database ---
+  MySQL write: queued for async flush
+
+--- Host Scores ---
+  Best host: ubuntu24_192.168.63.133
+  ubuntu24_192.168.63.133 => 91.5839
+====================================================
+
+Received monitor data from: ubuntu24
+
+================== Received Data ==================
+Server: ubuntu24_192.168.63.133, Score: 91.0544
+
+--- CPU ---
+  Usage: 1.86819%, User: 0.639791%, System: 1.20281%
+  Nice: 0%, Idle: 98.1203%, IOWait: 0.0114906%
+  IRQ: 0%, SoftIRQ: 0.0255916%
+  Load: 0.09/0.07/0.01
+
+--- Memory ---
+  Used: 27.6156%, Total: 8.08293 GB
+  Free: 3.32554 GB, Avail: 5.85078 GB
+
+--- Network ---
+  In: 1.22385 KB/s, Out: 1.01371 KB/s
+  [ens33] Recv: 1.22385 KB/s, Send: 1.01371 KB/s
+
+--- Disk ---
+  [sda] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda1] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda2] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+
+--- Change Rates ---
+  CPU: 425.108%, Mem: 0.010755%, Load: -10%
+  Disk: 0%, NetIn: 3.71252%, NetOut: -2.16826%
+
+--- Database ---
+  MySQL write: queued for async flush
+
+--- Host Scores ---
+  Best host: ubuntu24_192.168.63.133
+  ubuntu24_192.168.63.133 => 91.0544
+====================================================
+
+Received monitor data from: ubuntu24
+
+================== Received Data ==================
+Server: ubuntu24_192.168.63.133, Score: 91.307
+
+--- CPU ---
+  Usage: 1.14666%, User: 0.535106%, System: 0.535106%
+  Nice: 0%, Idle: 98.8533%, IOWait: 0%
+  IRQ: 0%, SoftIRQ: 0.0764437%
+  Load: 0.09/0.07/0.01
+
+--- Memory ---
+  Used: 27.6156%, Total: 8.08293 GB
+  Free: 3.32554 GB, Avail: 5.85078 GB
+
+--- Network ---
+  In: 0.791523 KB/s, Out: 0.809026 KB/s
+  [ens33] Recv: 0.791523 KB/s, Send: 0.809026 KB/s
+
+--- Disk ---
+  [sda] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda1] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda2] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+
+--- Change Rates ---
+  CPU: -38.622%, Mem: 0%, Load: 0%
+  Disk: 0%, NetIn: -35.3252%, NetOut: -20.1919%
+
+--- Database ---
+  MySQL write: queued for async flush
+
+--- Host Scores ---
+  Best host: ubuntu24_192.168.63.133
+  ubuntu24_192.168.63.133 => 91.307
+====================================================
+
+Received monitor data from: ubuntu24
+
+================== Received Data ==================
+Server: ubuntu24_192.168.63.133, Score: 91.5954
+
+--- CPU ---
+  Usage: 0.279695%, User: 0.177987%, System: 0.0254268%
+  Nice: 0%, Idle: 99.7203%, IOWait: 0%
+  IRQ: 0%, SoftIRQ: 0.0762803%
+  Load: 0.09/0.07/0.01
+
+--- Memory ---
+  Used: 27.6156%, Total: 8.08293 GB
+  Free: 3.32554 GB, Avail: 5.85078 GB
+
+--- Network ---
+  In: 1.38387 KB/s, Out: 1.27114 KB/s
+  [ens33] Recv: 1.38387 KB/s, Send: 1.27114 KB/s
+
+--- Disk ---
+  [sda] Read: 0 KB/s, Write: 16 KB/s, Util: 0.1%
+  [sda1] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda2] Read: 0 KB/s, Write: 16 KB/s, Util: 0.1%
+
+--- Change Rates ---
+  CPU: -75.6078%, Mem: 0%, Load: 0%
+  Disk: 0%, NetIn: 74.8361%, NetOut: 57.1194%
+
+--- Database ---
+  MySQL write: queued for async flush
+
+--- Host Scores ---
+  Best host: ubuntu24_192.168.63.133
+  ubuntu24_192.168.63.133 => 91.5954
+====================================================
+
+Received monitor data from: ubuntu24
+
+================== Received Data ==================
+Server: ubuntu24_192.168.63.133, Score: 91.2755
+
+--- CPU ---
+  Usage: 0.381612%, User: 0.152645%, System: 0.178086%
+  Nice: 0%, Idle: 99.5903%, IOWait: 0.0280612%
+  IRQ: 0%, SoftIRQ: 0.0508816%
+  Load: 0.09/0.07/0.01
+
+--- Memory ---
+  Used: 28.6129%, Total: 8.08293 GB
+  Free: 3.24491 GB, Avail: 5.77017 GB
+
+--- Network ---
+  In: 0.578075 KB/s, Out: 0.609217 KB/s
+  [ens33] Recv: 0.578075 KB/s, Send: 0.609217 KB/s
+
+--- Disk ---
+  [sda] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda1] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda2] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+
+--- Change Rates ---
+  CPU: 36.4388%, Mem: 3.6114%, Load: 0%
+  Disk: -100%, NetIn: -58.2276%, NetOut: -52.0731%
+
+--- Database ---
+  MySQL write: queued for async flush
+
+--- Host Scores ---
+  Best host: ubuntu24_192.168.63.133
+  ubuntu24_192.168.63.133 => 91.2755
+====================================================
+
+Received monitor data from: ubuntu24
+
+================== Received Data ==================
+Server: ubuntu24_192.168.63.133, Score: 82.2982
+
+--- CPU ---
+  Usage: 25.1843%, User: 5.02142%, System: 20.1629%
+  Nice: 0%, Idle: 74.8157%, IOWait: 0%
+  IRQ: 0%, SoftIRQ: 0%
+  Load: 0.09/0.07/0.01
+
+--- Memory ---
+  Used: 29.601%, Total: 8.08293 GB
+  Free: 3.16504 GB, Avail: 5.6903 GB
+
+--- Network ---
+  In: 0.703981 KB/s, Out: 0.735096 KB/s
+  [ens33] Recv: 0.703981 KB/s, Send: 0.735096 KB/s
+
+--- Disk ---
+  [sda] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda1] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda2] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+
+--- Change Rates ---
+  CPU: 6499.47%, Mem: 3.45319%, Load: 0%
+  Disk: 0%, NetIn: 21.7803%, NetOut: 20.6625%
+
+--- Database ---
+  MySQL write: queued for async flush
+
+--- Host Scores ---
+  Best host: ubuntu24_192.168.63.133
+  ubuntu24_192.168.63.133 => 82.2982
+====================================================
+
+Received monitor data from: ubuntu24
+
+================== Received Data ==================
+Server: ubuntu24_192.168.63.133, Score: 81.4743
+
+--- CPU ---
+  Usage: 26.6815%, User: 0.874803%, System: 25.8067%
+  Nice: 0%, Idle: 73.3185%, IOWait: 0%
+  IRQ: 0%, SoftIRQ: 0%
+  Load: 0.17/0.09/0.02
+
+--- Memory ---
+  Used: 30.5795%, Total: 8.08293 GB
+  Free: 3.08594 GB, Avail: 5.61121 GB
+
+--- Network ---
+  In: 0.431252 KB/s, Out: 0.608026 KB/s
+  [ens33] Recv: 0.431252 KB/s, Send: 0.608026 KB/s
+
+--- Disk ---
+  [sda] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda1] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda2] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+
+--- Change Rates ---
+  CPU: 5.9448%, Mem: 3.30582%, Load: 88.8889%
+  Disk: 0%, NetIn: -38.741%, NetOut: -17.2862%
+
+--- Database ---
+  MySQL write: queued for async flush
+
+--- Host Scores ---
+  Best host: ubuntu24_192.168.63.133
+  ubuntu24_192.168.63.133 => 81.4743
+====================================================
+
+Received monitor data from: ubuntu24
+
+================== Received Data ==================
+Server: ubuntu24_192.168.63.133, Score: 81.0509
+
+--- CPU ---
+  Usage: 25.8142%, User: 0.843433%, System: 24.9707%
+  Nice: 0%, Idle: 74.1858%, IOWait: 0%
+  IRQ: 0%, SoftIRQ: 0%
+  Load: 0.17/0.09/0.02
+
+--- Memory ---
+  Used: 31.5028%, Total: 8.08293 GB
+  Free: 3.0111 GB, Avail: 5.53658 GB
+
+--- Network ---
+  In: 0.948912 KB/s, Out: 0.892522 KB/s
+  [ens33] Recv: 0.948912 KB/s, Send: 0.892522 KB/s
+
+--- Disk ---
+  [sda] Read: 144 KB/s, Write: 1304 KB/s, Util: 3%
+  [sda1] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda2] Read: 144 KB/s, Write: 1304 KB/s, Util: 3%
+
+--- Change Rates ---
+  CPU: -3.25072%, Mem: 3.01911%, Load: 0%
+  Disk: 0%, NetIn: 120.037%, NetOut: 46.7901%
+
+--- Database ---
+  MySQL write: queued for async flush
+
+--- Host Scores ---
+  Best host: ubuntu24_192.168.63.133
+  ubuntu24_192.168.63.133 => 81.0509
+====================================================
+
+Received monitor data from: ubuntu24
+
+================== Received Data ==================
+Server: ubuntu24_192.168.63.133, Score: 80.1619
+
+--- CPU ---
+  Usage: 24.8964%, User: 1.34018%, System: 23.4531%
+  Nice: 0%, Idle: 74.8109%, IOWait: 0.292726%
+  IRQ: 0%, SoftIRQ: 0.103091%
+  Load: 0.17/0.09/0.02
+
+--- Memory ---
+  Used: 32.387%, Total: 8.08293 GB
+  Free: 2.92618 GB, Avail: 5.46512 GB
+
+--- Network ---
+  In: 0.716742 KB/s, Out: 0.786668 KB/s
+  [ens33] Recv: 0.716742 KB/s, Send: 0.786668 KB/s
+
+--- Disk ---
+  [sda] Read: 112 KB/s, Write: 14648 KB/s, Util: 8.7%
+  [sda1] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda2] Read: 112 KB/s, Write: 14648 KB/s, Util: 9.3%
+
+--- Change Rates ---
+  CPU: -3.55521%, Mem: 2.80668%, Load: 0%
+  Disk: 210%, NetIn: -24.467%, NetOut: -11.8601%
+
+--- Database ---
+  MySQL write: queued for async flush
+
+--- Host Scores ---
+  Best host: ubuntu24_192.168.63.133
+  ubuntu24_192.168.63.133 => 80.1619
+====================================================
+
+Received monitor data from: ubuntu24
+
+================== Received Data ==================
+Server: ubuntu24_192.168.63.133, Score: 79.3701
+
+--- CPU ---
+  Usage: 29.5485%, User: 4.72456%, System: 24.4769%
+  Nice: 0%, Idle: 69.0101%, IOWait: 1.44144%
+  IRQ: 0%, SoftIRQ: 0.347001%
+  Load: 0.17/0.09/0.02
+
+--- Memory ---
+  Used: 32.3988%, Total: 8.08293 GB
+  Free: 2.92496 GB, Avail: 5.46416 GB
+
+--- Network ---
+  In: 0.881487 KB/s, Out: 0.972944 KB/s
+  [ens33] Recv: 0.881487 KB/s, Send: 0.972944 KB/s
+
+--- Disk ---
+  [sda] Read: 0 KB/s, Write: 2032 KB/s, Util: 3.6%
+  [sda1] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda2] Read: 0 KB/s, Write: 2032 KB/s, Util: 3.7%
+
+--- Change Rates ---
+  CPU: 18.6858%, Mem: 0.0366782%, Load: 0%
+  Disk: -60.2151%, NetIn: 22.9853%, NetOut: 23.6791%
+
+--- Database ---
+  MySQL write: queued for async flush
+
+--- Host Scores ---
+  Best host: ubuntu24_192.168.63.133
+  ubuntu24_192.168.63.133 => 79.3701
+====================================================
+
+Received monitor data from: ubuntu24
+
+================== Received Data ==================
+Server: ubuntu24_192.168.63.133, Score: 87.3735
+
+--- CPU ---
+  Usage: 8.03536%, User: 1.96784%, System: 5.79421%
+  Nice: 0%, Idle: 91.4583%, IOWait: 0.506364%
+  IRQ: 0%, SoftIRQ: 0.273312%
+  Load: 0.17/0.09/0.02
+
+--- Memory ---
+  Used: 32.4196%, Total: 8.08293 GB
+  Free: 2.92323 GB, Avail: 5.46248 GB
+
+--- Network ---
+  In: 1.14306 KB/s, Out: 0.94866 KB/s
+  [ens33] Recv: 1.14306 KB/s, Send: 0.94866 KB/s
+
+--- Disk ---
+  [sda] Read: 0 KB/s, Write: 116 KB/s, Util: 0.5%
+  [sda1] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda2] Read: 0 KB/s, Write: 116 KB/s, Util: 0.5%
+
+--- Change Rates ---
+  CPU: -72.8062%, Mem: 0.0641457%, Load: 0%
+  Disk: -86.4865%, NetIn: 29.6738%, NetOut: -2.4959%
+
+--- Database ---
+  MySQL write: queued for async flush
+
+--- Host Scores ---
+  Best host: ubuntu24_192.168.63.133
+  ubuntu24_192.168.63.133 => 87.3735
+====================================================
+
+Received monitor data from: ubuntu24
+
+================== Received Data ==================
+Server: ubuntu24_192.168.63.133, Score: 89.2535
+
+--- CPU ---
+  Usage: 2.53789%, User: 0.863407%, System: 1.59599%
+  Nice: 0%, Idle: 97.3903%, IOWait: 0.0718459%
+  IRQ: 0%, SoftIRQ: 0.0784915%
+  Load: 0.15/0.08/0.02
+
+--- Memory ---
+  Used: 32.4218%, Total: 8.08293 GB
+  Free: 2.92298 GB, Avail: 5.4623 GB
+
+--- Network ---
+  In: 1.02692 KB/s, Out: 1.02887 KB/s
+  [ens33] Recv: 1.02692 KB/s, Send: 1.02887 KB/s
+
+--- Disk ---
+  [sda] Read: 0 KB/s, Write: 876 KB/s, Util: 0.8%
+  [sda1] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda2] Read: 0 KB/s, Write: 876 KB/s, Util: 0.8%
+
+--- Change Rates ---
+  CPU: -68.4159%, Mem: 0.00687171%, Load: -11.7647%
+  Disk: 60%, NetIn: -10.16%, NetOut: 8.45484%
+
+--- Database ---
+  MySQL write: queued for async flush
+
+--- Host Scores ---
+  Best host: ubuntu24_192.168.63.133
+  ubuntu24_192.168.63.133 => 89.2535
+====================================================
+
+Received monitor data from: ubuntu24
+
+================== Received Data ==================
+Server: ubuntu24_192.168.63.133, Score: 89.706
+
+--- CPU ---
+  Usage: 1.28793%, User: 0.489414%, System: 0.721241%
+  Nice: 0%, Idle: 98.5863%, IOWait: 0.125754%
+  IRQ: 0%, SoftIRQ: 0.0772758%
+  Load: 0.15/0.08/0.02
+
+--- Memory ---
+  Used: 32.4218%, Total: 8.08293 GB
+  Free: 2.92298 GB, Avail: 5.4623 GB
+
+--- Network ---
+  In: 1.12804 KB/s, Out: 0.933885 KB/s
+  [ens33] Recv: 1.12804 KB/s, Send: 0.933885 KB/s
+
+--- Disk ---
+  [sda] Read: 0 KB/s, Write: 260 KB/s, Util: 0.6%
+  [sda1] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda2] Read: 0 KB/s, Write: 260 KB/s, Util: 0.7%
+
+--- Change Rates ---
+  CPU: -49.2519%, Mem: 0%, Load: 0%
+  Disk: -12.5%, NetIn: 9.84663%, NetOut: -9.23175%
+
+--- Database ---
+  MySQL write: queued for async flush
+
+--- Host Scores ---
+  Best host: ubuntu24_192.168.63.133
+  ubuntu24_192.168.63.133 => 89.706
+====================================================
+
+Received monitor data from: ubuntu24
+
+================== Received Data ==================
+Server: ubuntu24_192.168.63.133, Score: 89.9635
+
+--- CPU ---
+  Usage: 0.847127%, User: 0.282376%, System: 0.385058%
+  Nice: 0%, Idle: 99.0917%, IOWait: 0.0611471%
+  IRQ: 0%, SoftIRQ: 0.179694%
+  Load: 0.15/0.08/0.02
+
+--- Memory ---
+  Used: 32.4275%, Total: 8.08293 GB
+  Free: 2.9225 GB, Avail: 5.46184 GB
+
+--- Network ---
+  In: 1.31135 KB/s, Out: 1.6455 KB/s
+  [ens33] Recv: 1.31135 KB/s, Send: 1.6455 KB/s
+
+--- Disk ---
+  [sda] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda1] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda2] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+
+--- Change Rates ---
+  CPU: -34.2258%, Mem: 0.0174017%, Load: 0%
+  Disk: -100%, NetIn: 16.2506%, NetOut: 76.1999%
+
+--- Database ---
+  MySQL write: queued for async flush
+
+--- Host Scores ---
+  Best host: ubuntu24_192.168.63.133
+  ubuntu24_192.168.63.133 => 89.9635
+====================================================
+
+Received monitor data from: ubuntu24
+
+================== Received Data ==================
+Server: ubuntu24_192.168.63.133, Score: 90.0086
+
+--- CPU ---
+  Usage: 0.718525%, User: 0.282278%, System: 0.384924%
+  Nice: 0%, Idle: 99.2815%, IOWait: 0%
+  IRQ: 0%, SoftIRQ: 0.0513232%
+  Load: 0.15/0.08/0.02
+
+--- Memory ---
+  Used: 32.4275%, Total: 8.08293 GB
+  Free: 2.9225 GB, Avail: 5.46184 GB
+
+--- Network ---
+  In: 0.710945 KB/s, Out: 0.726484 KB/s
+  [ens33] Recv: 0.710945 KB/s, Send: 0.726484 KB/s
+
+--- Disk ---
+  [sda] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda1] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda2] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+
+--- Change Rates ---
+  CPU: -15.181%, Mem: 0%, Load: 0%
+  Disk: 0%, NetIn: -45.7854%, NetOut: -55.8504%
+
+--- Database ---
+  MySQL write: queued for async flush
+
+--- Host Scores ---
+  Best host: ubuntu24_192.168.63.133
+  ubuntu24_192.168.63.133 => 90.0086
+====================================================
+
+Received monitor data from: ubuntu24
+
+================== Received Data ==================
+Server: ubuntu24_192.168.63.133, Score: 90.0934
+
+--- CPU ---
+  Usage: 0.460434%, User: 0.281377%, System: 0.102319%
+  Nice: 0%, Idle: 99.5248%, IOWait: 0.0147851%
+  IRQ: 0%, SoftIRQ: 0.0767391%
+  Load: 0.15/0.08/0.02
+
+--- Memory ---
+  Used: 32.4457%, Total: 8.08293 GB
+  Free: 2.92102 GB, Avail: 5.46037 GB
+
+--- Network ---
+  In: 1.032 KB/s, Out: 0.938883 KB/s
+  [ens33] Recv: 1.032 KB/s, Send: 0.938883 KB/s
+
+--- Disk ---
+  [sda] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda1] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda2] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+
+--- Change Rates ---
+  CPU: -35.9195%, Mem: 0.0561603%, Load: 0%
+  Disk: 0%, NetIn: 45.1583%, NetOut: 29.2365%
+
+--- Database ---
+  MySQL write: queued for async flush
+
+--- Host Scores ---
+  Best host: ubuntu24_192.168.63.133
+  ubuntu24_192.168.63.133 => 90.0934
+====================================================
+
+Received monitor data from: ubuntu24
+
+================== Received Data ==================
+Server: ubuntu24_192.168.63.133, Score: 89.4741
+
+--- CPU ---
+  Usage: 2.24723%, User: 0.852399%, System: 1.34317%
+  Nice: 0%, Idle: 97.7528%, IOWait: 0%
+  IRQ: 0%, SoftIRQ: 0.0516606%
+  Load: 0.14/0.08/0.02
+
+--- Memory ---
+  Used: 32.428%, Total: 8.08293 GB
+  Free: 2.92244 GB, Avail: 5.4618 GB
+
+--- Network ---
+  In: 1.48851 KB/s, Out: 1.40495 KB/s
+  [ens33] Recv: 1.48851 KB/s, Send: 1.40495 KB/s
+
+--- Disk ---
+  [sda] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda1] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda2] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+
+--- Change Rates ---
+  CPU: 388.068%, Mem: -0.0544475%, Load: -6.66667%
+  Disk: 0%, NetIn: 44.2361%, NetOut: 49.6408%
+
+--- Database ---
+  MySQL write: queued for async flush
+
+--- Host Scores ---
+  Best host: ubuntu24_192.168.63.133
+  ubuntu24_192.168.63.133 => 89.4741
+====================================================
+
+Received monitor data from: ubuntu24
+
+================== Received Data ==================
+Server: ubuntu24_192.168.63.133, Score: 89.8914
+
+--- CPU ---
+  Usage: 1.05473%, User: 0.488776%, System: 0.540226%
+  Nice: 0%, Idle: 98.9396%, IOWait: 0.00571096%
+  IRQ: 0%, SoftIRQ: 0.0257251%
+  Load: 0.14/0.08/0.02
+
+--- Memory ---
+  Used: 32.3783%, Total: 8.08293 GB
+  Free: 2.92644 GB, Avail: 5.46581 GB
+
+--- Network ---
+  In: 1.11919 KB/s, Out: 0.932979 KB/s
+  [ens33] Recv: 1.11919 KB/s, Send: 0.932979 KB/s
+
+--- Disk ---
+  [sda] Read: 0 KB/s, Write: 28 KB/s, Util: 0.1%
+  [sda1] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda2] Read: 0 KB/s, Write: 28 KB/s, Util: 0.1%
+
+--- Change Rates ---
+  CPU: -53.0655%, Mem: -0.153221%, Load: 0%
+  Disk: 0%, NetIn: -24.8116%, NetOut: -33.5935%
+
+--- Database ---
+  MySQL write: queued for async flush
+
+--- Host Scores ---
+  Best host: ubuntu24_192.168.63.133
+  ubuntu24_192.168.63.133 => 89.8914
+====================================================
+
+Received monitor data from: ubuntu24
+
+================== Received Data ==================
+Server: ubuntu24_192.168.63.133, Score: 90.0394
+
+--- CPU ---
+  Usage: 0.669242%, User: 0.308881%, System: 0.308881%
+  Nice: 0%, Idle: 99.3259%, IOWait: 0.00486488%
+  IRQ: 0%, SoftIRQ: 0.0514802%
+  Load: 0.14/0.08/0.02
+
+--- Memory ---
+  Used: 32.3348%, Total: 8.08293 GB
+  Free: 2.92996 GB, Avail: 5.46933 GB
+
+--- Network ---
+  In: 1.20979 KB/s, Out: 1.30106 KB/s
+  [ens33] Recv: 1.20979 KB/s, Send: 1.30106 KB/s
+
+--- Disk ---
+  [sda] Read: 0 KB/s, Write: 8 KB/s, Util: 0.1%
+  [sda1] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda2] Read: 0 KB/s, Write: 8 KB/s, Util: 0.1%
+
+--- Change Rates ---
+  CPU: -36.5483%, Mem: -0.134499%, Load: 0%
+  Disk: 0%, NetIn: 8.09528%, NetOut: 39.4518%
+
+--- Database ---
+  MySQL write: queued for async flush
+
+--- Host Scores ---
+  Best host: ubuntu24_192.168.63.133
+  ubuntu24_192.168.63.133 => 90.0394
+====================================================
+
+Received monitor data from: ubuntu24
+
+================== Received Data ==================
+Server: ubuntu24_192.168.63.133, Score: 89.9644
+
+--- CPU ---
+  Usage: 0.487836%, User: 0.256756%, System: 0.205404%
+  Nice: 0%, Idle: 99.5122%, IOWait: 0%
+  IRQ: 0%, SoftIRQ: 0.0256756%
+  Load: 0.14/0.08/0.02
+
+--- Memory ---
+  Used: 32.2962%, Total: 8.08293 GB
+  Free: 2.93308 GB, Avail: 5.47245 GB
+
+--- Network ---
+  In: 1.194 KB/s, Out: 1.0348 KB/s
+  [ens33] Recv: 1.194 KB/s, Send: 1.0348 KB/s
+
+--- Disk ---
+  [sda] Read: 0 KB/s, Write: 296 KB/s, Util: 1.1%
+  [sda1] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda2] Read: 0 KB/s, Write: 296 KB/s, Util: 1.1%
+
+--- Change Rates ---
+  CPU: -27.1063%, Mem: -0.119226%, Load: 0%
+  Disk: 1000%, NetIn: -1.30514%, NetOut: -20.4647%
+
+--- Database ---
+  MySQL write: queued for async flush
+
+--- Host Scores ---
+  Best host: ubuntu24_192.168.63.133
+  ubuntu24_192.168.63.133 => 89.9644
+====================================================
+
+Received monitor data from: ubuntu24
+
+================== Received Data ==================
+Server: ubuntu24_192.168.63.133, Score: 90.073
+
+--- CPU ---
+  Usage: 0.667776%, User: 0.308204%, System: 0.333888%
+  Nice: 0%, Idle: 99.3259%, IOWait: 0.00634388%
+  IRQ: 0%, SoftIRQ: 0.0256837%
+  Load: 0.14/0.08/0.02
+
+--- Memory ---
+  Used: 32.2745%, Total: 8.08293 GB
+  Free: 2.93482 GB, Avail: 5.47421 GB
+
+--- Network ---
+  In: 1.53087 KB/s, Out: 1.3155 KB/s
+  [ens33] Recv: 1.53087 KB/s, Send: 1.3155 KB/s
+
+--- Disk ---
+  [sda] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda1] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda2] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+
+--- Change Rates ---
+  CPU: 36.8855%, Mem: -0.0674205%, Load: 0%
+  Disk: -100%, NetIn: 28.2137%, NetOut: 27.1262%
+
+--- Database ---
+  MySQL write: queued for async flush
+
+--- Host Scores ---
+  Best host: ubuntu24_192.168.63.133
+  ubuntu24_192.168.63.133 => 90.073
+====================================================
+
+Received monitor data from: ubuntu24
+
+================== Received Data ==================
+Server: ubuntu24_192.168.63.133, Score: 89.7593
+
+--- CPU ---
+  Usage: 1.58565%, User: 0.580115%, System: 0.941075%
+  Nice: 0%, Idle: 98.4117%, IOWait: 0.00261696%
+  IRQ: 0%, SoftIRQ: 0.0644572%
+  Load: 0.13/0.08/0.02
+
+--- Memory ---
+  Used: 32.2519%, Total: 8.08293 GB
+  Free: 2.93665 GB, Avail: 5.47604 GB
+
+--- Network ---
+  In: 1.52535 KB/s, Out: 1.42637 KB/s
+  [ens33] Recv: 1.52535 KB/s, Send: 1.42637 KB/s
+
+--- Disk ---
+  [sda] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda1] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda2] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+
+--- Change Rates ---
+  CPU: 137.452%, Mem: -0.0700663%, Load: -7.14286%
+  Disk: 0%, NetIn: -0.360789%, NetOut: 8.42823%
+
+--- Database ---
+  MySQL write: queued for async flush
+
+--- Host Scores ---
+  Best host: ubuntu24_192.168.63.133
+  ubuntu24_192.168.63.133 => 89.7593
+====================================================
+
+Received monitor data from: ubuntu24
+
+================== Received Data ==================
+Server: ubuntu24_192.168.63.133, Score: 89.8857
+
+--- CPU ---
+  Usage: 1.20994%, User: 0.5921%, System: 0.5921%
+  Nice: 0%, Idle: 98.756%, IOWait: 0.0340329%
+  IRQ: 0%, SoftIRQ: 0.0257435%
+  Load: 0.13/0.08/0.02
+
+--- Memory ---
+  Used: 32.219%, Total: 8.08293 GB
+  Free: 2.9393 GB, Avail: 5.4787 GB
+
+--- Network ---
+  In: 1.47451 KB/s, Out: 1.424 KB/s
+  [ens33] Recv: 1.47451 KB/s, Send: 1.424 KB/s
+
+--- Disk ---
+  [sda] Read: 0 KB/s, Write: 36 KB/s, Util: 0.1%
+  [sda1] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda2] Read: 0 KB/s, Write: 36 KB/s, Util: 0.1%
+
+--- Change Rates ---
+  CPU: -23.694%, Mem: -0.102039%, Load: 0%
+  Disk: 0%, NetIn: -3.33274%, NetOut: -0.166381%
+
+--- Database ---
+  MySQL write: queued for async flush
+
+--- Host Scores ---
+  Best host: ubuntu24_192.168.63.133
+  ubuntu24_192.168.63.133 => 89.8857
+====================================================
+
+Received monitor data from: ubuntu24
+
+================== Received Data ==================
+Server: ubuntu24_192.168.63.133, Score: 89.9483
+
+--- CPU ---
+  Usage: 1.08596%, User: 0.517126%, System: 0.517126%
+  Nice: 0%, Idle: 98.914%, IOWait: 0%
+  IRQ: 0%, SoftIRQ: 0.0517126%
+  Load: 0.13/0.08/0.02
+
+--- Memory ---
+  Used: 32.2047%, Total: 8.08293 GB
+  Free: 2.94045 GB, Avail: 5.47985 GB
+
+--- Network ---
+  In: 3.38535 KB/s, Out: 3.81966 KB/s
+  [ens33] Recv: 3.38535 KB/s, Send: 3.81966 KB/s
+
+--- Disk ---
+  [sda] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda1] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda2] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+
+--- Change Rates ---
+  CPU: -10.2467%, Mem: -0.0442339%, Load: 0%
+  Disk: -100%, NetIn: 129.591%, NetOut: 168.235%
+
+--- Database ---
+  MySQL write: queued for async flush
+
+--- Host Scores ---
+  Best host: ubuntu24_192.168.63.133
+  ubuntu24_192.168.63.133 => 89.9483
+====================================================
+
+Received monitor data from: ubuntu24
+
+================== Received Data ==================
+Server: ubuntu24_192.168.63.133, Score: 88.7564
+
+--- CPU ---
+  Usage: 4.51884%, User: 1.61016%, System: 2.51913%
+  Nice: 0%, Idle: 95.4812%, IOWait: 0%
+  IRQ: 0%, SoftIRQ: 0.389556%
+  Load: 0.13/0.08/0.02
+
+--- Memory ---
+  Used: 32.1727%, Total: 8.08293 GB
+  Free: 2.94302 GB, Avail: 5.48244 GB
+
+--- Network ---
+  In: 4.23402 KB/s, Out: 5.35468 KB/s
+  [ens33] Recv: 4.23402 KB/s, Send: 5.35468 KB/s
+
+--- Disk ---
+  [sda] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda1] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda2] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+
+--- Change Rates ---
+  CPU: 316.113%, Mem: -0.0994164%, Load: 0%
+  Disk: 0%, NetIn: 25.0692%, NetOut: 40.1873%
+
+--- Database ---
+  MySQL write: queued for async flush
+
+--- Host Scores ---
+  Best host: ubuntu24_192.168.63.133
+  ubuntu24_192.168.63.133 => 88.7564
+====================================================
+
+Received monitor data from: ubuntu24
+
+================== Received Data ==================
+Server: ubuntu24_192.168.63.133, Score: 89.5388
+
+--- CPU ---
+  Usage: 2.27385%, User: 0.904373%, System: 1.3178%
+  Nice: 0%, Idle: 97.7178%, IOWait: 0.00839775%
+  IRQ: 0%, SoftIRQ: 0.0516784%
+  Load: 0.13/0.08/0.02
+
+--- Memory ---
+  Used: 32.184%, Total: 8.08293 GB
+  Free: 2.94211 GB, Avail: 5.48152 GB
+
+--- Network ---
+  In: 1.26418 KB/s, Out: 1.45971 KB/s
+  [ens33] Recv: 1.26418 KB/s, Send: 1.45971 KB/s
+
+--- Disk ---
+  [sda] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda1] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda2] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+
+--- Change Rates ---
+  CPU: -49.6807%, Mem: 0.035061%, Load: 0%
+  Disk: 0%, NetIn: -70.1424%, NetOut: -72.7395%
+
+--- Database ---
+  MySQL write: queued for async flush
+
+--- Host Scores ---
+  Best host: ubuntu24_192.168.63.133
+  ubuntu24_192.168.63.133 => 89.5388
+====================================================
+
+Received monitor data from: ubuntu24
+
+================== Received Data ==================
+Server: ubuntu24_192.168.63.133, Score: 89.2075
+
+--- CPU ---
+  Usage: 3.21054%, User: 1.78651%, System: 1.39814%
+  Nice: 0%, Idle: 96.7895%, IOWait: 0%
+  IRQ: 0%, SoftIRQ: 0.0258914%
+  Load: 0.12/0.08/0.02
+
+--- Memory ---
+  Used: 32.1982%, Total: 8.08293 GB
+  Free: 2.94095 GB, Avail: 5.48038 GB
+
+--- Network ---
+  In: 0.882609 KB/s, Out: 0.836054 KB/s
+  [ens33] Recv: 0.882609 KB/s, Send: 0.836054 KB/s
+
+--- Disk ---
+  [sda] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda1] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda2] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+
+--- Change Rates ---
+  CPU: 41.1938%, Mem: 0.0441279%, Load: -7.69231%
+  Disk: 0%, NetIn: -30.1832%, NetOut: -42.7247%
+
+--- Database ---
+  MySQL write: queued for async flush
+
+--- Host Scores ---
+  Best host: ubuntu24_192.168.63.133
+  ubuntu24_192.168.63.133 => 89.2075
+====================================================
+
+Received monitor data from: ubuntu24
+
+================== Received Data ==================
+Server: ubuntu24_192.168.63.133, Score: 90.0816
+
+--- CPU ---
+  Usage: 0.670353%, User: 0.360959%, System: 0.232045%
+  Nice: 0%, Idle: 99.3055%, IOWait: 0.0241327%
+  IRQ: 0%, SoftIRQ: 0.0773484%
+  Load: 0.12/0.08/0.02
+
+--- Memory ---
+  Used: 32.1982%, Total: 8.08293 GB
+  Free: 2.94095 GB, Avail: 5.48038 GB
+
+--- Network ---
+  In: 1.06468 KB/s, Out: 0.940565 KB/s
+  [ens33] Recv: 1.06468 KB/s, Send: 0.940565 KB/s
+
+--- Disk ---
+  [sda] Read: 0 KB/s, Write: 20 KB/s, Util: 0.1%
+  [sda1] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda2] Read: 0 KB/s, Write: 20 KB/s, Util: 0.1%
+
+--- Change Rates ---
+  CPU: -79.1202%, Mem: 0%, Load: 0%
+  Disk: 0%, NetIn: 20.6288%, NetOut: 12.5005%
+
+--- Database ---
+  MySQL write: queued for async flush
+
+--- Host Scores ---
+  Best host: ubuntu24_192.168.63.133
+  ubuntu24_192.168.63.133 => 90.0816
+====================================================
+
+Received monitor data from: ubuntu24
+
+================== Received Data ==================
+Server: ubuntu24_192.168.63.133, Score: 90.1243
+
+--- CPU ---
+  Usage: 0.591097%, User: 0.385498%, System: 0.205599%
+  Nice: 0%, Idle: 99.4089%, IOWait: 0%
+  IRQ: 0%, SoftIRQ: 0%
+  Load: 0.12/0.08/0.02
+
+--- Memory ---
+  Used: 32.198%, Total: 8.08293 GB
+  Free: 2.94095 GB, Avail: 5.48039 GB
+
+--- Network ---
+  In: 1.39888 KB/s, Out: 1.80906 KB/s
+  [ens33] Recv: 1.39888 KB/s, Send: 1.80906 KB/s
+
+--- Disk ---
+  [sda] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda1] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda2] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+
+--- Change Rates ---
+  CPU: -11.8231%, Mem: -0.000604226%, Load: 0%
+  Disk: -100%, NetIn: 31.3893%, NetOut: 92.3375%
+
+--- Database ---
+  MySQL write: queued for async flush
+
+--- Host Scores ---
+  Best host: ubuntu24_192.168.63.133
+  ubuntu24_192.168.63.133 => 90.1243
+====================================================
+
+Received monitor data from: ubuntu24
+
+================== Received Data ==================
+Server: ubuntu24_192.168.63.133, Score: 88.4553
+
+--- CPU ---
+  Usage: 5.32245%, User: 1.82791%, System: 3.03756%
+  Nice: 0%, Idle: 94.6776%, IOWait: 0%
+  IRQ: 0%, SoftIRQ: 0.456978%
+  Load: 0.12/0.08/0.02
+
+--- Memory ---
+  Used: 32.2416%, Total: 8.08293 GB
+  Free: 2.93742 GB, Avail: 5.47687 GB
+
+--- Network ---
+  In: 9.29644 KB/s, Out: 10.1414 KB/s
+  [ens33] Recv: 9.29644 KB/s, Send: 10.1414 KB/s
+
+--- Disk ---
+  [sda] Read: 0 KB/s, Write: 4 KB/s, Util: 0%
+  [sda1] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda2] Read: 0 KB/s, Write: 4 KB/s, Util: 0%
+
+--- Change Rates ---
+  CPU: 800.436%, Mem: 0.135407%, Load: 0%
+  Disk: 0%, NetIn: 564.565%, NetOut: 460.59%
+
+--- Database ---
+  MySQL write: queued for async flush
+
+--- Host Scores ---
+  Best host: ubuntu24_192.168.63.133
+  ubuntu24_192.168.63.133 => 88.4553
+====================================================
+
+Received monitor data from: ubuntu24
+
+================== Received Data ==================
+Server: ubuntu24_192.168.63.133, Score: 89.3814
+
+--- CPU ---
+  Usage: 2.6765%, User: 0.9275%, System: 1.5635%
+  Nice: 0%, Idle: 97.3235%, IOWait: 0%
+  IRQ: 0%, SoftIRQ: 0.1855%
+  Load: 0.12/0.08/0.02
+
+--- Memory ---
+  Used: 32.2414%, Total: 8.08293 GB
+  Free: 2.93742 GB, Avail: 5.47688 GB
+
+--- Network ---
+  In: 4.75683 KB/s, Out: 5.60789 KB/s
+  [ens33] Recv: 4.75683 KB/s, Send: 5.60789 KB/s
+
+--- Disk ---
+  [sda] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda1] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda2] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+
+--- Change Rates ---
+  CPU: -49.713%, Mem: -0.000461433%, Load: 0%
+  Disk: 0%, NetIn: -48.8317%, NetOut: -44.703%
+
+--- Database ---
+  MySQL write: queued for async flush
+
+--- Host Scores ---
+  Best host: ubuntu24_192.168.63.133
+  ubuntu24_192.168.63.133 => 89.3814
+====================================================
+
+Received monitor data from: ubuntu24
+
+================== Received Data ==================
+Server: ubuntu24_192.168.63.133, Score: 89.7721
+
+--- CPU ---
+  Usage: 1.55445%, User: 0.595871%, System: 0.854945%
+  Nice: 0%, Idle: 98.4362%, IOWait: 0.00935258%
+  IRQ: 0%, SoftIRQ: 0.10363%
+  Load: 0.11/0.08/0.02
+
+--- Memory ---
+  Used: 32.2507%, Total: 8.08293 GB
+  Free: 2.93667 GB, Avail: 5.47613 GB
+
+--- Network ---
+  In: 1.90219 KB/s, Out: 2.1213 KB/s
+  [ens33] Recv: 1.90219 KB/s, Send: 2.1213 KB/s
+
+--- Disk ---
+  [sda] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda1] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda2] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+
+--- Change Rates ---
+  CPU: -41.9225%, Mem: 0.0287036%, Load: -8.33333%
+  Disk: 0%, NetIn: -60.0115%, NetOut: -62.173%
+
+--- Database ---
+  MySQL write: queued for async flush
+
+--- Host Scores ---
+  Best host: ubuntu24_192.168.63.133
+  ubuntu24_192.168.63.133 => 89.7721
+====================================================
+
+Received monitor data from: ubuntu24
+
+================== Received Data ==================
+Server: ubuntu24_192.168.63.133, Score: 86.1498
+
+--- CPU ---
+  Usage: 11.7017%, User: 8.25691%, System: 3.12921%
+  Nice: 0%, Idle: 88.2863%, IOWait: 0.0119909%
+  IRQ: 0%, SoftIRQ: 0.315551%
+  Load: 0.11/0.08/0.02
+
+--- Memory ---
+  Used: 32.4866%, Total: 8.08293 GB
+  Free: 2.91758 GB, Avail: 5.45706 GB
+
+--- Network ---
+  In: 4.07564 KB/s, Out: 5.14594 KB/s
+  [ens33] Recv: 4.07564 KB/s, Send: 5.14594 KB/s
+
+--- Disk ---
+  [sda] Read: 0 KB/s, Write: 36 KB/s, Util: 0%
+  [sda1] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda2] Read: 0 KB/s, Write: 36 KB/s, Util: 0%
+
+--- Change Rates ---
+  CPU: 652.788%, Mem: 0.731614%, Load: 0%
+  Disk: 0%, NetIn: 114.261%, NetOut: 142.585%
+
+--- Database ---
+  MySQL write: queued for async flush
+
+--- Host Scores ---
+  Best host: ubuntu24_192.168.63.133
+  ubuntu24_192.168.63.133 => 86.1498
+====================================================
+
+Received monitor data from: ubuntu24
+
+================== Received Data ==================
+Server: ubuntu24_192.168.63.133, Score: 84.722
+
+--- CPU ---
+  Usage: 15.5912%, User: 4.87224%, System: 10.1922%
+  Nice: 0%, Idle: 84.3981%, IOWait: 0.0107453%
+  IRQ: 0%, SoftIRQ: 0.526729%
+  Load: 0.11/0.08/0.02
+
+--- Memory ---
+  Used: 32.7083%, Total: 8.08293 GB
+  Free: 2.89946 GB, Avail: 5.43914 GB
+
+--- Network ---
+  In: 8.57463 KB/s, Out: 8.55333 KB/s
+  [ens33] Recv: 8.57463 KB/s, Send: 8.55333 KB/s
+
+--- Disk ---
+  [sda] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda1] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda2] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+
+--- Change Rates ---
+  CPU: 33.2389%, Mem: 0.682443%, Load: 0%
+  Disk: 0%, NetIn: 110.387%, NetOut: 66.2152%
+
+--- Database ---
+  MySQL write: queued for async flush
+
+--- Host Scores ---
+  Best host: ubuntu24_192.168.63.133
+  ubuntu24_192.168.63.133 => 84.722
+====================================================
+
+Received monitor data from: ubuntu24
+
+================== Received Data ==================
+Server: ubuntu24_192.168.63.133, Score: 88.1431
+
+--- CPU ---
+  Usage: 5.68075%, User: 1.78983%, System: 3.57965%
+  Nice: 0%, Idle: 94.3154%, IOWait: 0.00383905%
+  IRQ: 0%, SoftIRQ: 0.311274%
+  Load: 0.11/0.08/0.02
+
+--- Memory ---
+  Used: 32.7668%, Total: 8.08293 GB
+  Free: 2.8947 GB, Avail: 5.43442 GB
+
+--- Network ---
+  In: 9.54393 KB/s, Out: 11.1886 KB/s
+  [ens33] Recv: 9.54393 KB/s, Send: 11.1886 KB/s
+
+--- Disk ---
+  [sda] Read: 0 KB/s, Write: 84 KB/s, Util: 0.2%
+  [sda1] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda2] Read: 0 KB/s, Write: 84 KB/s, Util: 0.2%
+
+--- Change Rates ---
+  CPU: -63.5643%, Mem: 0.178685%, Load: 0%
+  Disk: 0%, NetIn: 11.3042%, NetOut: 30.8096%
+
+--- Database ---
+  MySQL write: queued for async flush
+
+--- Host Scores ---
+  Best host: ubuntu24_192.168.63.133
+  ubuntu24_192.168.63.133 => 88.1431
+====================================================
+
+Received monitor data from: ubuntu24
+
+================== Received Data ==================
+Server: ubuntu24_192.168.63.133, Score: 75.9636
+
+--- CPU ---
+  Usage: 24.1643%, User: 9.11165%, System: 11.9744%
+  Nice: 0%, Idle: 68.1324%, IOWait: 7.70325%
+  IRQ: 0%, SoftIRQ: 3.07826%
+  Load: 0.11/0.08/0.02
+
+--- Memory ---
+  Used: 32.9509%, Total: 8.08293 GB
+  Free: 2.87706 GB, Avail: 5.41953 GB
+
+--- Network ---
+  In: 2.62517 KB/s, Out: 2.00782 KB/s
+  [ens33] Recv: 2.62517 KB/s, Send: 2.00782 KB/s
+
+--- Disk ---
+  [sda] Read: 0 KB/s, Write: 7244 KB/s, Util: 37%
+  [sda1] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda2] Read: 0 KB/s, Write: 7244 KB/s, Util: 37.9%
+
+--- Change Rates ---
+  CPU: 325.372%, Mem: 0.561969%, Load: 0%
+  Disk: 18850%, NetIn: -72.4939%, NetOut: -82.0547%
+
+--- Database ---
+  MySQL write: queued for async flush
+
+--- Host Scores ---
+  Best host: ubuntu24_192.168.63.133
+  ubuntu24_192.168.63.133 => 75.9636
+====================================================
+
+Received monitor data from: ubuntu24
+
+================== Received Data ==================
+Server: ubuntu24_192.168.63.133, Score: 89.0395
+
+--- CPU ---
+  Usage: 2.85302%, User: 0.81141%, System: 1.85839%
+  Nice: 0%, Idle: 97.0072%, IOWait: 0.139824%
+  IRQ: 0%, SoftIRQ: 0.183222%
+  Load: 0.18/0.09/0.02
+
+--- Memory ---
+  Used: 32.9595%, Total: 8.08293 GB
+  Free: 2.8763 GB, Avail: 5.41884 GB
+
+--- Network ---
+  In: 0.688711 KB/s, Out: 0.749022 KB/s
+  [ens33] Recv: 0.688711 KB/s, Send: 0.749022 KB/s
+
+--- Disk ---
+  [sda] Read: 0 KB/s, Write: 92 KB/s, Util: 0.4%
+  [sda1] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda2] Read: 0 KB/s, Write: 92 KB/s, Util: 0.4%
+
+--- Change Rates ---
+  CPU: -88.1933%, Mem: 0.0261407%, Load: 63.6364%
+  Disk: -98.9446%, NetIn: -73.7651%, NetOut: -62.6948%
+
+--- Database ---
+  MySQL write: queued for async flush
+
+--- Host Scores ---
+  Best host: ubuntu24_192.168.63.133
+  ubuntu24_192.168.63.133 => 89.0395
+====================================================
+
+Received monitor data from: ubuntu24
+
+================== Received Data ==================
+Server: ubuntu24_192.168.63.133, Score: 89.8206
+
+--- CPU ---
+  Usage: 0.986695%, User: 0.441416%, System: 0.545279%
+  Nice: 0%, Idle: 98.9319%, IOWait: 0.0814283%
+  IRQ: 0%, SoftIRQ: 0%
+  Load: 0.18/0.09/0.02
+
+--- Memory ---
+  Used: 32.6332%, Total: 8.08293 GB
+  Free: 2.90263 GB, Avail: 5.44522 GB
+
+--- Network ---
+  In: 1.05007 KB/s, Out: 1.04618 KB/s
+  [ens33] Recv: 1.05007 KB/s, Send: 1.04618 KB/s
+
+--- Disk ---
+  [sda] Read: 0 KB/s, Write: 100 KB/s, Util: 0.2%
+  [sda1] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda2] Read: 0 KB/s, Write: 100 KB/s, Util: 0.2%
+
+--- Change Rates ---
+  CPU: -65.4158%, Mem: -0.990204%, Load: 0%
+  Disk: -50%, NetIn: 52.4691%, NetOut: 39.6722%
+
+--- Database ---
+  MySQL write: queued for async flush
+
+--- Host Scores ---
+  Best host: ubuntu24_192.168.63.133
+  ubuntu24_192.168.63.133 => 89.8206
+====================================================
+
+Received monitor data from: ubuntu24
+
+================== Received Data ==================
+Server: ubuntu24_192.168.63.133, Score: 89.8074
+
+--- CPU ---
+  Usage: 0.724635%, User: 0.155279%, System: 0.491717%
+  Nice: 0%, Idle: 99.135%, IOWait: 0.140372%
+  IRQ: 0%, SoftIRQ: 0.0776395%
+  Load: 0.18/0.09/0.02
+
+--- Memory ---
+  Used: 32.6329%, Total: 8.08293 GB
+  Free: 2.90263 GB, Avail: 5.44524 GB
+
+--- Network ---
+  In: 0.983779 KB/s, Out: 1.22144 KB/s
+  [ens33] Recv: 0.983779 KB/s, Send: 1.22144 KB/s
+
+--- Disk ---
+  [sda] Read: 0 KB/s, Write: 260 KB/s, Util: 0.9%
+  [sda1] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda2] Read: 0 KB/s, Write: 260 KB/s, Util: 0.9%
+
+--- Change Rates ---
+  CPU: -26.5593%, Mem: -0.000759826%, Load: 0%
+  Disk: 350%, NetIn: -6.31313%, NetOut: 16.7534%
+
+--- Database ---
+  MySQL write: queued for async flush
+
+--- Host Scores ---
+  Best host: ubuntu24_192.168.63.133
+  ubuntu24_192.168.63.133 => 89.8074
+====================================================
+
+Received monitor data from: ubuntu24
+
+================== Received Data ==================
+Server: ubuntu24_192.168.63.133, Score: 89.3114
+
+--- CPU ---
+  Usage: 1.66976%, User: 0.913148%, System: 0.365259%
+  Nice: 0%, Idle: 98.194%, IOWait: 0.136268%
+  IRQ: 0%, SoftIRQ: 0.391349%
+  Load: 0.18/0.09/0.02
+
+--- Memory ---
+  Used: 32.6339%, Total: 8.08293 GB
+  Free: 2.90263 GB, Avail: 5.44516 GB
+
+--- Network ---
+  In: 2.45337 KB/s, Out: 2.63055 KB/s
+  [ens33] Recv: 2.45337 KB/s, Send: 2.63055 KB/s
+
+--- Disk ---
+  [sda] Read: 0 KB/s, Write: 2512 KB/s, Util: 1.5%
+  [sda1] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda2] Read: 0 KB/s, Write: 2512 KB/s, Util: 2%
+
+--- Change Rates ---
+  CPU: 130.427%, Mem: 0.00287567%, Load: 0%
+  Disk: 122.222%, NetIn: 149.382%, NetOut: 115.364%
+
+--- Database ---
+  MySQL write: queued for async flush
+
+--- Host Scores ---
+  Best host: ubuntu24_192.168.63.133
+  ubuntu24_192.168.63.133 => 89.3114
+====================================================
+
+Received monitor data from: ubuntu24
+
+================== Received Data ==================
+Server: ubuntu24_192.168.63.133, Score: 87.8029
+
+--- CPU ---
+  Usage: 6.43916%, User: 1.74891%, System: 4.29277%
+  Nice: 0%, Idle: 93.4004%, IOWait: 0.160475%
+  IRQ: 0%, SoftIRQ: 0.397479%
+  Load: 0.18/0.09/0.02
+
+--- Memory ---
+  Used: 32.6477%, Total: 8.08293 GB
+  Free: 2.90148 GB, Avail: 5.44404 GB
+
+--- Network ---
+  In: 5.34771 KB/s, Out: 5.42366 KB/s
+  [ens33] Recv: 5.34771 KB/s, Send: 5.42366 KB/s
+
+--- Disk ---
+  [sda] Read: 0 KB/s, Write: 240 KB/s, Util: 0.9%
+  [sda1] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda2] Read: 0 KB/s, Write: 240 KB/s, Util: 0.9%
+
+--- Change Rates ---
+  CPU: 285.634%, Mem: 0.0423156%, Load: 0%
+  Disk: -55%, NetIn: 117.974%, NetOut: 106.179%
+
+--- Database ---
+  MySQL write: queued for async flush
+
+--- Host Scores ---
+  Best host: ubuntu24_192.168.63.133
+  ubuntu24_192.168.63.133 => 87.8029
+====================================================
+
+Received monitor data from: ubuntu24
+
+================== Received Data ==================
+Server: ubuntu24_192.168.63.133, Score: 89.272
+
+--- CPU ---
+  Usage: 2.31666%, User: 0.572659%, System: 1.63989%
+  Nice: 0%, Idle: 97.5304%, IOWait: 0.1529%
+  IRQ: 0%, SoftIRQ: 0.10412%
+  Load: 0.17/0.09/0.02
+
+--- Memory ---
+  Used: 32.663%, Total: 8.08293 GB
+  Free: 2.90015 GB, Avail: 5.4428 GB
+
+--- Network ---
+  In: 0.600263 KB/s, Out: 0.726942 KB/s
+  [ens33] Recv: 0.600263 KB/s, Send: 0.726942 KB/s
+
+--- Disk ---
+  [sda] Read: 0 KB/s, Write: 216 KB/s, Util: 0.7%
+  [sda1] Read: 0 KB/s, Write: 0 KB/s, Util: 0%
+  [sda2] Read: 0 KB/s, Write: 216 KB/s, Util: 0.7%
+
+--- Change Rates ---
+  CPU: -64.0222%, Mem: 0.0469831%, Load: -5.55556%
+  Disk: -22.2222%, NetIn: -88.7753%, NetOut: -86.5968%
+
+--- Database ---
+  MySQL write: queued for async flush
+
+--- Host Scores ---
+  Best host: ubuntu24_192.168.63.133
+  ubuntu24_192.168.63.133 => 89.272
+====================================================
+

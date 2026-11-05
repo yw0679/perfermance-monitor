@@ -1,0 +1,10 @@
+manager_address:127.0.0.1:50051
+Push interval: 1 s
+libbpf: Kernel error message: Cannot find specified filter chain
+libbpf: Kernel error message: Exclusivity flag on, cannot modify
+libbpf: Kernel error message: Cannot find specified filter chain
+NetEbpfMonitor: attached eBPF TC hooks to 1 interfaces
+NetEbpfMonitor: attached process-level probes on kprobe/tcp_sendmsg + kretprobe/tcp_recvmsg
+推送目标地址: 127.0.0.1:50051 每 1 s推送一次
+[collect] ubuntu24 192.168.63.133 seq=1793193932441 cpu=0% mem=32.6173% net(ens33) rx=0KB/s tx=0KB/s disk_count=3
+main() exit

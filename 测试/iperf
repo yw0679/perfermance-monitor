@@ -1,0 +1,7 @@
+cmd
+iperf3 -s -B 192.168.63.1
+linux
+iperf3 -c 192.168.63.1 -R -t 15 -i 1 | tee "测试/iperf-recv-$(date +%Y%m%d-%H%M%S).log"
+sudo ./build/worker/worker 127.0.0.1:50051 1 | tee "测试/net-recv-worker-$(date +%Y%m%d-%H%M%S).log"
+
+对比日志输出

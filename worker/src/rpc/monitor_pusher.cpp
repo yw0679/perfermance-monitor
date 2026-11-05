@@ -19,6 +19,7 @@ void PrintCollectSummary(const monitor::proto::MonitorInfo& info) {
     std::cout << info.name();
   }
 
+  std::cout << " seq=" << info.sequence();
   if (info.cpu_stat_size() > 0) {
     const auto& cpu = info.cpu_stat(0);
     std::cout << " cpu=" << cpu.cpu_percent() << "%";

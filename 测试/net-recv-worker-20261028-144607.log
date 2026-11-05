@@ -1,0 +1,34 @@
+manager_address:127.0.0.1:50051
+Push interval: 1 s
+NetEbpfMonitor: attached eBPF TC hooks to 1 interfaces
+NetEbpfMonitor: attached process-level probes on kprobe/tcp_sendmsg + kretprobe/tcp_recvmsg
+推送目标地址: 127.0.0.1:50051 每 1 s推送一次
+[collect] ubuntu24 192.168.63.133 seq=1793198767577 cpu=0% mem=32.2612% net(ens33) rx=0KB/s tx=0KB/s disk_count=3
+[collect] ubuntu24 192.168.63.133 seq=1793198767578 cpu=5.33221% mem=32.5907% net(ens33) rx=4.51313KB/s tx=4.48984KB/s disk_count=3 top_proc=sshd(1772) 8.14165KB/s
+[collect] ubuntu24 192.168.63.133 seq=1793198767579 cpu=17.5279% mem=32.6118% net(ens33) rx=1.37057KB/s tx=1.44639KB/s disk_count=3 top_proc=grpcpp_sync_ser(6088) 3.48568KB/s
+[collect] ubuntu24 192.168.63.133 seq=1793198767580 cpu=2.30792% mem=32.611% net(ens33) rx=0.806982KB/s tx=0.83615KB/s disk_count=3 top_proc=grpcpp_sync_ser(6088) 4.09328KB/s
+[collect] ubuntu24 192.168.63.133 seq=1793198767581 cpu=1.13271% mem=32.5864% net(ens33) rx=0.958453KB/s tx=0.948732KB/s disk_count=3 top_proc=grpcpp_sync_ser(6088) 4.23227KB/s
+[collect] ubuntu24 192.168.63.133 seq=1793198767582 cpu=1.9305% mem=32.459% net(ens33) rx=0.549151KB/s tx=0.675729KB/s disk_count=3 top_proc=grpcpp_sync_ser(6088) 4.24435KB/s
+[collect] ubuntu24 192.168.63.133 seq=1793198767583 cpu=2.80126% mem=32.4258% net(ens33) rx=0.644639KB/s tx=0.817971KB/s disk_count=3 top_proc=grpcpp_sync_ser(6088) 4.23005KB/s
+[collect] ubuntu24 192.168.63.133 seq=1793198767584 cpu=2.49369% mem=32.3864% net(ens33) rx=0.687431KB/s tx=0.747801KB/s disk_count=3 top_proc=grpcpp_sync_ser(6088) 4.23465KB/s
+[collect] ubuntu24 192.168.63.133 seq=1793198767585 cpu=1.70118% mem=32.3523% net(ens33) rx=0.998229KB/s tx=1.03231KB/s disk_count=3 top_proc=grpcpp_sync_ser(6088) 4.25482KB/s
+[collect] ubuntu24 192.168.63.133 seq=1793198767586 cpu=0.825753% mem=32.3204% net(ens33) rx=1.22267KB/s tx=2.86426KB/s disk_count=3 top_proc=grpcpp_sync_ser(6088) 4.23703KB/s
+[collect] ubuntu24 192.168.63.133 seq=1793198767587 cpu=0.880299% mem=32.2395% net(ens33) rx=52450KB/s tx=101.553KB/s disk_count=3 top_proc=tokio-rt-worker(2408) 38.1556KB/s
+[collect] ubuntu24 192.168.63.133 seq=1793198767588 cpu=16.1981% mem=32.7102% net(ens33) rx=169259KB/s tx=178.682KB/s disk_count=3 top_proc=iperf3(9105) 169024KB/s
+[collect] ubuntu24 192.168.63.133 seq=1793198767589 cpu=46.848% mem=32.7047% net(ens33) rx=157872KB/s tx=172.476KB/s disk_count=3 top_proc=iperf3(9105) 157637KB/s
+[collect] ubuntu24 192.168.63.133 seq=1793198767590 cpu=36.6435% mem=32.6831% net(ens33) rx=146013KB/s tx=164.146KB/s disk_count=3 top_proc=iperf3(9105) 145784KB/s
+[collect] ubuntu24 192.168.63.133 seq=1793198767591 cpu=37.5083% mem=32.1944% net(ens33) rx=159628KB/s tx=177.782KB/s disk_count=3 top_proc=iperf3(9105) 159382KB/s
+[collect] ubuntu24 192.168.63.133 seq=1793198767592 cpu=36.5863% mem=32.194% net(ens33) rx=185938KB/s tx=224.656KB/s disk_count=3 top_proc=iperf3(9105) 185651KB/s
+[collect] ubuntu24 192.168.63.133 seq=1793198767593 cpu=37.8077% mem=32.1857% net(ens33) rx=157809KB/s tx=171.169KB/s disk_count=3 top_proc=iperf3(9105) 157563KB/s
+[collect] ubuntu24 192.168.63.133 seq=1793198767594 cpu=38.6364% mem=32.1858% net(ens33) rx=186956KB/s tx=225.943KB/s disk_count=3 top_proc=iperf3(9105) 186603KB/s
+[collect] ubuntu24 192.168.63.133 seq=1793198767595 cpu=37.1932% mem=32.1874% net(ens33) rx=190504KB/s tx=233.678KB/s disk_count=3 top_proc=iperf3(9105) 190278KB/s
+[collect] ubuntu24 192.168.63.133 seq=1793198767596 cpu=36.5048% mem=32.1871% net(ens33) rx=176654KB/s tx=208.126KB/s disk_count=3 top_proc=iperf3(9105) 176250KB/s
+[collect] ubuntu24 192.168.63.133 seq=1793198767597 cpu=38.4696% mem=32.1798% net(ens33) rx=178275KB/s tx=207.293KB/s disk_count=3 top_proc=iperf3(9105) 178132KB/s
+[collect] ubuntu24 192.168.63.133 seq=1793198767598 cpu=39.4618% mem=32.1891% net(ens33) rx=199471KB/s tx=245.02KB/s disk_count=3 top_proc=iperf3(9105) 199165KB/s
+[collect] ubuntu24 192.168.63.133 seq=1793198767599 cpu=37.3983% mem=32.1967% net(ens33) rx=202030KB/s tx=248.343KB/s disk_count=3 top_proc=iperf3(9105) 201599KB/s
+[collect] ubuntu24 192.168.63.133 seq=1793198767600 cpu=37.6422% mem=32.1938% net(ens33) rx=188036KB/s tx=222.785KB/s disk_count=3 top_proc=iperf3(9105) 187811KB/s
+[collect] ubuntu24 192.168.63.133 seq=1793198767601 cpu=35.762% mem=32.1909% net(ens33) rx=159587KB/s tx=178.014KB/s disk_count=3 top_proc=iperf3(9105) 159383KB/s
+[collect] ubuntu24 192.168.63.133 seq=1793198767602 cpu=26.4335% mem=32.1002% net(ens33) rx=121856KB/s tx=146.251KB/s disk_count=3 top_proc=grpcpp_sync_ser(6088) 4.55678KB/s
+[collect] ubuntu24 192.168.63.133 seq=1793198767603 cpu=2.49115% mem=32.1352% net(ens33) rx=0.694386KB/s tx=0.725507KB/s disk_count=3 top_proc=grpcpp_sync_ser(6088) 4.39595KB/s
+[collect] ubuntu24 192.168.63.133 seq=1793198767604 cpu=4.84461% mem=32.1451% net(ens33) rx=8.27611KB/s tx=8.98933KB/s disk_count=3 top_proc=sshd(1772) 16.67KB/s
+[collect] ubuntu24 192.168.63.133 seq=1793198767605 cpu=1.04359% mem=32.1398% net(ens33) rx=2.38627KB/s tx=2.28895KB/s disk_count=3 top_proc=grpcpp_sync_ser(6088) 4.40074KB/s

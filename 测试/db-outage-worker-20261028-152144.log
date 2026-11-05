@@ -1,0 +1,1460 @@
+manager_address:127.0.0.1:50061
+Push interval: 1 s
+libbpf: Kernel error message: Exclusivity flag on, cannot modify
+libbpf: Kernel error message: Exclusivity flag on, cannot modify
+NetEbpfMonitor: attached eBPF TC hooks to 1 interfaces
+NetEbpfMonitor: attached process-level probes on kprobe/tcp_sendmsg + kretprobe/tcp_recvmsg
+推送目标地址: 127.0.0.1:50061 每 1 s推送一次
+[collect] ubuntu24 192.168.63.133 seq=1793200904701 cpu=0% mem=32.5224% net(ens33) rx=0KB/s tx=0KB/s disk_count=3
+[collect] ubuntu24 192.168.63.133 seq=1793200904702 cpu=36.8356% mem=33.024% net(ens33) rx=3.39592KB/s tx=3.52638KB/s disk_count=3
+[collect] ubuntu24 192.168.63.133 seq=1793200904703 cpu=13.259% mem=33.0473% net(ens33) rx=0.96788KB/s tx=1.06331KB/s disk_count=3 top_proc=grpcpp_sync_ser(10342) 2.95186KB/s
+[collect] ubuntu24 192.168.63.133 seq=1793200904704 cpu=2.63137% mem=33.03% net(ens33) rx=0.741958KB/s tx=0.749748KB/s disk_count=3 top_proc=grpcpp_sync_ser(10342) 4.11264KB/s
+[collect] ubuntu24 192.168.63.133 seq=1793200904705 cpu=0.619454% mem=33.0015% net(ens33) rx=0.726955KB/s tx=0.750342KB/s disk_count=3 top_proc=grpcpp_sync_ser(10342) 4.08331KB/s
+[collect] ubuntu24 192.168.63.133 seq=1793200904706 cpu=3.05293% mem=32.507% net(ens33) rx=0.644682KB/s tx=0.734275KB/s disk_count=3 top_proc=grpcpp_sync_ser(10342) 4.23014KB/s
+[collect] ubuntu24 192.168.63.133 seq=1793200904707 cpu=2.11548% mem=32.4921% net(ens33) rx=0.710532KB/s tx=0.829279KB/s disk_count=3 top_proc=grpcpp_sync_ser(10342) 4.24371KB/s
+[collect] ubuntu24 192.168.63.133 seq=1793200904708 cpu=2.33256% mem=32.492% net(ens33) rx=1.0366KB/s tx=1.12234KB/s disk_count=3 top_proc=grpcpp_sync_ser(10342) 4.24183KB/s
+[collect] ubuntu24 192.168.63.133 seq=1793200904709 cpu=1.1636% mem=32.4924% net(ens33) rx=0.886914KB/s tx=0.820785KB/s disk_count=3 top_proc=grpcpp_sync_ser(10342) 4.22935KB/s
+[collect] ubuntu24 192.168.63.133 seq=1793200904710 cpu=1.39492% mem=32.4916% net(ens33) rx=0.856783KB/s tx=0.837311KB/s disk_count=3 top_proc=grpcpp_sync_ser(10342) 4.25373KB/s
+[collect] ubuntu24 192.168.63.133 seq=1793200904711 cpu=2.6337% mem=32.4982% net(ens33) rx=1.55451KB/s tx=1.39088KB/s disk_count=3 top_proc=grpcpp_sync_ser(10342) 4.22622KB/s
+[collect] ubuntu24 192.168.63.133 seq=1793200904712 cpu=1.6345% mem=32.5095% net(ens33) rx=1.0258KB/s tx=1.09587KB/s disk_count=3 top_proc=grpcpp_sync_ser(10342) 4.26188KB/s
+[collect] ubuntu24 192.168.63.133 seq=1793200904713 cpu=1.79153% mem=32.5003% net(ens33) rx=1.35006KB/s tx=1.13381KB/s disk_count=3 top_proc=grpcpp_sync_ser(10342) 4.25078KB/s
+[collect] ubuntu24 192.168.63.133 seq=1793200904714 cpu=1.16716% mem=32.503% net(ens33) rx=1.17984KB/s tx=1.08834KB/s disk_count=3 top_proc=grpcpp_sync_ser(10342) 4.20284KB/s
+[collect] ubuntu24 192.168.63.133 seq=1793200904715 cpu=1.34409% mem=32.5025% net(ens33) rx=1.01944KB/s tx=1.33717KB/s disk_count=3 top_proc=grpcpp_sync_ser(10342) 4.2373KB/s
+[collect] ubuntu24 192.168.63.133 seq=1793200904716 cpu=1.99991% mem=32.5083% net(ens33) rx=0.893701KB/s tx=0.924854KB/s disk_count=3 top_proc=grpcpp_sync_ser(10342) 4.21004KB/s
+[collect] ubuntu24 192.168.63.133 seq=1793200904717 cpu=1.4768% mem=32.5171% net(ens33) rx=1.40701KB/s tx=1.24938KB/s disk_count=3 top_proc=grpcpp_sync_ser(10342) 4.2351KB/s
+[collect] ubuntu24 192.168.63.133 seq=1793200904718 cpu=3.00133% mem=32.5164% net(ens33) rx=1.54578KB/s tx=1.34551KB/s disk_count=3 top_proc=grpcpp_sync_ser(10342) 4.19788KB/s
+[collect] ubuntu24 192.168.63.133 seq=1793200904719 cpu=1.24058% mem=32.5155% net(ens33) rx=0.679694KB/s tx=0.771229KB/s disk_count=3 top_proc=grpcpp_sync_ser(10342) 4.23087KB/s
+[collect] ubuntu24 192.168.63.133 seq=1793200904720 cpu=0.594327% mem=32.5148% net(ens33) rx=1.51875KB/s tx=1.25784KB/s disk_count=3 top_proc=grpcpp_sync_ser(10342) 4.20106KB/s
+[collect] ubuntu24 192.168.63.133 seq=1793200904721 cpu=3.72554% mem=32.5142% net(ens33) rx=1.29809KB/s tx=1.19105KB/s disk_count=3 top_proc=grpcpp_sync_ser(10342) 4.31463KB/s
+[collect] ubuntu24 192.168.63.133 seq=1793200904722 cpu=1.4549% mem=32.5229% net(ens33) rx=30.0187KB/s tx=1.65376KB/s disk_count=3 top_proc=sshd(1772) 59.2173KB/s
+[collect] ubuntu24 192.168.63.133 seq=1793200904723 cpu=2.58292% mem=32.5254% net(ens33) rx=2.02557KB/s tx=1.30494KB/s disk_count=3 top_proc=grpcpp_sync_ser(10342) 4.26355KB/s
+[collect] ubuntu24 192.168.63.133 seq=1793200904724 cpu=1.16568% mem=32.5265% net(ens33) rx=1.06542KB/s tx=0.977776KB/s disk_count=3 top_proc=grpcpp_sync_ser(10342) 4.23821KB/s
+[collect] ubuntu24 192.168.63.133 seq=1793200904725 cpu=17.791% mem=32.7979% net(ens33) rx=0.918992KB/s tx=0.899522KB/s disk_count=3 top_proc=grpcpp_sync_ser(10342) 2.33155KB/s
+>>> recvmsg:Connection reset by peer <<<
+Failed to push monitor data to 127.0.0.1:50061
+[backlog] replaying 1 buffered samples...
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+[backlog] 0/1 succeeded, 1 returned to buffer
+[collect] ubuntu24 192.168.63.133 seq=1793200904726 cpu=3.54492% mem=32.365% net(ens33) rx=1.03149KB/s tx=1.18729KB/s disk_count=3 top_proc=sshd(1772) 1.8531KB/s
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+Failed to push monitor data to 127.0.0.1:50061
+[backlog] replaying 2 buffered samples...
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+[backlog] 0/2 succeeded, 2 returned to buffer
+[collect] ubuntu24 192.168.63.133 seq=1793200904727 cpu=13.1949% mem=32.0127% net(ens33) rx=0.732612KB/s tx=0.824189KB/s disk_count=3 top_proc=sshd(1772) 1.39021KB/s
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+Failed to push monitor data to 127.0.0.1:50061
+[backlog] replaying 3 buffered samples...
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+[backlog] 0/3 succeeded, 3 returned to buffer
+[collect] ubuntu24 192.168.63.133 seq=1793200904728 cpu=19.2562% mem=27.5711% net(ens33) rx=0.576601KB/s tx=0.931133KB/s disk_count=3 top_proc=sshd(1772) 0.856123KB/s
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+Failed to push monitor data to 127.0.0.1:50061
+[backlog] replaying 4 buffered samples...
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+[backlog] 0/4 succeeded, 4 returned to buffer
+[collect] ubuntu24 192.168.63.133 seq=1793200904729 cpu=16.7695% mem=27.5705% net(ens33) rx=0.525677KB/s tx=0.490632KB/s disk_count=3 top_proc=sshd(1772) 0.715514KB/s
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+Failed to push monitor data to 127.0.0.1:50061
+[backlog] replaying 5 buffered samples...
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+[backlog] 0/5 succeeded, 5 returned to buffer
+[collect] ubuntu24 192.168.63.133 seq=1793200904730 cpu=0.20274% mem=27.5902% net(ens33) rx=0.961106KB/s tx=0.816842KB/s disk_count=3 top_proc=sshd(1772) 0.888958KB/s
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+Failed to push monitor data to 127.0.0.1:50061
+[backlog] replaying 6 buffered samples...
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+[backlog] 0/6 succeeded, 6 returned to buffer
+[collect] ubuntu24 192.168.63.133 seq=1793200904731 cpu=2.22515% mem=27.5891% net(ens33) rx=1.32782KB/s tx=1.11755KB/s disk_count=3 top_proc=sshd(1772) 0.868319KB/s
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+Failed to push monitor data to 127.0.0.1:50061
+[backlog] replaying 7 buffered samples...
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+[backlog] 0/7 succeeded, 7 returned to buffer
+[collect] ubuntu24 192.168.63.133 seq=1793200904732 cpu=1.04711% mem=27.5891% net(ens33) rx=1.05582KB/s tx=0.898033KB/s disk_count=3 top_proc=sshd(1772) 0.891239KB/s
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+Failed to push monitor data to 127.0.0.1:50061
+[backlog] replaying 8 buffered samples...
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+[backlog] 0/8 succeeded, 8 returned to buffer
+[collect] ubuntu24 192.168.63.133 seq=1793200904733 cpu=0.584698% mem=27.5891% net(ens33) rx=10.2275KB/s tx=36.0385KB/s disk_count=3 top_proc=sshd(3254) 1.51838KB/s
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+Failed to push monitor data to 127.0.0.1:50061
+[backlog] replaying 9 buffered samples...
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+[backlog] 0/9 succeeded, 9 returned to buffer
+[collect] ubuntu24 192.168.63.133 seq=1793200904734 cpu=0.868099% mem=27.5891% net(ens33) rx=1.23115KB/s tx=1.0211KB/s disk_count=3 top_proc=sshd(1772) 0.895649KB/s
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+Failed to push monitor data to 127.0.0.1:50061
+[backlog] replaying 10 buffered samples...
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+[backlog] 0/10 succeeded, 10 returned to buffer
+[collect] ubuntu24 192.168.63.133 seq=1793200904735 cpu=0.482505% mem=27.5923% net(ens33) rx=0.68074KB/s tx=0.71186KB/s disk_count=3 top_proc=sshd(1772) 1.01706KB/s
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+Failed to push monitor data to 127.0.0.1:50061
+[backlog] replaying 11 buffered samples...
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+[backlog] 0/11 succeeded, 11 returned to buffer
+[collect] ubuntu24 192.168.63.133 seq=1793200904736 cpu=2.22327% mem=27.5754% net(ens33) rx=0.585801KB/s tx=0.609156KB/s disk_count=3 top_proc=sshd(1772) 0.768862KB/s
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+Failed to push monitor data to 127.0.0.1:50061
+[backlog] replaying 12 buffered samples...
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+[backlog] 0/12 succeeded, 12 returned to buffer
+[collect] ubuntu24 192.168.63.133 seq=1793200904737 cpu=0.790381% mem=27.5754% net(ens33) rx=1.70985KB/s tx=1.48032KB/s disk_count=3 top_proc=sshd(1772) 1.22744KB/s
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+Failed to push monitor data to 127.0.0.1:50061
+[backlog] replaying 13 buffered samples...
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+[backlog] 0/13 succeeded, 13 returned to buffer
+[collect] ubuntu24 192.168.63.133 seq=1793200904738 cpu=0.406905% mem=27.5754% net(ens33) rx=1.05516KB/s tx=1.00649KB/s disk_count=3 top_proc=sshd(1772) 0.780662KB/s
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+Failed to push monitor data to 127.0.0.1:50061
+[backlog] replaying 14 buffered samples...
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+[backlog] 0/14 succeeded, 14 returned to buffer
+[collect] ubuntu24 192.168.63.133 seq=1793200904739 cpu=0.228523% mem=27.5753% net(ens33) rx=0.893296KB/s tx=0.807664KB/s disk_count=3 top_proc=sshd(1772) 0.723975KB/s
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+Failed to push monitor data to 127.0.0.1:50061
+[backlog] replaying 15 buffered samples...
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+[backlog] 0/15 succeeded, 15 returned to buffer
+[collect] ubuntu24 192.168.63.133 seq=1793200904740 cpu=0.355773% mem=27.6127% net(ens33) rx=1.18004KB/s tx=1.03618KB/s disk_count=3 top_proc=sshd(1772) 1.08088KB/s
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+Failed to push monitor data to 127.0.0.1:50061
+[backlog] replaying 16 buffered samples...
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+[backlog] 0/16 succeeded, 16 returned to buffer
+[collect] ubuntu24 192.168.63.133 seq=1793200904741 cpu=1.86819% mem=27.6156% net(ens33) rx=1.22385KB/s tx=1.01371KB/s disk_count=3 top_proc=sshd(1772) 0.746185KB/s
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+Failed to push monitor data to 127.0.0.1:50061
+[backlog] replaying 17 buffered samples...
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+[backlog] 0/17 succeeded, 17 returned to buffer
+[collect] ubuntu24 192.168.63.133 seq=1793200904742 cpu=1.14666% mem=27.6156% net(ens33) rx=0.791523KB/s tx=0.809026KB/s disk_count=3 top_proc=sshd(1772) 1.08519KB/s
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+Failed to push monitor data to 127.0.0.1:50061
+[backlog] replaying 18 buffered samples...
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+[backlog] 0/18 succeeded, 18 returned to buffer
+[collect] ubuntu24 192.168.63.133 seq=1793200904743 cpu=0.279695% mem=27.6156% net(ens33) rx=1.38387KB/s tx=1.27114KB/s disk_count=3 top_proc=sshd(1772) 0.940718KB/s
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+Failed to push monitor data to 127.0.0.1:50061
+[backlog] replaying 19 buffered samples...
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+[backlog] 0/19 succeeded, 19 returned to buffer
+[collect] ubuntu24 192.168.63.133 seq=1793200904744 cpu=0.381612% mem=28.6129% net(ens33) rx=0.578075KB/s tx=0.609217KB/s disk_count=3 top_proc=sshd(1772) 0.756144KB/s
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+Failed to push monitor data to 127.0.0.1:50061
+[backlog] replaying 20 buffered samples...
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+[backlog] 0/20 succeeded, 20 returned to buffer
+[collect] ubuntu24 192.168.63.133 seq=1793200904745 cpu=25.1843% mem=29.601% net(ens33) rx=0.703981KB/s tx=0.735096KB/s disk_count=3 top_proc=sshd(1772) 1.11435KB/s
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+Failed to push monitor data to 127.0.0.1:50061
+[backlog] replaying 21 buffered samples...
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+[backlog] 0/21 succeeded, 21 returned to buffer
+[collect] ubuntu24 192.168.63.133 seq=1793200904746 cpu=26.6815% mem=30.5795% net(ens33) rx=0.431252KB/s tx=0.608026KB/s disk_count=3 top_proc=sshd(1772) 0.859501KB/s
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+Failed to push monitor data to 127.0.0.1:50061
+[backlog] replaying 22 buffered samples...
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+[backlog] 0/22 succeeded, 22 returned to buffer
+[collect] ubuntu24 192.168.63.133 seq=1793200904747 cpu=25.8142% mem=31.5028% net(ens33) rx=0.948912KB/s tx=0.892522KB/s disk_count=3 top_proc=sshd(1772) 1.31364KB/s
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+Failed to push monitor data to 127.0.0.1:50061
+[backlog] replaying 23 buffered samples...
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+[backlog] 0/23 succeeded, 23 returned to buffer
+[collect] ubuntu24 192.168.63.133 seq=1793200904748 cpu=24.8964% mem=32.387% net(ens33) rx=0.716742KB/s tx=0.786668KB/s disk_count=3 top_proc=sshd(1772) 1.00227KB/s
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+Failed to push monitor data to 127.0.0.1:50061
+[backlog] replaying 24 buffered samples...
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+[backlog] 0/24 succeeded, 24 returned to buffer
+[collect] ubuntu24 192.168.63.133 seq=1793200904749 cpu=29.5485% mem=32.3988% net(ens33) rx=0.881487KB/s tx=0.972944KB/s disk_count=3 top_proc=sshd(1772) 0.957365KB/s
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+Failed to push monitor data to 127.0.0.1:50061
+[backlog] replaying 25 buffered samples...
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+[backlog] 0/25 succeeded, 25 returned to buffer
+[collect] ubuntu24 192.168.63.133 seq=1793200904750 cpu=8.03536% mem=32.4196% net(ens33) rx=1.14306KB/s tx=0.94866KB/s disk_count=3 top_proc=sshd(1772) 0.993389KB/s
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+Failed to push monitor data to 127.0.0.1:50061
+[backlog] replaying 26 buffered samples...
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+[backlog] 0/26 succeeded, 26 returned to buffer
+[collect] ubuntu24 192.168.63.133 seq=1793200904751 cpu=2.53789% mem=32.4218% net(ens33) rx=1.02692KB/s tx=1.02887KB/s disk_count=3 top_proc=sshd(1772) 1.024KB/s
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+Failed to push monitor data to 127.0.0.1:50061
+[backlog] replaying 27 buffered samples...
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+[backlog] 0/27 succeeded, 27 returned to buffer
+[collect] ubuntu24 192.168.63.133 seq=1793200904752 cpu=1.28793% mem=32.4218% net(ens33) rx=1.12804KB/s tx=0.933885KB/s disk_count=3 top_proc=sshd(1772) 1.09695KB/s
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+Failed to push monitor data to 127.0.0.1:50061
+[backlog] replaying 28 buffered samples...
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+[backlog] 0/28 succeeded, 28 returned to buffer
+[collect] ubuntu24 192.168.63.133 seq=1793200904753 cpu=0.847127% mem=32.4275% net(ens33) rx=1.31135KB/s tx=1.6455KB/s disk_count=3 top_proc=sshd(1772) 1.25504KB/s
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+Failed to push monitor data to 127.0.0.1:50061
+[backlog] replaying 29 buffered samples...
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+[backlog] 0/29 succeeded, 29 returned to buffer
+[collect] ubuntu24 192.168.63.133 seq=1793200904754 cpu=0.718525% mem=32.4275% net(ens33) rx=0.710945KB/s tx=0.726484KB/s disk_count=3 top_proc=sshd(1772) 0.983848KB/s
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+Failed to push monitor data to 127.0.0.1:50061
+[backlog] replaying 30 buffered samples...
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+[backlog] 0/30 succeeded, 30 returned to buffer
+[collect] ubuntu24 192.168.63.133 seq=1793200904755 cpu=0.460434% mem=32.4457% net(ens33) rx=1.032KB/s tx=0.938883KB/s disk_count=3 top_proc=sshd(1772) 1.12997KB/s
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+Failed to push monitor data to 127.0.0.1:50061
+[backlog] replaying 31 buffered samples...
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+[backlog] 0/31 succeeded, 31 returned to buffer
+[collect] ubuntu24 192.168.63.133 seq=1793200904756 cpu=2.24723% mem=32.428% net(ens33) rx=1.48851KB/s tx=1.40495KB/s disk_count=3 top_proc=sshd(1772) 1.29322KB/s
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+Failed to push monitor data to 127.0.0.1:50061
+[backlog] replaying 32 buffered samples...
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+[backlog] 0/32 succeeded, 32 returned to buffer
+[collect] ubuntu24 192.168.63.133 seq=1793200904757 cpu=1.05473% mem=32.3783% net(ens33) rx=1.11919KB/s tx=0.932979KB/s disk_count=3 top_proc=sshd(1772) 0.947525KB/s
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+Failed to push monitor data to 127.0.0.1:50061
+[backlog] replaying 33 buffered samples...
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+[backlog] 0/33 succeeded, 33 returned to buffer
+[collect] ubuntu24 192.168.63.133 seq=1793200904758 cpu=0.669242% mem=32.3348% net(ens33) rx=1.20979KB/s tx=1.30106KB/s disk_count=3 top_proc=sshd(1772) 1.29426KB/s
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+Failed to push monitor data to 127.0.0.1:50061
+[backlog] replaying 34 buffered samples...
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+[backlog] 0/34 succeeded, 34 returned to buffer
+[collect] ubuntu24 192.168.63.133 seq=1793200904759 cpu=0.487836% mem=32.2962% net(ens33) rx=1.194KB/s tx=1.0348KB/s disk_count=3 top_proc=sshd(1772) 0.983355KB/s
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+Failed to push monitor data to 127.0.0.1:50061
+[backlog] replaying 35 buffered samples...
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+[backlog] 0/35 succeeded, 35 returned to buffer
+[collect] ubuntu24 192.168.63.133 seq=1793200904760 cpu=0.667776% mem=32.2745% net(ens33) rx=1.53087KB/s tx=1.3155KB/s disk_count=3 top_proc=sshd(1772) 1.18453KB/s
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+Failed to push monitor data to 127.0.0.1:50061
+[backlog] replaying 36 buffered samples...
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+[backlog] 0/36 succeeded, 36 returned to buffer
+[collect] ubuntu24 192.168.63.133 seq=1793200904761 cpu=1.58565% mem=32.2519% net(ens33) rx=1.52535KB/s tx=1.42637KB/s disk_count=3 top_proc=sshd(1772) 1.41084KB/s
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+Failed to push monitor data to 127.0.0.1:50061
+[backlog] replaying 37 buffered samples...
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+[backlog] 0/37 succeeded, 37 returned to buffer
+[collect] ubuntu24 192.168.63.133 seq=1793200904762 cpu=1.20994% mem=32.219% net(ens33) rx=1.47451KB/s tx=1.424KB/s disk_count=3 top_proc=sshd(1772) 1.17146KB/s
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+Failed to push monitor data to 127.0.0.1:50061
+[backlog] replaying 38 buffered samples...
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+[backlog] 0/38 succeeded, 38 returned to buffer
+[collect] ubuntu24 192.168.63.133 seq=1793200904763 cpu=1.08596% mem=32.2047% net(ens33) rx=3.38535KB/s tx=3.81966KB/s disk_count=3 top_proc=sshd(1772) 5.87288KB/s
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+Failed to push monitor data to 127.0.0.1:50061
+[backlog] replaying 39 buffered samples...
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+[backlog] 0/39 succeeded, 39 returned to buffer
+[collect] ubuntu24 192.168.63.133 seq=1793200904764 cpu=4.51884% mem=32.1727% net(ens33) rx=4.23402KB/s tx=5.35468KB/s disk_count=3 top_proc=sshd(1772) 10.5228KB/s
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+Failed to push monitor data to 127.0.0.1:50061
+[backlog] replaying 40 buffered samples...
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+[backlog] 0/40 succeeded, 40 returned to buffer
+[collect] ubuntu24 192.168.63.133 seq=1793200904765 cpu=2.27385% mem=32.184% net(ens33) rx=1.26418KB/s tx=1.45971KB/s disk_count=3 top_proc=sshd(1772) 2.24088KB/s
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+Failed to push monitor data to 127.0.0.1:50061
+[backlog] replaying 41 buffered samples...
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+[backlog] 0/41 succeeded, 41 returned to buffer
+[collect] ubuntu24 192.168.63.133 seq=1793200904766 cpu=3.21054% mem=32.1982% net(ens33) rx=0.882609KB/s tx=0.836054KB/s disk_count=3 top_proc=sshd(1772) 1.39862KB/s
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+Failed to push monitor data to 127.0.0.1:50061
+[backlog] replaying 42 buffered samples...
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+[backlog] 0/42 succeeded, 42 returned to buffer
+[collect] ubuntu24 192.168.63.133 seq=1793200904767 cpu=0.670353% mem=32.1982% net(ens33) rx=1.06468KB/s tx=0.940565KB/s disk_count=3 top_proc=sshd(1772) 1.34879KB/s
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+Failed to push monitor data to 127.0.0.1:50061
+[backlog] replaying 43 buffered samples...
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+[backlog] 0/43 succeeded, 43 returned to buffer
+[collect] ubuntu24 192.168.63.133 seq=1793200904768 cpu=0.591097% mem=32.198% net(ens33) rx=1.39888KB/s tx=1.80906KB/s disk_count=3 top_proc=sshd(1772) 2.29854KB/s
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+Failed to push monitor data to 127.0.0.1:50061
+[backlog] replaying 44 buffered samples...
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+[backlog] 0/44 succeeded, 44 returned to buffer
+[collect] ubuntu24 192.168.63.133 seq=1793200904769 cpu=5.32245% mem=32.2416% net(ens33) rx=9.29644KB/s tx=10.1414KB/s disk_count=3 top_proc=sshd(1772) 14.1204KB/s
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+Failed to push monitor data to 127.0.0.1:50061
+[backlog] replaying 45 buffered samples...
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+[backlog] 0/45 succeeded, 45 returned to buffer
+[collect] ubuntu24 192.168.63.133 seq=1793200904770 cpu=2.6765% mem=32.2414% net(ens33) rx=4.75683KB/s tx=5.60789KB/s disk_count=3 top_proc=sshd(1772) 6.67489KB/s
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+Failed to push monitor data to 127.0.0.1:50061
+[backlog] replaying 46 buffered samples...
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+[backlog] 0/46 succeeded, 46 returned to buffer
+[collect] ubuntu24 192.168.63.133 seq=1793200904771 cpu=1.55445% mem=32.2507% net(ens33) rx=1.90219KB/s tx=2.1213KB/s disk_count=3 top_proc=sshd(1772) 2.74665KB/s
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+Failed to push monitor data to 127.0.0.1:50061
+[backlog] replaying 47 buffered samples...
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+[backlog] 0/47 succeeded, 47 returned to buffer
+[collect] ubuntu24 192.168.63.133 seq=1793200904772 cpu=11.7017% mem=32.4866% net(ens33) rx=4.07564KB/s tx=5.14594KB/s disk_count=3 top_proc=sshd(1772) 7.83393KB/s
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+Failed to push monitor data to 127.0.0.1:50061
+[backlog] replaying 48 buffered samples...
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+[backlog] 0/48 succeeded, 48 returned to buffer
+[collect] ubuntu24 192.168.63.133 seq=1793200904773 cpu=15.5912% mem=32.7083% net(ens33) rx=8.57463KB/s tx=8.55333KB/s disk_count=3 top_proc=sshd(1772) 12.7432KB/s
+>>> failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50061: Failed to connect to remote host: Connection refused <<<
+Failed to push monitor data to 127.0.0.1:50061
+[backlog] replaying 49 buffered samples...
+[backlog] all 49 samples replayed successfully
+[collect] ubuntu24 192.168.63.133 seq=1793200904774 cpu=5.68075% mem=32.7668% net(ens33) rx=9.54393KB/s tx=11.1886KB/s disk_count=3 top_proc=manager(11059) 87.7087KB/s
+[collect] ubuntu24 192.168.63.133 seq=1793200904775 cpu=24.1643% mem=32.9509% net(ens33) rx=2.62517KB/s tx=2.00782KB/s disk_count=3 top_proc=manager(11059) 106.299KB/s
+[collect] ubuntu24 192.168.63.133 seq=1793200904776 cpu=2.85302% mem=32.9595% net(ens33) rx=0.688711KB/s tx=0.749022KB/s disk_count=3 top_proc=manager(11059) 4.38794KB/s
+[collect] ubuntu24 192.168.63.133 seq=1793200904777 cpu=0.986695% mem=32.6332% net(ens33) rx=1.05007KB/s tx=1.04618KB/s disk_count=3 top_proc=manager(11059) 4.38451KB/s
+[collect] ubuntu24 192.168.63.133 seq=1793200904778 cpu=0.724635% mem=32.6329% net(ens33) rx=0.983779KB/s tx=1.22144KB/s disk_count=3 top_proc=manager(11059) 4.40078KB/s
+[collect] ubuntu24 192.168.63.133 seq=1793200904779 cpu=1.66976% mem=32.6339% net(ens33) rx=2.45337KB/s tx=2.63055KB/s disk_count=3 top_proc=sshd(1772) 4.69054KB/s
+[collect] ubuntu24 192.168.63.133 seq=1793200904780 cpu=6.43916% mem=32.6477% net(ens33) rx=5.34771KB/s tx=5.42366KB/s disk_count=3 top_proc=sshd(1772) 10.6789KB/s
+[collect] ubuntu24 192.168.63.133 seq=1793200904781 cpu=2.31666% mem=32.663% net(ens33) rx=0.600263KB/s tx=0.726942KB/s disk_count=3 top_proc=manager(11059) 4.4075KB/s
